@@ -9,12 +9,12 @@ const config = {
   title: 'Broken Rock Studios',
   tagline: 'Multiplayer and Fun',
   favicon: 'img/favicon.ico',
-
+  trailingSlash: false,
   // Set the production url of your site here
   url: 'https://brokenrockstudios.com',
   baseUrl: '/',
   organizationName: 'brokenrockstudios',
-  projectName: 'website', 
+  projectName: 'website',
   deploymentBranch: 'gh-pages',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -23,7 +23,12 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
+  customFields: {
+    about: {
+      title: 'About',
+      description: 'About us',
+    }
+  },
   presets: [
     [
       'classic',
@@ -36,6 +41,9 @@ const config = {
           sidebarCollapsible: true,
         },
         blog: {
+          blogTitle: 'News',
+          blogDescription: 'Multiplayer and Fun',
+          blogListComponent: '/src/components/BlogListPage',
           routeBasePath: '/',
         },
         theme: {
@@ -48,6 +56,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: 'img/logo-500x500.png',
       navbar: {
         title: 'Broken Rock Studios',
         logo: {
@@ -63,8 +72,8 @@ const config = {
             position: 'left',
             label: 'Media',
           },
-          {to: 'https://www.fangamer.com/', label: 'Store', position: 'left'},
-          {to: '/about', label: 'About', position: 'left'},
+          { to: 'https://www.fangamer.com/', label: 'Store', position: 'left' },
+          { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://store.steampowered.com',
             label: 'Buy Frog of War',

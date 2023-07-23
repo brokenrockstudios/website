@@ -4,12 +4,14 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { translate } from '@docusaurus/Translate';
 
 import styles from './about.module.css';
-import HomePage from '../components/About';
+import AboutPage from '../components/AboutPage';
 
-function Home() {
+
+
+function About() {
 	const context = useDocusaurusContext();
 	let { siteConfig } = context;
-
+	const aboutConfig = siteConfig.customFields.about as {[key: string]: unknown};
 	const lines = [
 		translate({
 			id: 'homepage.description.descriptionLine_1',
@@ -30,14 +32,14 @@ function Home() {
 
 	return (
 		<Layout
-			title={siteConfig.title}
-			description={siteConfig.customFields.description as string}
+			title={aboutConfig.title as string}
+			description={aboutConfig.description as string}
 		>
 			<main className={styles.heroContainer}>
-				<HomePage {...siteConfig} descriptionLines={lines} />
+				<AboutPage {...siteConfig} descriptionLines={lines} />
 			</main>
 		</Layout>
 	);
 }
 
-export default Home;
+export default About;
