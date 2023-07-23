@@ -1,5 +1,5 @@
 ---
-slug: frog-of-war-dev-update-1
+slug: fow-dev-update-1
 title: 'Frog of War: Dev Update 1'
 authors: [namrog84]
 tags: [frog, game, dev]

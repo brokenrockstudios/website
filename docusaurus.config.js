@@ -42,9 +42,13 @@ const config = {
         },
         blog: {
           blogTitle: 'News',
-          blogDescription: 'Multiplayer and Fun',
+          blogDescription: 'Discover fun and simple multiplayer games at Broken Rock Studios. Immerse yourself in thoughtful and compelling gameplay developed by gamers. Come play with us!', // optimal 150-160 char
           blogListComponent: '/src/components/BlogListPage',
           routeBasePath: '/',
+        },
+        gtag: {
+          trackingID: 'G-595SGCKWD1',
+          anonymizeIP: true, // GDPR
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -57,6 +61,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/logo-500x500.png',
+      metadata: [{name: 'keywords', content: 'broken rock studio, game development, multiplayer'}],
       navbar: {
         title: 'Broken Rock Studios',
         logo: {
