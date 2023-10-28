@@ -1,0 +1,9 @@
+{
+  "type": "mdx",
+  "permalink": "/README",
+  "source": "@site/src/pages/README.md",
+  "title": "Pages",
+  "description": "https://docusaurus.io/docs/creating-pages",
+  "frontMatter": {},
+  "unlisted": false
+}

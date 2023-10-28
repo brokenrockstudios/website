@@ -1,0 +1,16 @@
+{
+  "title": "Frog of War",
+  "description": "Frog Shooter Game",
+  "slug": "/category/frog-of-war",
+  "permalink": "/products/category/frog-of-war",
+  "navigation": {
+    "previous": {
+      "title": "Games",
+      "permalink": "/products/category/games"
+    },
+    "next": {
+      "title": "Screenshots",
+      "permalink": "/products/games/frog-of-war/screenshots"
+    }
+  }
+}

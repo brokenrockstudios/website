@@ -1,0 +1,12 @@
+{
+  "title": "Products",
+  "description": "Broken Rock Studios products and services",
+  "slug": "/category/products",
+  "permalink": "/products/category/products",
+  "navigation": {
+    "next": {
+      "title": "Frog of War",
+      "permalink": "/products/category/frog-of-war"
+    }
+  }
+}

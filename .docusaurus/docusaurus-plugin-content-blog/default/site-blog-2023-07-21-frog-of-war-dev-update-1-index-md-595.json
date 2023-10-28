@@ -1,0 +1,46 @@
+{
+  "permalink": "/fow-dev-update-1",
+  "source": "@site/blog/2023-07-21-frog-of-war-dev-update-1/index.md",
+  "title": "Frog of War: Dev Update 1",
+  "description": "Welcome to the latest update from our studio! We're excited to introduce you to our project, \"Frog of War,\" a thrilling multiplayer experience set in a world of amphibious warfare. Developed using the cutting-edge Unreal Engine 5, this game is a simple and modern take on multiplayer first-person shooters.",
+  "date": "2023-07-21T00:00:00.000Z",
+  "formattedDate": "July 21, 2023",
+  "tags": [
+    {
+      "label": "frog",
+      "permalink": "/tags/frog"
+    },
+    {
+      "label": "game",
+      "permalink": "/tags/game"
+    },
+    {
+      "label": "dev",
+      "permalink": "/tags/dev"
+    }
+  ],
+  "readingTime": 1.45,
+  "hasTruncateMarker": true,
+  "authors": [
+    {
+      "name": "namrog84",
+      "title": "Developer",
+      "url": "https://github.com/namrog84",
+      "imageURL": "https://github.com/namrog84.png",
+      "key": "namrog84"
+    }
+  ],
+  "frontMatter": {
+    "slug": "fow-dev-update-1",
+    "title": "Frog of War: Dev Update 1",
+    "authors": [
+      "namrog84"
+    ],
+    "tags": [
+      "frog",
+      "game",
+      "dev"
+    ]
+  },
+  "unlisted": false
+}

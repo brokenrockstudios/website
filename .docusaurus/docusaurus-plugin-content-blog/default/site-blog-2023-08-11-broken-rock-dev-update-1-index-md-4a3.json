@@ -1,0 +1,59 @@
+{
+  "permalink": "/brs-dev-update-1",
+  "source": "@site/blog/2023-08-11-broken-rock-dev-update-1/index.md",
+  "title": "Broken Rock: Dev Update 1",
+  "description": "Many blockout, prototyping, or grey box kits tend to be slightly arbitrarily sized. While some might strive to be somewhat scaled against Unreal Engine skeleton, they lack some consistency.",
+  "date": "2023-08-11T00:00:00.000Z",
+  "formattedDate": "August 11, 2023",
+  "tags": [
+    {
+      "label": "game",
+      "permalink": "/tags/game"
+    },
+    {
+      "label": "dev",
+      "permalink": "/tags/dev"
+    },
+    {
+      "label": "tech",
+      "permalink": "/tags/tech"
+    },
+    {
+      "label": "unreal",
+      "permalink": "/tags/unreal"
+    },
+    {
+      "label": "plugin",
+      "permalink": "/tags/plugin"
+    }
+  ],
+  "readingTime": 1.535,
+  "hasTruncateMarker": false,
+  "authors": [
+    {
+      "name": "namrog84",
+      "title": "Developer",
+      "url": "https://github.com/namrog84",
+      "imageURL": "https://github.com/namrog84.png",
+      "key": "namrog84"
+    }
+  ],
+  "frontMatter": {
+    "slug": "brs-dev-update-1",
+    "title": "Broken Rock: Dev Update 1",
+    "authors": [
+      "namrog84"
+    ],
+    "tags": [
+      "game",
+      "dev",
+      "tech",
+      "unreal",
+      "plugin"
+    ]
+  },
+  "nextItem": {
+    "title": "Frog of War: Dev Update 1",
+    "permalink": "/fow-dev-update-1"
+  }
+}

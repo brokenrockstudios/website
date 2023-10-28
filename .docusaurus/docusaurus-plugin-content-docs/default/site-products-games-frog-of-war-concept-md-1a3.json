@@ -1,0 +1,26 @@
+{
+  "id": "games/frog-of-war/concept",
+  "title": "Concept Art",
+  "description": "",
+  "source": "@site/products/games/frog-of-war/concept.md",
+  "sourceDirName": "games/frog-of-war",
+  "slug": "/games/frog-of-war/concept",
+  "permalink": "/products/games/frog-of-war/concept",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "productSidebar",
+  "previous": {
+    "title": "Music",
+    "permalink": "/products/games/frog-of-war/music"
+  },
+  "next": {
+    "title": "Plugins",
+    "permalink": "/products/category/plugins"
+  }
+}

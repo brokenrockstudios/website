@@ -1,0 +1,12 @@
+{
+  "title": "Games",
+  "description": "Games developed by Broken Rock Studios",
+  "slug": "/category/games-1",
+  "permalink": "/products/category/games-1",
+  "navigation": {
+    "next": {
+      "title": "Frog of War",
+      "permalink": "/products/category/frog-of-war-1"
+    }
+  }
+}

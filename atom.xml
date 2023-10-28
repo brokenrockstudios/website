@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://brokenrockstudios.com/</id>
+    <title>Broken Rock Studios Blog</title>
+    <updated>2023-07-21T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://brokenrockstudios.com/"/>
+    <subtitle>Broken Rock Studios Blog</subtitle>
+    <icon>https://brokenrockstudios.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Frog of War: Dev Update 1]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-update-1</id>
+        <link href="https://brokenrockstudios.com/fow-dev-update-1"/>
+        <updated>2023-07-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Welcome to the latest update from our studio! We're excited to introduce you to our project, "Frog of War," a thrilling multiplayer experience set in a world of amphibious warfare. Developed using the cutting-edge Unreal Engine 5, this game is a simple and modern take on multiplayer first-person shooters.]]></summary>
+        <content type="html"><![CDATA[<p>Welcome to the latest update from our studio! We're excited to introduce you to our project, "<strong>Frog of War</strong>," a thrilling multiplayer experience set in a world of amphibious warfare. Developed using the cutting-edge <a href="https://www.unrealengine.com/en-US/unreal-engine-5" target="_blank" rel="noopener noreferrer">Unreal Engine 5</a>, this game is a simple and modern take on multiplayer first-person shooters.</p><p><img loading="lazy" alt="fow2" src="/assets/images/fow2-e4902ed5b9741983494e27e86bdfd79b.png" width="2576" height="1408" class="img_ev3q"></p><p>Prepare yourselves for an action-packed adventure as we plunge you into the heart of the battle, taking on the persona of agile and fearless frogs. This isn't your typical first-person shooter; it's an entirely unique and captivating concept that will keep you hooked from the first leap!</p><p>As you dive into the game, you'll be able to choose from a variety of game modes that cater to different playstyles. Engage in intense deathmatches where reflexes and precision are your best allies, or opt for the adrenaline-pumping excitement of our battle royale mode, where only the toughest amphibians will survive!</p><p>But that's not all; we have even more surprises in store! Our team has been hard at work crafting an array of innovative game modes that will challenge your strategy, teamwork, and skills. Whether you're a seasoned gamer or a newcomer to the battlefield, there's something here for everyone!</p><p>As we continue developing "Frog of War," we remain committed to delivering a fun, polished, and enjoyable experience for all our players. We're eagerly anticipating the day when you can join us in this incredible adventure and experience firsthand the excitement, camaraderie, and fierce competition that awaits in our frog-filled universe.</p><p>Stay tuned for more updates, as we'll be sharing behind-the-scenes peeks, gameplay teasers, and further announcements on our journey to release! Thank you for your support, and we can't wait to hop into action with you in "Frog of War!"</p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="frog" term="frog"/>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+    </entry>
+</feed>

@@ -1,0 +1,26 @@
+{
+  "id": "games/P1/screenshots",
+  "title": "Screenshots",
+  "description": "p1-1",
+  "source": "@site/products/games/P1/screenshots.md",
+  "sourceDirName": "games/P1",
+  "slug": "/games/P1/screenshots",
+  "permalink": "/products/games/P1/screenshots",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "productSidebar",
+  "previous": {
+    "title": "P1",
+    "permalink": "/products/category/p1"
+  },
+  "next": {
+    "title": "Videos",
+    "permalink": "/products/games/P1/videos"
+  }
+}

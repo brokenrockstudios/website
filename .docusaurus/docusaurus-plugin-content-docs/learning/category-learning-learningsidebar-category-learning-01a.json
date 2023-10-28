@@ -1,0 +1,16 @@
+{
+  "title": "Learning",
+  "description": "Broken Rock Studios learning resources",
+  "slug": "/category/learning",
+  "permalink": "/learning/category/learning",
+  "navigation": {
+    "previous": {
+      "title": "blender",
+      "permalink": "/learning/blender/"
+    },
+    "next": {
+      "title": "unreal",
+      "permalink": "/learning/unreal/"
+    }
+  }
+}

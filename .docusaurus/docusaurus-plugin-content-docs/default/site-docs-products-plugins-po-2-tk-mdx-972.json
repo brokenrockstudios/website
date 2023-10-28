@@ -1,0 +1,17 @@
+{
+  "id": "products/plugins/po2tk",
+  "title": "Power of 2 Blockout Toolkit",
+  "description": "Lorem Ipsum",
+  "source": "@site/docs/products/plugins/po2tk.mdx",
+  "sourceDirName": "products/plugins",
+  "slug": "/products/plugins/po2tk",
+  "permalink": "/docs/products/plugins/po2tk",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "pluginId": "products",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "noIndex": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "productSidebar": [
+      {
+        "type": "category",
+        "label": "Games",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "category",
+            "label": "Frog of War",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Screenshots",
+                "href": "/products/games/frog-of-war/screenshots",
+                "docId": "games/frog-of-war/screenshots",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Videos",
+                "href": "/products/games/frog-of-war/videos",
+                "docId": "games/frog-of-war/videos",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Music",
+                "href": "/products/games/frog-of-war/music",
+                "docId": "games/frog-of-war/music",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Concept Art",
+                "href": "/products/games/frog-of-war/concept",
+                "docId": "games/frog-of-war/concept",
+                "unlisted": false
+              }
+            ],
+            "href": "/products/category/frog-of-war"
+          }
+        ],
+        "href": "/products/category/games"
+      },
+      {
+        "type": "category",
+        "label": "Plugins",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Power of 2 Blockout Toolkit",
+            "href": "/products/plugins/po2tk",
+            "docId": "plugins/po2tk",
+            "unlisted": false
+          }
+        ],
+        "href": "/products/category/plugins"
+      }
+    ]
+  },
+  "docs": {
+    "games/frog-of-war/concept": {
+      "id": "games/frog-of-war/concept",
+      "title": "Concept Art",
+      "description": "",
+      "sidebar": "productSidebar"
+    },
+    "games/frog-of-war/music": {
+      "id": "games/frog-of-war/music",
+      "title": "Music",
+      "description": "",
+      "sidebar": "productSidebar"
+    },
+    "games/frog-of-war/screenshots": {
+      "id": "games/frog-of-war/screenshots",
+      "title": "Screenshots",
+      "description": "fow1",
+      "sidebar": "productSidebar"
+    },
+    "games/frog-of-war/videos": {
+      "id": "games/frog-of-war/videos",
+      "title": "Videos",
+      "description": "",
+      "sidebar": "productSidebar"
+    },
+    "plugins/po2tk": {
+      "id": "plugins/po2tk",
+      "title": "Power of 2 Blockout Toolkit",
+      "description": "Lorem Ipsum",
+      "sidebar": "productSidebar"
+    }
+  }
+}

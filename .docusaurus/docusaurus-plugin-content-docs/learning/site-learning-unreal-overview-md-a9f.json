@@ -1,0 +1,22 @@
+{
+  "id": "unreal/overview",
+  "title": "Overview",
+  "description": "This section includes Unreal Engine knowledge.",
+  "source": "@site/learning/unreal/overview.md",
+  "sourceDirName": "unreal",
+  "slug": "/unreal/overview",
+  "permalink": "/learning/unreal/overview",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "learningSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/learning/blender/overview"
+  }
+}

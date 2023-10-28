@@ -1,0 +1,26 @@
+{
+  "id": "games/frog-of-war/music",
+  "title": "Music",
+  "description": "",
+  "source": "@site/products/games/frog-of-war/music.md",
+  "sourceDirName": "games/frog-of-war",
+  "slug": "/games/frog-of-war/music",
+  "permalink": "/products/games/frog-of-war/music",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "productSidebar",
+  "previous": {
+    "title": "Videos",
+    "permalink": "/products/games/frog-of-war/videos"
+  },
+  "next": {
+    "title": "Concept Art",
+    "permalink": "/products/games/frog-of-war/concept"
+  }
+}

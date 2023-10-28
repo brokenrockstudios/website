@@ -1,0 +1,18 @@
+{
+  "id": "blender/blender",
+  "title": "blender",
+  "description": "",
+  "source": "@site/learning/blender/blender.md",
+  "sourceDirName": "blender",
+  "slug": "/blender/",
+  "permalink": "/learning/blender/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "learningSidebar"
+}

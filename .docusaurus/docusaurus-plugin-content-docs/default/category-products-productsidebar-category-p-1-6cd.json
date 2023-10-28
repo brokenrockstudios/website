@@ -1,0 +1,16 @@
+{
+  "title": "P1",
+  "description": "Frog-Themed Battle Royale",
+  "slug": "/category/p1",
+  "permalink": "/products/category/p1",
+  "navigation": {
+    "previous": {
+      "title": "Games",
+      "permalink": "/products/category/games"
+    },
+    "next": {
+      "title": "Screenshots",
+      "permalink": "/products/games/P1/screenshots"
+    }
+  }
+}
