@@ -33,12 +33,12 @@
   min-width: 40px;
 }
 
-.header-fow-link:hover {
+.header-p1-link:hover {
   opacity: 0.6;
 }
 
-.header-fow-link:before {
-  background: url("/static/img/fow.svg") no-repeat;
+.header-p1-link:before {
+  background: url("/static/img/p1.svg") no-repeat;
   content: "";
   display: flex;
   float: left;

@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -35,9 +35,9 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          path: 'media',
-          routeBasePath: 'media',
+          sidebarPath: require.resolve('./sidebarsProducts.js'),
+          path: 'products',
+          routeBasePath: 'products',
           sidebarCollapsible: true,
         },
         blog: {
@@ -56,12 +56,22 @@ const config = {
       }),
     ],
   ],
+  plugins: [[
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'learning',
+      path: 'learning',
+      routeBasePath: 'learning',
+      sidebarPath: require.resolve('./sidebarsLearning.js'),
+      // ... other options
+    },
+  ]],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/logo-500x500.png',
-      metadata: [{name: 'keywords', content: 'broken rock studio, game development, multiplayer'}],
+      metadata: [{ name: 'keywords', content: 'broken rock studio, game development, multiplayer' }],
       navbar: {
         title: 'Broken Rock Studios',
         logo: {
@@ -73,17 +83,24 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'mediaSidebar',
+            sidebarId: 'productSidebar',
             position: 'left',
-            label: 'Media',
+            label: 'Products',
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'learning',
+            sidebarId: 'learningSidebar',
+            position: 'left',
+            label: 'Learning',
           },
           { to: 'https://www.fangamer.com/', label: 'Store', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://store.steampowered.com',
-            label: 'Buy Frog of War',
+            label: 'Buy P1',
             position: 'right',
-            class: 'header-fow-link',
+            className: 'header-p1-link',
           },
         ],
       },
