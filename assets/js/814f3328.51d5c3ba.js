@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Frog of War: Dev Update 1","permalink":"/fow-dev-update-1"}]}')}}]);
