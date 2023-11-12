@@ -18,6 +18,12 @@ import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import type {Props} from '@theme/BlogListPage';
 import BlogPostItems from '@theme/BlogPostItems';
+import { MDXProvider } from '@mdx-js/react';
+import AdmonitionTypes from '@site/src/theme/Admonition/Types';
+
+const components = {
+  HLText: AdmonitionTypes.HLText,
+}
 
 function BlogListPageMetadata(props: Props): JSX.Element {
   const {metadata} = props;
@@ -33,10 +39,13 @@ function BlogListPageMetadata(props: Props): JSX.Element {
 function BlogListPageContent(props: Props): JSX.Element {
   const {metadata, items, sidebar} = props;
   return (
-    <BlogLayout sidebar={sidebar}>
-      <BlogPostItems items={items} />
-      <BlogListPaginator metadata={metadata} />
-    </BlogLayout>
+    <MDXProvider components={components}>
+      <BlogLayout sidebar={sidebar}>
+        <div style={{ color: '#F28C28', fontWeight: 'bold', fontSize: '1.2em' }} >HOWDY HOWDY</div>
+        <BlogPostItems items={items} />
+        <BlogListPaginator metadata={metadata} />
+      </BlogLayout>
+    </MDXProvider>
   );
 }
 

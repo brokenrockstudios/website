@@ -18,7 +18,6 @@ const config = {
   deploymentBranch: 'gh-pages',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -39,6 +38,11 @@ const config = {
           path: 'products',
           routeBasePath: 'products',
           sidebarCollapsible: true,
+          docItemComponent: '/src/theme/DocItem',
+          admonitions: {
+            keywords: ['HL'],
+            extendDefaults: true,
+          }
         },
         blog: {
           blogTitle: 'News',
@@ -144,7 +148,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
+      }
     }),
 };
 

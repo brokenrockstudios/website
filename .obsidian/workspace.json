@@ -1,0 +1,169 @@
+{
+  "main": {
+    "id": "0d6fd9acaf7f7e39",
+    "type": "split",
+    "children": [
+      {
+        "id": "19930add4f1fc9c2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "632f257a686245ce",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f06e118a3db12532",
+    "type": "split",
+    "children": [
+      {
+        "id": "39be5bcf0598647f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b6fc5290919b9d05",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a12b281db7288585",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "dba4a164d07d4cee",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "327b411306c047a6",
+    "type": "split",
+    "children": [
+      {
+        "id": "1fedc19471b3548f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1475965652159445",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0f161700b2b88351",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "511b353fb075d80a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d52f6681693d4c51",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "632f257a686245ce",
+  "lastOpenFiles": [
+    "src/theme/DocItem/index.js",
+    "src/theme/DocItem",
+    "src/components/DocItem/index.tsx",
+    "src/components/DocItem",
+    "src/theme/Admonition/Types.js",
+    "src/theme/Admonition/Icon/Info.js",
+    "src/theme/Admonition/Icon",
+    "src/theme/Admonition/styles.module.css",
+    "src/theme/Admonition",
+    "src/theme",
+    "products/plugins/p2bt/GettingStarted.mdx",
+    "products/plugins/p2bt/img/p2bt-duplicate.png",
+    "products/plugins/p2bt/img/p2bt-commands.png",
+    "products/plugins/p2bt/img/p2bt-material.png",
+    "products/plugins/p2bt/img/ScreenShot00007.png",
+    "products/plugins/p2bt/img/ScreenShot00008.png",
+    "products/plugins/p2bt/img/ScreenShot00006.png",
+    "products/plugins/p2bt/img/ScreenShot00004.png",
+    "products/plugins/p2bt/img/ScreenShot00005.png",
+    "products/plugins/p2bt/img/p2bt-transform.png",
+    "products/plugins/p2bt/img/mqyo2eduD7.png",
+    "products/plugins/Details.md",
+    "products/games/P1/music.md",
+    "products/games/P1/screenshots.md",
+    "products/games/P1/videos.md"
+  ]
+}
