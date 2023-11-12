@@ -4,26 +4,49 @@ sidebar_position: 1
 
 # Power of 2 Blockout Toolkit
 
-The <span style={{ color: '#F28C28', fontWeight: 'bold', fontSize: '1.2em' }}>Power of 2 Blockout Toolkit</span> provides quality of life workflow improvements to worldbuilding prototypes or specific stylized gameplay.
+The <HL>Power of 2 Blockout Toolkit </HL> provides quality of life workflow improvements to worldbuilding prototypes or specific stylized gameplay.
 
-The  <HLText>Power of 2 Blockout Toolkit </HLText> provides quality of life workflow improvements to worldbuilding prototypes or specific stylized gameplay.
+# # Getting Started
 
+There are 2 main features of the <HL>Power of 2: Blockout toolkit</HL>.
 
-## Editor
-
-![Transform](./img/p2bt-transform.png)
-
-## Material
-
-![Material](./img/p2bt-material.png)
-
-## Duplicate
-
-![Duplicate](./img/p2bt-duplicate.png)
-
-## Commands 
-
-![Commands](./img/p2bt-commands.png)
+The <HL>Assets</HL> and the <HL>Editor Utility Widget</HL>.
 
 
+The assets come in a few different variants.
+
+The main building/architecture related <HL>Block</HL> pieces which inherit from <HL>AP2BTCellSnapActors</HL>. 
+These pieces will snap to an absolute grid of <HL>512cm x 512cm x 384cm</HL>
+
+## Sizes
+
+### Why 512cm you might ask?  
+
+* It's a power of 2
+  * 2, 4, 8, 16, 32, 64, 128, 256, <HL>512</HL>, 1024
+* 512 can be represented perfectly in a texture
+  * 512x512, 1024, 2048, 4096, etc..
+* Allows enough size to represent a single room that still has enough room to have a few props or assets in it.
+* It is enough size to accommodate most art styles and designs
+
+### Why 384cm high?
+
+* It's a combination of 2x power of 2s.
+  * 256 + 128 = <HL>384cm</HL>
+* It is flexible enough for a large variety of character sizes, including vehicles.
+* It is flexible enough to accommodate for over shoulder third person cameras
+* Having rectangular shaped walls look better than if this was 512cm tall.
+* It's just high enough to have reasonable stairs within a single 512cm tile.
+
+## Assets:
+
+
+<HL>Blocks</HL> are Floors, Walls, Roofs, Shapes, Stairs, Columns, Balconies, and Misc. 
+
+Raw Assets include a few additional assets in Props and Furniture, as well as the raw static mesh variants of the <HL>Blocks</HL>
+
+All recommended assets usages have grid or solid color materials applied. 
+If you are looking at the Content Browser and are seeing the standard UV colors, 
+then there is likely a more appropriate asset to use instead. Such as a 
+<HL>AP2BTCellSnapActors</HL> for the given piece.
 

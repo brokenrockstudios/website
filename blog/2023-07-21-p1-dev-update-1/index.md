@@ -5,9 +5,9 @@ authors: [namrog84]
 tags: [frog, game, dev]
 ---
 
-Welcome to the latest update from our studio! We're excited to introduce you to our project, codenamed <span style={{ color: '#F28C28', fontWeight: 'bold', fontSize: '1.2em' }}>P1</span> (or Project 1), <span style={{ color: '#00A9FF', fontWeight: 'bold', fontSize: '1.2em' }}> a thrilling multiplayer experience set in a world of amphibious warfare.</span> Developed using the cutting-edge [Unreal Engine 5](https://www.unrealengine.com/en-US/unreal-engine-5), this game is a simple and modern take on multiplayer first-person shooters.
+Welcome to the latest update from our studio! We're excited to introduce you to our project, codenamed <HL12>P1</HL12> (or Project 1), <span style={{ color: '#00A9FF', fontWeight: 'bold', fontSize: '1.1em' }}> a thrilling multiplayer experience set in a world of amphibious warfare.</span> Developed using the cutting-edge [Unreal Engine 5](https://www.unrealengine.com/en-US/unreal-engine-5), this game is a simple and modern take on multiplayer first-person shooters.
 
-![p1-2](./p1-2.png)
+![p1-2](./img/p1-2.png)
 
 Prepare yourselves for an action-packed adventure as we plunge you into the heart of the battle, taking on the persona of agile and fearless frogs. This isn't your typical first-person shooter; it's an entirely unique and captivating concept that will keep you hooked from the first leap!
 
@@ -17,6 +17,6 @@ As you dive into the game, you'll be able to choose from a variety of game modes
 
 But that's not all; we have even more surprises in store! Our team has been hard at work crafting an array of innovative game modes that will challenge your strategy, teamwork, and skills. Whether you're a seasoned gamer or a newcomer to the battlefield, there's something here for everyone!
 
-As we continue developing <span style={{ color: '#F28C28', fontWeight: 'bold', fontSize: '1.2em' }}>P1</span>, we remain committed to delivering a fun, polished, and enjoyable experience for all our players. We're eagerly anticipating the day when you can join us in this incredible adventure and experience firsthand the excitement, camaraderie, and fierce competition that awaits in our frog-filled universe.
+As we continue developing <HL12>P1</HL12>, we remain committed to delivering a fun, polished, and enjoyable experience for all our players. We're eagerly anticipating the day when you can join us in this incredible adventure and experience firsthand the excitement, camaraderie, and fierce competition that awaits in our frog-filled universe.
 
 Stay tuned for more updates, as we'll be sharing behind-the-scenes peeks, gameplay teasers, and further announcements on our journey to release! Thank you for your support, and we can't wait to hop into action with you in "Frog of War!"

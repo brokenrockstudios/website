@@ -38,11 +38,6 @@ const config = {
           path: 'products',
           routeBasePath: 'products',
           sidebarCollapsible: true,
-          docItemComponent: '/src/theme/DocItem',
-          admonitions: {
-            keywords: ['HL'],
-            extendDefaults: true,
-          }
         },
         blog: {
           blogTitle: 'News',
