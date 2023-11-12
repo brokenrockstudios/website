@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"P1: Dev Update 1","permalink":"/p1-dev-update-1","unlisted":false}]}')}}]);

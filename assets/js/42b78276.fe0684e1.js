@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[4446],{8922:e=>{e.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"learning"}')}}]);
