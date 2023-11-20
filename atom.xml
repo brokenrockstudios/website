@@ -2,11 +2,30 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brokenrockstudios.com/</id>
     <title>Broken Rock Studios Blog</title>
-    <updated>2023-07-21T00:00:00.000Z</updated>
+    <updated>2023-11-20T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brokenrockstudios.com/"/>
     <subtitle>Broken Rock Studios Blog</subtitle>
     <icon>https://brokenrockstudios.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Power of 2: Blockout Toolkit - Dev Update 1]]></title>
+        <id>https://brokenrockstudios.com/p2bt-dev-update-1</id>
+        <link href="https://brokenrockstudios.com/p2bt-dev-update-1"/>
+        <updated>2023-11-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Just submitted all the files to the Unreal Engine marketplace for review!]]></summary>
+        <content type="html"><![CDATA[<p>Just submitted all the files to the Unreal Engine marketplace for review!</p>
+<p><img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot000152_284x284-a781203c1a50701e038b55a0533b999b.jpg" width="284" height="284" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00012-96cd9b6b4697891187494d71bc941dd2.png" width="1920" height="1080" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00005-e80f11375854fc5772b1e8e5d09da9e3.png" width="2560" height="1392" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00006-2f25bdfe8d679b9f9b74573434126483.png" width="2560" height="1392" class="img_ev3q"></p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="unreal engine" term="unreal engine"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[P1: Dev Update 1]]></title>
         <id>https://brokenrockstudios.com/p1-dev-update-1</id>

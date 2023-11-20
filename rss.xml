@@ -4,10 +4,25 @@
         <title>Broken Rock Studios Blog</title>
         <link>https://brokenrockstudios.com/</link>
         <description>Broken Rock Studios Blog</description>
-        <lastBuildDate>Fri, 21 Jul 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Nov 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Power of 2: Blockout Toolkit - Dev Update 1]]></title>
+            <link>https://brokenrockstudios.com/p2bt-dev-update-1</link>
+            <guid>https://brokenrockstudios.com/p2bt-dev-update-1</guid>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Just submitted all the files to the Unreal Engine marketplace for review!]]></description>
+            <content:encoded><![CDATA[<p>Just submitted all the files to the Unreal Engine marketplace for review!</p>
+<p><img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot000152_284x284-a781203c1a50701e038b55a0533b999b.jpg" width="284" height="284" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00012-96cd9b6b4697891187494d71bc941dd2.png" width="1920" height="1080" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00005-e80f11375854fc5772b1e8e5d09da9e3.png" width="2560" height="1392" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00006-2f25bdfe8d679b9f9b74573434126483.png" width="2560" height="1392" class="img_ev3q"></p>]]></content:encoded>
+            <category>game</category>
+            <category>dev</category>
+            <category>unreal engine</category>
+        </item>
         <item>
             <title><![CDATA[P1: Dev Update 1]]></title>
             <link>https://brokenrockstudios.com/p1-dev-update-1</link>
