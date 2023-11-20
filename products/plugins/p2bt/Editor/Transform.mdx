@@ -17,6 +17,10 @@ Translate the selected objects in the selected Axis by the grid scale amount. Ty
 
 You can set custom grid scale XY and Z values in the <HL>Project Settings -> Power of 2 Blockout Toolkit Settings</HL>
 
+:::info Tip
+If you hold Shift while clicking the Transform->Location + and - it will duplicate the item while pressing it!
+:::
+
 ### Rotation
 
 Rotate the selected objects in the selected Axis by 90 degrees. Most <HL>P2BT</HL> blocks are specifically designed to be rotated in 90 degree increments. If you are placing props or want more freedom, consider using Unreal Engine's default rotation tools.
@@ -24,7 +28,6 @@ Rotate the selected objects in the selected Axis by 90 degrees. Most <HL>P2BT</H
 ### Mirror
 
 Mirror the selected objects in the selected Axis. Not every P2BT block is designed to be mirrored, but many are. This will simply flip the sign on the selected axis.
-
 
 
 ## Grid
@@ -42,6 +45,7 @@ Mirror the selected objects in the selected Axis. Not every P2BT block is design
 Enable or disable snapping on the selected axis.
 This only applies to P2BT <HL>AP2BTCellSnapActors</HL>
 
+
 ## Align
 
 ![Align](./img/align.png)
@@ -50,15 +54,61 @@ This only applies to P2BT <HL>AP2BTCellSnapActors</HL>
 
 * Align the selected objects based upon the outer bounds of the selected objects.
 
+Example:
+
+Before
+
+![](./img/image-2023-11-20-00-31-47.png)
+
+After Align Left
+
+![](./img/image-2023-11-20-00-32-10.png)
+
+After Align Center 
+
+![](./img/image-2023-11-20-00-33-18.png)
+
+
+
 ### Aling Pivot
 
 * Align the selected objects based upon the pivot of the selected objects.
+
+Align Pivot Left
+
+Before
+
+![](./img/image-2023-11-20-00-34-45.png)
+
+
+Note: they are aligned based upon the Pivot instead of Bounds
+
+![](./img/image-2023-11-20-00-35-12.png)
+
+
+
 
 ### Distribute
 
 * Distribute the selected objects evenly along the selected axis with equal spacing between each object's outer bounds.
 * Distribute the selected objects evenly along the selected axis with equal spacing between each object's pivot.
 
+
+Before:
+
+![](./img/image-2023-11-20-00-36-33.png)
+
+
+Equal distance between each piece.
+Outer pieces shouldn't move.
+
+![](./img/image-2023-11-20-00-37-16.png)
+
+
+Equal interval based upon outer 2 most pieces. 
+The distribution doesn't take into account and is based only upon actor's origins.
+
+![](./img/image-2023-11-20-00-50-03.png)
 
 
 

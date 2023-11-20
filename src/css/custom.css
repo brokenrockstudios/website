@@ -45,3 +45,21 @@
   height: 24px;
   width: 24px;
 }
+
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.image-grid figure {
+  flex: 1 0 calc(30% - 1em); /* Three columns layout */
+  margin: 0.25em;
+}
+
+@media (max-width: 600px) {
+  .image-grid figure {
+    flex: 0 1 calc(50% - 1em); /* Two columns layout for small screens */
+  }
+}

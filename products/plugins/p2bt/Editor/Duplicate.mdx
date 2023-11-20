@@ -11,6 +11,31 @@ sidebar_position: 3
 Duplicates the selected actors into a grid. 
 
 
+Example using multiple actors, x2, y2, z3 and offset 512x512x384 (standard cell size)
+
+Before:
+
+![](./img/image-2023-11-20-00-58-23.png)
+
+After:
+
+
+![](./img/image-2023-11-20-00-58-50.png)
+
+
+
+Example using Grid Packed, x5, y3, z1.
+Will use bounding box of each item to pack it in.
+
+
+Before:
+
+![](./img/image-2023-11-20-00-55-17.png)
+
+After:
+
+![](./img/image-2023-11-20-00-55-41.png)
+
 
 ## Line
 
@@ -20,11 +45,42 @@ Duplicates the selected actors into a line.
 Note: Supports packing. Will use bounding boxes to attempt to be as compact as possible.
 
 
+Example: Using quantity 5 withi offset (300,128,0).
+
+Before:
+
+![](./img/image-2023-11-20-01-00-30.png)
+
+
+After:
+
+![](./img/image-2023-11-20-01-00-47.png)
+
+
+
 ## Circle
 
 Duplicates the selected actors around the target actor in a circle. 
 
 Note: Doesn't take into account original duplicated assets locations. 
+
+Example: 
+
+1. Select a target object, in this case S_Prop_Barrel_B2, with a quantity of 6 and 500 offset
+2. Select the objects you want duplicated, in this case a barrel, crate, and pallet.
+   * Optionally choose to delete original. 
+3. Hit Create!
+
+
+Before:
+
+![](./img/image-2023-11-20-01-10-08.png)
+
+
+After:
+
+![](./img/image-2023-11-20-01-10-30.png)
+
 
 
 
@@ -34,13 +90,40 @@ Note: Doesn't take into account original duplicated assets locations.
 Duplicates the selected actors along a spline.
 
 1. Create a spline, use duplicate/extrude to add additional points to the spline.
- * Will automatically set Target Actor to created spline
+   * Will automatically set Target Actor to created spline
 2. Select a target spline if non are selected.
 3. Select actors you wish to duplicate.
 4. Duplicate!
 
 
+Example:
 
+
+1. Select an object in your viewport and Generate Spline.  
+If no object is selected, the spline might end up at world origin [0,0,0]
+
+![](./img/image-2023-11-20-01-13-42.png)
+
+
+2. Notice the created spline, in this case P2BT_SplineActor3  
+If you already had a spline, while the spline is selected, choose "Select Target"
+
+![](./img/image-2023-11-20-01-14-23.png)
+
+3. Using Alt and moving via the arrow transform will duplicate each node of the spline
+    * manually rotate when necessary
+
+![](./img/image-2023-11-20-01-27-15.png)
+
+4. Select actors, verify quantity and offset, and duplicate!
+
+![](./img/image-2023-11-20-01-27-40.png)
+
+
+Note: Assuming you didn't delete it, the spline will auto-hide if unselected,
+you can find via the outliner
+
+![](./img/image-2023-11-20-01-28-03.png)
 
 
 
