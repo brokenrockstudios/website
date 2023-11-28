@@ -4,10 +4,28 @@
         <title>Broken Rock Studios Blog</title>
         <link>https://brokenrockstudios.com/</link>
         <description>Broken Rock Studios Blog</description>
-        <lastBuildDate>Mon, 20 Nov 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 27 Nov 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Power of 2: Blockout Toolkit - Released!]]></title>
+            <link>https://brokenrockstudios.com/p2bt-release-1</link>
+            <guid>https://brokenrockstudios.com/p2bt-release-1</guid>
+            <pubDate>Mon, 27 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Power of 2: Blockout Toolkit is officially released!]]></description>
+            <content:encoded><![CDATA[<p><a href="https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816" target="_blank" rel="noopener noreferrer">Power of 2: Blockout Toolkit</a> is officially released!</p>
+<p><a href="https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816" target="_blank" rel="noopener noreferrer">https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816</a></p>
+<a href="https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816"><p><img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot000152_284x284-a781203c1a50701e038b55a0533b999b.jpg" width="284" height="284" class="img_ev3q"></p></a>
+<p>Join the <a href="https://discord.gg/P6tejWKrgq" target="_blank" rel="noopener noreferrer">Broken Rock Studios discord!</a><br>
+<!-- -->See the <a href="https://brokenrockstudios.com/products/plugins/p2bt">Power of 2 Blockout Toolkit Docs</a></p>]]></content:encoded>
+            <category>game</category>
+            <category>dev</category>
+            <category>unreal engine</category>
+            <category>marketplace</category>
+            <category>toolkit</category>
+            <category>p2bt</category>
+        </item>
         <item>
             <title><![CDATA[Power of 2: Blockout Toolkit - Dev Update 1]]></title>
             <link>https://brokenrockstudios.com/p2bt-dev-update-1</link>
