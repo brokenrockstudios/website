@@ -93,7 +93,7 @@ const config = {
             position: 'left',
             label: 'Learning',
           },
-          { to: 'https://www.fangamer.com/', label: 'Store', position: 'left' },
+          { to: 'https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816', label: 'Store', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://store.steampowered.com',
