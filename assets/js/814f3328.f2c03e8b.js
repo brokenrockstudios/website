@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[5512],{4352:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Power of 2: Blockout Toolkit - Dev Update 1","permalink":"/p2bt-dev-update-1","unlisted":false},{"title":"P1: Dev Update 1","permalink":"/p1-dev-update-1","unlisted":false}]}')}}]);
