@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[4450],{5674:e=>{e.exports=JSON.parse('{"label":"marketplace","permalink":"/tags/marketplace","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);
