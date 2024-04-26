@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[844],{8495:s=>{s.exports=JSON.parse('{"label":"shooter","permalink":"/tags/shooter","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);

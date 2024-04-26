@@ -2,11 +2,56 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brokenrockstudios.com/</id>
     <title>Broken Rock Studios Blog</title>
-    <updated>2023-11-20T00:00:00.000Z</updated>
+    <updated>2024-04-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brokenrockstudios.com/"/>
     <subtitle>Broken Rock Studios Blog</subtitle>
     <icon>https://brokenrockstudios.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Frog Of War Dev Update 2]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-update-2</id>
+        <link href="https://brokenrockstudios.com/fow-dev-update-2"/>
+        <updated>2024-04-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Just been working on some assets for the game.]]></summary>
+        <content type="html"><![CDATA[<p>Just been working on some assets for the game.</p>
+<p>Specifically around the cafe for this update.</p>
+<p><img loading="lazy" alt="image_5" src="https://brokenrockstudios.com/assets/images/848cc01dcd7ce036d9f5a9850af555ac884347889717324c2c182c1248bb99f1-3eabc26159c06cea30c452be3cc9c500.png" width="1051" height="974" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_4" src="https://brokenrockstudios.com/assets/images/a9f9ba72d7640fa332509612b90fea7b4aafcc6ede157de295f4c136e5471b3f-d4695efb1a7901f7242d3b2fb479b415.png" width="1868" height="1065" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_2" src="https://brokenrockstudios.com/assets/images/1d49dcb088971ba122f0b3e793ab362dce1e00004c7391e3441a75ef629c152f-98d0e094996d50851ab09c4ad82f7ecf.png" width="1498" height="1017" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_3" src="https://brokenrockstudios.com/assets/images/d3fe75939fc70143a37a68cbc1553e0b9f36a35e9bb8f8dac859e46e34d6864f-85dbc4e44f61c1a7d4ef4dab4442c2f3.png" width="1204" height="986" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_1" src="https://brokenrockstudios.com/assets/images/b63806f2513766d3231670684814de463a5d7c2e937c53c7b407cde4eb52a901-b4ed6c5510012f2d143b61317eac5cc3.png" width="1111" height="968" class="img_ev3q"></p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="fow" term="fow"/>
+        <category label="battle royale" term="battle royale"/>
+        <category label="shooter" term="shooter"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Power of 2: Blockout Toolkit - Released!]]></title>
+        <id>https://brokenrockstudios.com/p2bt-release-1</id>
+        <link href="https://brokenrockstudios.com/p2bt-release-1"/>
+        <updated>2023-11-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Power of 2: Blockout Toolkit is officially released!]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816" target="_blank" rel="noopener noreferrer">Power of 2: Blockout Toolkit</a> is officially released!</p>
+<p><a href="https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816" target="_blank" rel="noopener noreferrer">https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816</a></p>
+<a href="https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816"><p><img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot000152_284x284-a781203c1a50701e038b55a0533b999b.jpg" width="284" height="284" class="img_ev3q"></p></a>
+<p>Join the <a href="https://discord.gg/P6tejWKrgq" target="_blank" rel="noopener noreferrer">Broken Rock Studios discord!</a><br>
+<!-- -->See the <a href="https://brokenrockstudios.com/products/plugins/p2bt">Power of 2 Blockout Toolkit Docs</a></p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="unreal engine" term="unreal engine"/>
+        <category label="marketplace" term="marketplace"/>
+        <category label="toolkit" term="toolkit"/>
+        <category label="p2bt" term="p2bt"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Power of 2: Blockout Toolkit - Dev Update 1]]></title>
         <id>https://brokenrockstudios.com/p2bt-dev-update-1</id>
@@ -15,10 +60,10 @@
         <summary type="html"><![CDATA[Just submitted all the files to the Unreal Engine marketplace for review!]]></summary>
         <content type="html"><![CDATA[<p>Just submitted all the files to the Unreal Engine marketplace for review!</p>
 <p><a href="https://brokenrockstudios.com/products/plugins/p2bt">Power of 2 Blockout Toolkit Docs</a></p>
-<p><img decoding="async" loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot000152_284x284-a781203c1a50701e038b55a0533b999b.jpg" width="284" height="284" class="img_ev3q">
-<img decoding="async" loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00012-96cd9b6b4697891187494d71bc941dd2.png" width="1920" height="1080" class="img_ev3q">
-<img decoding="async" loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00005-e80f11375854fc5772b1e8e5d09da9e3.png" width="2560" height="1392" class="img_ev3q">
-<img decoding="async" loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00006-2f25bdfe8d679b9f9b74573434126483.png" width="2560" height="1392" class="img_ev3q"></p>]]></content>
+<p><img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot000152_284x284-a781203c1a50701e038b55a0533b999b.jpg" width="284" height="284" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00012-96cd9b6b4697891187494d71bc941dd2.png" width="1920" height="1080" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00005-e80f11375854fc5772b1e8e5d09da9e3.png" width="2560" height="1392" class="img_ev3q">
+<img loading="lazy" src="https://brokenrockstudios.com/assets/images/ScreenShot00006-2f25bdfe8d679b9f9b74573434126483.png" width="2560" height="1392" class="img_ev3q"></p>]]></content>
         <author>
             <name>namrog84</name>
             <uri>https://github.com/namrog84</uri>
@@ -34,7 +79,7 @@
         <updated>2023-07-21T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Welcome to the latest update from our studio! We're excited to introduce you to our project, codenamed P1 (or Project 1),  a thrilling multiplayer experience set in a world of amphibious warfare. Developed using the cutting-edge Unreal Engine 5, this game is a simple and modern take on multiplayer first-person shooters.]]></summary>
         <content type="html"><![CDATA[<p>Welcome to the latest update from our studio! We're excited to introduce you to our project, codenamed <span style="color:#F28C28;font-weight:bold;font-size:1.2em">P1</span> (or Project 1), <span style="color:#00A9FF;font-weight:bold;font-size:1.1em"> a thrilling multiplayer experience set in a world of amphibious warfare.</span> Developed using the cutting-edge <a href="https://www.unrealengine.com/en-US/unreal-engine-5" target="_blank" rel="noopener noreferrer">Unreal Engine 5</a>, this game is a simple and modern take on multiplayer first-person shooters.</p>
-<p><img decoding="async" loading="lazy" alt="p1-2" src="https://brokenrockstudios.com/assets/images/p1-2-e4902ed5b9741983494e27e86bdfd79b.png" width="2576" height="1408" class="img_ev3q"></p>
+<p><img loading="lazy" alt="p1-2" src="https://brokenrockstudios.com/assets/images/p1-2-e4902ed5b9741983494e27e86bdfd79b.png" width="2576" height="1408" class="img_ev3q"></p>
 <p>Prepare yourselves for an action-packed adventure as we plunge you into the heart of the battle, taking on the persona of agile and fearless frogs. This isn't your typical first-person shooter; it's an entirely unique and captivating concept that will keep you hooked from the first leap!</p>
 <p>As you dive into the game, you'll be able to choose from a variety of game modes that cater to different playstyles. Engage in intense deathmatches where reflexes and precision are your best allies, or opt for the adrenaline-pumping excitement of our battle royale mode, where only the toughest amphibians will survive!</p>
 <p>But that's not all; we have even more surprises in store! Our team has been hard at work crafting an array of innovative game modes that will challenge your strategy, teamwork, and skills. Whether you're a seasoned gamer or a newcomer to the battlefield, there's something here for everyone!</p>

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[3212],{1924:e=>{e.exports=JSON.parse('{"title":"Games","description":"Games developed by Broken Rock Studios","slug":"/category/games","permalink":"/products/category/games","navigation":{"next":{"title":"P1","permalink":"/products/category/p1"}}}')}}]);

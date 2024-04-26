@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[3414],{9073:e=>{e.exports=JSON.parse('{"label":"battle royale","permalink":"/tags/battle-royale","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);

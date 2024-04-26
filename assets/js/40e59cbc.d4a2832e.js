@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[2816],{1444:s=>{s.exports=JSON.parse('{"label":"p2bt","permalink":"/tags/p-2-bt","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);

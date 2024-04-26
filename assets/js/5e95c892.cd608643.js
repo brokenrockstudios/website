@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[4304],{3564:(e,s,r)=>{r.r(s),r.d(s,{default:()=>a});r(1504);var c=r(5456),t=r(5756),u=r(5864),o=r(5464),k=r(9012),n=r(7624);function a(e){return(0,n.jsx)(t.cr,{className:(0,c.c)(u.W.wrapper.docsPages),children:(0,n.jsx)(k.c,{children:(0,o.k)(e.route.routes)})})}}}]);
