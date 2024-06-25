@@ -2,11 +2,108 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brokenrockstudios.com/</id>
     <title>Broken Rock Studios Blog</title>
-    <updated>2024-04-26T00:00:00.000Z</updated>
+    <updated>2024-06-24T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brokenrockstudios.com/"/>
     <subtitle>Broken Rock Studios Blog</subtitle>
     <icon>https://brokenrockstudios.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Interact UI Prompt]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-update-interact-prompt</id>
+        <link href="https://brokenrockstudios.com/fow-dev-update-interact-prompt"/>
+        <updated>2024-06-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Adding Advisor frog.  An interactive UI prompt.]]></summary>
+        <content type="html"><![CDATA[<p>Adding Advisor frog.  An interactive UI prompt.</p>
+<p><img loading="lazy" alt="otherimage" src="https://brokenrockstudios.com/assets/images/2024-06-2418-25-25-f4868cdfb9d4b10ef8247c71128b4a49.webp" width="720" height="720" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_0" src="https://brokenrockstudios.com/assets/images/799d1f2b54c6880c81382261d8040d707c01c9b60bbcf558e7deec528676b80d-5e977054bf36aea95e4e1492439d4790.png" width="1267" height="857" class="img_ev3q"></p>
+<p>Anuran Evolution: Frog of War dev update</p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="fow" term="fow"/>
+        <category label="battle royale" term="battle royale"/>
+        <category label="shooter" term="shooter"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mini-frogs]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-update-mini-frogs</id>
+        <link href="https://brokenrockstudios.com/fow-dev-update-mini-frogs"/>
+        <updated>2024-06-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Adding Mini Frogs control Monowheel drones]]></summary>
+        <content type="html"><![CDATA[<p>Adding Mini Frogs control Monowheel drones</p>
+<p><img loading="lazy" alt="combined" src="https://brokenrockstudios.com/assets/images/combined-8a65edbac331f0e103af6fa2833d965d.png" width="1003" height="980" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_20" src="https://brokenrockstudios.com/assets/images/5f5b4957a3326a2bb3f7250f8804fb67e6de0526de106a9d57e38d87a02dd5d4-188cc8c980d130ceb2c7957e735c2b54.png" width="1592" height="795" class="img_ev3q"></p>
+<p>Anuran Evolution: Frog of War dev update</p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="fow" term="fow"/>
+        <category label="battle royale" term="battle royale"/>
+        <category label="shooter" term="shooter"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[misc map locations]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-update-misc-location</id>
+        <link href="https://brokenrockstudios.com/fow-dev-update-misc-location"/>
+        <updated>2024-06-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[image_0]]></summary>
+        <content type="html"><![CDATA[<p><img loading="lazy" alt="image_0" src="https://brokenrockstudios.com/assets/images/804e6b75fe8e6439407b2353ef0a6423fe5d93d7697c1b2daaf6498cfb5933b7-3003ea4a92fa9bc4a2bfbb50e3dd753c.png" width="2483" height="1281" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_1" src="https://brokenrockstudios.com/assets/images/f52239602bc90becfec52736a64d440c31fd607f982cea83334af727c94bb198-e46cd119132633a98754ba706c615429.png" width="2409" height="1147" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_2" src="https://brokenrockstudios.com/assets/images/c2bdcd205413cb42971408b742ec4aed81b1f204b6ed4d75dfdbd207dc2af3f1-affc712a52f79bfce671fd11a0dae4a2.png" width="1982" height="1216" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_3" src="https://brokenrockstudios.com/assets/images/b0bcef3c034e0ece08d98cafb9c25ab0b44ebf7c03aeac597a7a21f64057f666-4ca470d1c163726ce74028364c4d8263.png" width="2356" height="992" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_4" src="https://brokenrockstudios.com/assets/images/d19ccf95d8fdf382ce01ff946bd02a05534dccd35c785da6298912f5ad25b714-57f74b79a377b83d22b773df66cd2106.png" width="2450" height="1311" class="img_ev3q"></p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="fow" term="fow"/>
+        <category label="battle royale" term="battle royale"/>
+        <category label="shooter" term="shooter"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Random WIP location]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-update-random-loc</id>
+        <link href="https://brokenrockstudios.com/fow-dev-update-random-loc"/>
+        <updated>2024-05-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[image_0]]></summary>
+        <content type="html"><![CDATA[<p><img loading="lazy" alt="image_0" src="https://brokenrockstudios.com/assets/images/0024476ea261575f99a6f3448a96b67b69944d266e9deaa52382a1ef5d2b634e-b97d5909e3e5fb95e95975edf3382304.png" width="2432" height="1275" class="img_ev3q"></p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="fow" term="fow"/>
+        <category label="battle royale" term="battle royale"/>
+        <category label="shooter" term="shooter"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Homer House]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-big-house</id>
+        <link href="https://brokenrockstudios.com/fow-dev-big-house"/>
+        <updated>2024-05-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[image_0]]></summary>
+        <content type="html"><![CDATA[<p><img loading="lazy" alt="image_0" src="https://brokenrockstudios.com/assets/images/f9cedb088619c7803c928af9689089a04fdddfca002303dddd2133fb9120496a-856123989704326a36af2efd279b2375.png" width="1390" height="848" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_2" src="https://brokenrockstudios.com/assets/images/c492b0e35f151484b9faec7984185f8a54fc72921404c4dee61e6b162559d56f-e8f0db187face2e8362250f93c6af058.png" width="1319" height="693" class="img_ev3q"></p>
+<p><img loading="lazy" alt="image_1" src="https://brokenrockstudios.com/assets/images/e6524ecbc960b2e932057d3a5a9edb0f98b514d1c7e32ce581e6c1ee188cf06f-202029beacf62ecb741bd3a512853daf.png" width="1158" height="754" class="img_ev3q"></p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="fow" term="fow"/>
+        <category label="battle royale" term="battle royale"/>
+        <category label="shooter" term="shooter"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Frog Of War Dev Update 2]]></title>
         <id>https://brokenrockstudios.com/fow-dev-update-2</id>
