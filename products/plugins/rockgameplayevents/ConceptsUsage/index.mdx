@@ -1,0 +1,81 @@
+---
+slug: core-concepts
+title: 'Concepts and Usage'
+authors: [namrog84]
+sidebar_position: 3
+tags: [tutorial, introduction, rock gameplay events, binding, editor]
+---
+
+# Core Concepts and Usage
+
+## How event system works
+
+
+### RockDelegateConnectorComponent
+
+This is what you will use to set up connections between actors.
+
+This is mostly just a helper component, there should only ever be 1 per actor.
+This component manages the input/output connections between actors.
+
+See #Usage below for how to use.
+
+### RockGameplayEventWorldSubsystem
+
+The core of the system will bind the the appropriate functions and delegates 1 frame after BeginPlay. This subsystem is responsible for triggering these binds and then destroying the components.  
+
+The destruction of components is purely a memory optimization as we no longer have a need for the actor components after binding. 
+
+## Usage 
+
+
+The core of the plugin utilizes RockDelegateConnector Component.
+
+1. Attach it to any actor either instanced or as part of the base class.
+2. In a placed instance actor with the component:
+3. Add a new DelegateConnections array element using the +
+4. Select any delegate on the parent actor. (e.g. `OnButtonEnabled` from the example project)
+5. Add a new array element to this element
+6. Select any placed target actor (e.g. BP_Fan)
+7. Select a corresponding blueprint callable function on target actor.
+
+:::info Tip
+The available list of functions will be filtered to only corresponding delegate.
+e.g. A delegate with 1 parameter (AActor*) can only be bound to functions that have a matching signature (i.e. also has 1 parameter of AActor*)
+:::
+
+
+An advanced setting is that AutoDestroyAfterBind:
+There is no current functionality for the component to exist after beginplay.
+So by default it destroys itself at this time.
+
+
+### Example Project
+
+Check out the example project for already set up system
+
+https://github.com/brokenrockstudios/RockGameplayEventsExample
+
+
+### Incoming Connections
+
+Incoming Connections is updated automatically and only used for visual debug lines. 
+No changes can be made by the user.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
