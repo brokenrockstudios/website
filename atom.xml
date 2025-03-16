@@ -2,11 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brokenrockstudios.com/</id>
     <title>Broken Rock Studios Blog</title>
-    <updated>2024-06-24T00:00:00.000Z</updated>
+    <updated>2025-03-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brokenrockstudios.com/"/>
     <subtitle>Broken Rock Studios Blog</subtitle>
     <icon>https://brokenrockstudios.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[New Frog!!]]></title>
+        <id>https://brokenrockstudios.com/fow-dev-update-new-frog</id>
+        <link href="https://brokenrockstudios.com/fow-dev-update-new-frog"/>
+        <updated>2025-03-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[AE New Frog]]></summary>
+        <content type="html"><![CDATA[<p>AE: FoW dev update: New Frog</p>
+<p>Recently contracted to help rework the main frog character a bit</p>
+<p><img loading="lazy" alt="froglineup" src="https://brokenrockstudios.com/assets/images/froglineup-82b9c34a6083fde06345b02d792c8c90.png" width="1063" height="484" class="img_ev3q"></p>
+<p><img loading="lazy" alt="dance" src="https://brokenrockstudios.com/assets/images/dance3-4dd030d11fe829944a20f02a073bd7ef.webp" width="410" height="410" class="img_ev3q"></p>
+<p>FYI: If anyone has wants to help me make a music video with some dancing frogs. Please reach out!</p>
+<p><img loading="lazy" alt="eyebrows" src="https://brokenrockstudios.com/assets/images/eyebrows-62e20891051fff0467d8bd50f569ee45.png" width="329" height="283" class="img_ev3q"></p>
+<p><img loading="lazy" alt="eyes" src="https://brokenrockstudios.com/assets/images/eyes-044fa5e81abacc1affd9070dce3cd7b2.png" width="903" height="227" class="img_ev3q"></p>
+<p><img loading="lazy" alt="jacket" src="https://brokenrockstudios.com/assets/images/jacket-3cb166449cc2709533ba5508b5b87d13.png" width="404" height="369" class="img_ev3q"></p>]]></content>
+        <author>
+            <name>namrog84</name>
+            <uri>https://github.com/namrog84</uri>
+        </author>
+        <category label="game" term="game"/>
+        <category label="dev" term="dev"/>
+        <category label="fow" term="fow"/>
+        <category label="battle royale" term="battle royale"/>
+        <category label="shooter" term="shooter"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Interact UI Prompt]]></title>
         <id>https://brokenrockstudios.com/fow-dev-update-interact-prompt</id>

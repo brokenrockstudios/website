@@ -4,10 +4,30 @@
         <title>Broken Rock Studios Blog</title>
         <link>https://brokenrockstudios.com/</link>
         <description>Broken Rock Studios Blog</description>
-        <lastBuildDate>Mon, 24 Jun 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 16 Mar 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[New Frog!!]]></title>
+            <link>https://brokenrockstudios.com/fow-dev-update-new-frog</link>
+            <guid>https://brokenrockstudios.com/fow-dev-update-new-frog</guid>
+            <pubDate>Sun, 16 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[AE New Frog]]></description>
+            <content:encoded><![CDATA[<p>AE: FoW dev update: New Frog</p>
+<p>Recently contracted to help rework the main frog character a bit</p>
+<p><img loading="lazy" alt="froglineup" src="https://brokenrockstudios.com/assets/images/froglineup-82b9c34a6083fde06345b02d792c8c90.png" width="1063" height="484" class="img_ev3q"></p>
+<p><img loading="lazy" alt="dance" src="https://brokenrockstudios.com/assets/images/dance3-4dd030d11fe829944a20f02a073bd7ef.webp" width="410" height="410" class="img_ev3q"></p>
+<p>FYI: If anyone has wants to help me make a music video with some dancing frogs. Please reach out!</p>
+<p><img loading="lazy" alt="eyebrows" src="https://brokenrockstudios.com/assets/images/eyebrows-62e20891051fff0467d8bd50f569ee45.png" width="329" height="283" class="img_ev3q"></p>
+<p><img loading="lazy" alt="eyes" src="https://brokenrockstudios.com/assets/images/eyes-044fa5e81abacc1affd9070dce3cd7b2.png" width="903" height="227" class="img_ev3q"></p>
+<p><img loading="lazy" alt="jacket" src="https://brokenrockstudios.com/assets/images/jacket-3cb166449cc2709533ba5508b5b87d13.png" width="404" height="369" class="img_ev3q"></p>]]></content:encoded>
+            <category>game</category>
+            <category>dev</category>
+            <category>fow</category>
+            <category>battle royale</category>
+            <category>shooter</category>
+        </item>
         <item>
             <title><![CDATA[Interact UI Prompt]]></title>
             <link>https://brokenrockstudios.com/fow-dev-update-interact-prompt</link>
