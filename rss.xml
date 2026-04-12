@@ -4,10 +4,28 @@
         <title>Broken Rock Studios Blog</title>
         <link>https://brokenrockstudios.com/</link>
         <description>Broken Rock Studios Blog</description>
-        <lastBuildDate>Sun, 16 Mar 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 20 Sep 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[New Internal splash screen]]></title>
+            <link>https://brokenrockstudios.com/fow-dev-update-internal-splash</link>
+            <guid>https://brokenrockstudios.com/fow-dev-update-internal-splash</guid>
+            <pubDate>Sat, 20 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Anuran Evolution: Frog of War]]></description>
+            <content:encoded><![CDATA[<p>Anuran Evolution: Frog of War</p>
+<p>I was tired of looking at Unreal Engine default splash screen when launching the editor.</p>
+<p>I decided to put in an AI generated splash scene. This won't ever be visible to any users. Just as a interanl dev visibility thing.
+Though it should probably have the full name "Anuran Evolution: Frog of War" in it</p>
+<p><img decoding="async" loading="lazy" alt="splash" src="https://brokenrockstudios.com/assets/images/Splash-04d9ea80388a1733b0aa570c3a0042fa.png" width="1750" height="899" class="img_ev3q"></p>
+<p>I'd love to have a human made version if anyone is interested in a small commision to replace this AI with human made similiar splash.</p>]]></content:encoded>
+            <category>dev</category>
+            <category>internal</category>
+            <category>AE</category>
+            <category>fow</category>
+            <category>contract</category>
+        </item>
         <item>
             <title><![CDATA[New Frog!!]]></title>
             <link>https://brokenrockstudios.com/fow-dev-update-new-frog</link>

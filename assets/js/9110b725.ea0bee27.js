@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[2292],{9440:s=>{s.exports=JSON.parse('{"label":"fow","permalink":"/tags/fow","allTagsPath":"/tags","count":8,"unlisted":false}')}}]);

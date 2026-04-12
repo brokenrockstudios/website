@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_brokenrockstudios_website=self.webpackChunk_brokenrockstudios_website||[]).push([[2256],{3528:e=>{e.exports=JSON.parse('{"label":"internal","permalink":"/tags/internal","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);
