@@ -48,6 +48,7 @@ const config = {
           blogDescription: 'Discover fun and simple multiplayer games at Broken Rock Studios. Immerse yourself in thoughtful and compelling gameplay developed by gamers. Come play with us!', // optimal 150-160 char
           blogListComponent: '/src/components/BlogListPage',
           routeBasePath: '/',
+          onUntruncatedBlogPosts: 'ignore',
         },
         gtag: {
           trackingID: 'G-595SGCKWD1',
