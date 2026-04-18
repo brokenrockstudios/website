@@ -1,0 +1,36 @@
+{
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "text": "This is the Broken Rock Studios website, built with Docusaurus. Use Yarn (never npm). The site is dark-mode only. Sidebars are auto-generated — do not add manual sidebar entries."
+    },
+    {
+      "text": "For React components: use .tsx, functional components only, default export for pages/swizzled theme components, named exports for reusable primitives, explicit TypeScript interfaces for component props.",
+      "pattern": "src/**/*.{ts,tsx}"
+    },
+    {
+      "text": "For component styling: use CSS Modules (.module.css). Target Infima CSS variables (--ifm-color-primary-*, etc.) for theming. Do not add light-mode-specific rules.",
+      "pattern": "src/**/*.module.css"
+    },
+    {
+      "text": "For Docusaurus config and swizzled theme entry points: use .js with JSDoc @type annotations for IDE support.",
+      "pattern": "src/theme/**/*.js"
+    },
+    {
+      "text": "For MDX content: use globally registered custom components (<HL>, <HL12>, <HLText>, <CaptionWrapper>) without importing them. Do not add per-file imports for these components.",
+      "pattern": "**/*.{md,mdx}"
+    },
+    {
+      "text": "New blog posts go in blog/YYYY-MM-DD-slug/index.md (or .mdx). Images for the post go in a sibling img/ folder.",
+      "pattern": "blog/**"
+    },
+    {
+      "text": "Product documentation goes under products/games/<game-id>/ or products/plugins/<plugin-id>/. Learning content goes under learning/<topic>/.",
+      "pattern": "{products,learning}/**"
+    }
+  ],
+  "github.copilot.chat.testGeneration.instructions": [
+    {
+      "text": "This project has no test framework. If asked to write tests, note that only yarn typecheck (tsc --noEmit) is available. Suggest adding a test framework (Vitest is recommended for Docusaurus projects) before writing tests."
+    }
+  ]
+}
