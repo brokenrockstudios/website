@@ -91,13 +91,13 @@ const config = {
             position: 'left',
             label: 'Products',
           },
-          {
-            type: 'docSidebar',
-            docsPluginId: 'learning',
-            sidebarId: 'learningSidebar',
-            position: 'left',
-            label: 'Learning',
-          },
+          // {
+          //   type: 'docSidebar',
+          //   docsPluginId: 'learning',
+          //   sidebarId: 'learningSidebar',
+          //   position: 'left',
+          //   label: 'Learning',
+          // },
           { to: 'https://www.unrealengine.com/marketplace/en-US/product/e79f4eb44d75402f97851662e9563816', label: 'Store', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {

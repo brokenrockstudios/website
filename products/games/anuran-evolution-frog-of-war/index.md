@@ -20,6 +20,21 @@ Built with [Unreal Engine 5](https://www.unrealengine.com/en-US/unreal-engine-5)
   <img src={require('./img/obelisk-vista.png').default} alt="Obelisk Vista" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
   <img src={require('./img/country-kitchen.png').default} alt="Country Kitchen" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
   <img src={require('./img/cozy-office.png').default} alt="Cozy Office" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+  <img src={require('./img/police-station-office-spaces.png').default} alt="Police Station Office Spaces" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+  <img src={require('./img/residential-base.png').default} alt="Residential Base" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+  <img src={require('./img/restaurant-parking.png').default} alt="Restaurant Parking" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+  <img src={require('./img/town-obelisk.png').default} alt="Town Obelisk" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+  <img src={require('./img/zen-park.png').default} alt="Zen Park" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+</div>
+
+---
+
+## Artwork
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', margin: '1.5rem 0' }}>
+  <img src={require('./img/amare-frog-sketch.png').default} alt="Amare Frog Sketch" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+  <img src={require('./img/happy-birthday-drawing.jpg').default} alt="Happy Birthday Drawing" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
+  <img src={require('./img/happy-birthday-drawing2.jpg').default} alt="Happy Birthday Drawing 2" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px' }} />
 </div>
 
 ---

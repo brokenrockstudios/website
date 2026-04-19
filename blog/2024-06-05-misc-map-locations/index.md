@@ -1,6 +1,6 @@
 ---
 slug: fow-dev-update-misc-location
-title: 'misc map locations'
+title: 'Misc Map Locations'
 authors: [namrog84]
 tags: [game, dev, fow, battle royale, shooter]
 ---
