@@ -33,12 +33,12 @@
   min-width: 40px;
 }
 
-.header-p1-link:hover {
+.header-buy-link:hover {
   opacity: 0.6;
 }
 
-.header-p1-link:before {
-  background: url("/static/img/p1.svg") no-repeat;
+.header-buy-link:before {
+  background: url("/static/img/anuran.svg") no-repeat;
   content: "";
   display: flex;
   float: left;

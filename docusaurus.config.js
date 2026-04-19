@@ -102,9 +102,9 @@ const config = {
           { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://store.steampowered.com',
-            label: 'Buy P1',
+            label: 'Wishlist Now!',
             position: 'right',
-            className: 'header-p1-link',
+            className: 'header-buy-link',
           },
         ],
       },
@@ -139,6 +139,10 @@ const config = {
               {
                 label: 'News',
                 to: '/',
+              },
+              {
+                label: 'Privacy Policy',
+                to: '/privacy',
               },
             ],
           },

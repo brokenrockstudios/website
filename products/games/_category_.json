@@ -2,7 +2,7 @@
     "label": "Games",
     "position": 1,
     "link": {
-        "type": "generated-index",
-        "description": "Games developed by Broken Rock Studios"
+        "type": "doc",
+        "id": "games/index"
     }
 }
