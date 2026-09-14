@@ -188,15 +188,13 @@
 				color: var(--muted);
 			}
 			.palette-panel,
-			.harmony-panel {
+			.harmony-panel,
+			.blindness-panel {
 				margin-top: 22px;
 			}
 			.harmony-groups {
 				display: grid;
-				grid-template-columns: repeat(
-					auto-fill,
-					minmax(220px, 1fr)
-				);
+				grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 				gap: 14px;
 				padding: 4px 20px 20px;
 			}
@@ -313,6 +311,64 @@
 			.harmony-swatch.show-copied .harmony-copied {
 				opacity: 1;
 				transform: translate(-50%, -110%) scale(1);
+			}
+			.blindness-groups {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+				gap: 14px;
+				padding: 4px 20px 20px;
+			}
+			@media (min-width: 600px) {
+				.blindness-groups {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			.blindness-cluster {
+				background: #171d21;
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				padding: 14px;
+			}
+			.blindness-head {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				gap: 10px;
+				font-size: 13px;
+				font-weight: 600;
+			}
+			.blindness-similarity {
+				font-size: 11px;
+				font-weight: 600;
+				letter-spacing: 0.4px;
+				color: var(--muted);
+				white-space: nowrap;
+				text-transform: uppercase;
+			}
+			.blindness-population {
+				margin: 4px 0 12px;
+				font-size: 12px;
+				color: var(--muted);
+			}
+			.blindness-bar {
+				display: flex;
+				height: 60px;
+				border-radius: 8px;
+				overflow: hidden;
+				border: 1px solid var(--line);
+			}
+			.blindness-half {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.blindness-dot {
+				width: 13px;
+				height: 13px;
+				border-radius: 50%;
+				background: #fff;
+				box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
 			}
 			.grid {
 				display: grid;
@@ -483,6 +539,12 @@
 			.group.collapsed .fields {
 				display: none;
 			}
+			.panel.collapsible.collapsed > :not(.bar) {
+				display: none;
+			}
+			.panel.collapsible.collapsed .toggle-label .chev {
+				transform: rotate(-90deg);
+			}
 			.unit-toggle {
 				cursor: pointer;
 				text-decoration: underline dotted;
@@ -629,9 +691,19 @@
 		</header>
 		<main>
 			<section>
-				<div class="panel">
+				<div class="panel collapsible" id="textPanel">
 					<div class="bar">
-						<h2>Palette text</h2>
+						<h2>
+							<span
+								id="textToggle"
+								class="toggle-label"
+								role="button"
+								tabindex="0"
+								aria-expanded="true"
+								aria-controls="editorGroup"
+								>Palette text <span class="chev">▾</span></span
+							>
+						</h2>
 						<div class="actions">
 							<button id="undo" title="Undo (Ctrl/Cmd+Z)">
 								Undo</button
@@ -641,7 +713,7 @@
 							><button id="download">Save text</button>
 						</div>
 					</div>
-					<div class="editor-group">
+					<div class="editor-group" id="editorGroup">
 						<div class="editor">
 							<pre id="highlight" aria-hidden="true"></pre>
 							<textarea
@@ -652,17 +724,29 @@
 							></textarea>
 						</div>
 						<div class="hint">
-							Paste prose, Markdown tables, CSS, or a list of
-							hex codes. Click a code to inspect it; drag to
-							select text as usual.
+							Paste prose, Markdown tables, CSS, or a list of hex
+							codes. Click a code to inspect it; drag to select
+							text as usual.
 						</div>
 					</div>
 				</div>
-				<div class="panel palette-panel">
+				<div class="panel palette-panel collapsible" id="gridPanel">
 					<div class="bar">
 						<h2>
-							Color grid
-							<span id="count" style="color: var(--muted)"></span>
+							<span
+								id="gridToggle"
+								class="toggle-label"
+								role="button"
+								tabindex="0"
+								aria-expanded="true"
+								aria-controls="grid"
+								>Color grid
+								<span
+									id="count"
+									style="color: var(--muted)"
+								></span>
+								<span class="chev">▾</span></span
+							>
 						</h2>
 						<label style="font-size: 12px; color: var(--muted)"
 							>Load example
@@ -675,11 +759,42 @@
 					</div>
 					<div class="grid" id="grid"></div>
 				</div>
-				<div class="panel harmony-panel">
+				<div class="panel harmony-panel collapsible" id="harmonyPanel">
 					<div class="bar">
-						<h2>Color Harmonies</h2>
+						<h2>
+							<span
+								id="harmonyToggle"
+								class="toggle-label"
+								role="button"
+								tabindex="0"
+								aria-expanded="true"
+								aria-controls="harmonyGroups"
+								>Color Harmonies
+								<span class="chev">▾</span></span
+							>
+						</h2>
 					</div>
 					<div class="harmony-groups" id="harmonyGroups"></div>
+				</div>
+				<div
+					class="panel blindness-panel collapsible"
+					id="blindnessPanel"
+				>
+					<div class="bar">
+						<h2>
+							<span
+								id="blindnessToggle"
+								class="toggle-label"
+								role="button"
+								tabindex="0"
+								aria-expanded="true"
+								aria-controls="blindnessGroups"
+								>Blindness simulator
+								<span class="chev">▾</span></span
+							>
+						</h2>
+					</div>
+					<div class="blindness-groups" id="blindnessGroups"></div>
 				</div>
 				<div id="status" role="status" aria-live="polite"></div>
 			</section>
@@ -731,7 +846,7 @@
 									tabindex="0"
 									aria-expanded="true"
 									aria-controls="rgb"
-									><span class="chev">▾</span> RGB</span
+									>RGB <span class="chev">▾</span></span
 								>
 								<small
 									id="rgbUnitToggle"
@@ -766,7 +881,7 @@
 									tabindex="0"
 									aria-expanded="true"
 									aria-controls="hsv"
-									><span class="chev">▾</span> HSV</span
+									>HSV <span class="chev">▾</span></span
 								>
 								<span
 									class="shorthand"
@@ -787,7 +902,7 @@
 									tabindex="0"
 									aria-expanded="true"
 									aria-controls="oklch"
-									><span class="chev">▾</span> OKLCH</span
+									>OKLCH <span class="chev">▾</span></span
 								>
 								<span
 									class="shorthand"
@@ -802,9 +917,9 @@
 					</fieldset>
 					<div class="group">
 						<p style="font-size: 12px; margin: 0">
-							Edits update the selected occurrence only.
-							Repeated colors stay independent. RGB values use
-							sRGB; HSV is derived from those values.
+							Edits update the selected occurrence only. Repeated
+							colors stay independent. RGB values use sRGB; HSV is
+							derived from those values.
 						</p>
 					</div>
 				</div>
@@ -880,9 +995,7 @@
 						end,
 						raw: m[0],
 						hex: toHex(
-							[r, g, b].map((n) =>
-								Math.min(255, parseFloat(n)),
-							),
+							[r, g, b].map((n) => Math.min(255, parseFloat(n))),
 						),
 						type: "rgb",
 						fn,
@@ -1048,7 +1161,8 @@
 			}
 			function formatToken(t, hex) {
 				let a = rgb(hex);
-				if (t.type === "rgb") return `${t.fn}(${a.join(", ")}${t.alpha})`;
+				if (t.type === "rgb")
+					return `${t.fn}(${a.join(", ")}${t.alpha})`;
 				if (t.type === "hsv") {
 					let [h, s, v] = toHSV(...a).map((n) => Math.round(n));
 					return `hsv(${h}, ${s}${t.sPct ? "%" : ""}, ${v}${t.vPct ? "%" : ""})`;
@@ -1317,6 +1431,7 @@
 			function inspect() {
 				let t = tokens[active];
 				renderHarmonies();
+				renderBlindness();
 				$("controls").disabled = !t;
 				$("selected").textContent = t
 					? "Color " +
@@ -1449,9 +1564,10 @@
 					row.style.gridTemplateColumns =
 						"repeat(" + scheme.offsets.length + ", 1fr)";
 					scheme.offsets.forEach((offset) => {
-						let h = ((((baseH + offset) % 360) + 360) % 360).toFixed(
-							1,
-						);
+						let h = (
+							(((baseH + offset) % 360) + 360) %
+							360
+						).toFixed(1);
 						let hex = toHex(fromHSV(Number(h), baseS, baseV));
 						let sw = document.createElement("button");
 						sw.type = "button";
@@ -1484,6 +1600,104 @@
 						row.append(sw);
 					});
 					cluster.append(head, row);
+					fragment.append(cluster);
+				});
+				container.replaceChildren(fragment);
+			}
+			const blindnessTypes = [
+				{
+					name: "Protanopia",
+					population: "1.3% of men, 0.02% of women",
+					matrix: [
+						[0.567, 0.433, 0],
+						[0.558, 0.442, 0],
+						[0, 0.242, 0.758],
+					],
+				},
+				{
+					name: "Deuteranopia",
+					population: "1.2% of men, 0.01% of women",
+					matrix: [
+						[0.625, 0.375, 0],
+						[0.7, 0.3, 0],
+						[0, 0.3, 0.7],
+					],
+				},
+				{
+					name: "Tritanopia",
+					population: "0.001% of men, 0.03% of women",
+					matrix: [
+						[0.95, 0.05, 0],
+						[0, 0.433, 0.567],
+						[0, 0.475, 0.525],
+					],
+				},
+				{
+					name: "Achromatopsia",
+					population: "0.003% of the population",
+					matrix: [
+						[0.299, 0.587, 0.114],
+						[0.299, 0.587, 0.114],
+						[0.299, 0.587, 0.114],
+					],
+				},
+			];
+			function simulate(a, matrix) {
+				return matrix.map((row) =>
+					Math.max(
+						0,
+						Math.min(
+							255,
+							Math.round(
+								row[0] * a[0] + row[1] * a[1] + row[2] * a[2],
+							),
+						),
+					),
+				);
+			}
+			function renderBlindness() {
+				let container = $("blindnessGroups");
+				let t = tokens[active];
+				let baseHex = t ? t.hex : toHex(fromHSV(210, 55, 70));
+				let a = rgb(baseHex);
+				let fragment = document.createDocumentFragment();
+				blindnessTypes.forEach((bt) => {
+					let simHex = toHex(simulate(a, bt.matrix));
+					let dist = Math.sqrt(
+						rgb(simHex).reduce(
+							(sum, v, i) => sum + (v - a[i]) ** 2,
+							0,
+						),
+					);
+					let similarity = Math.round(
+						100 - (dist / 441.6729559300637) * 100,
+					);
+					let cluster = document.createElement("div");
+					cluster.className = "blindness-cluster";
+					let head = document.createElement("div");
+					head.className = "blindness-head";
+					let title = document.createElement("span");
+					title.textContent = bt.name;
+					let sim = document.createElement("span");
+					sim.className = "blindness-similarity";
+					sim.textContent = similarity + "% similar";
+					head.append(title, sim);
+					let population = document.createElement("p");
+					population.className = "blindness-population";
+					population.textContent = bt.population;
+					let barEl = document.createElement("div");
+					barEl.className = "blindness-bar";
+					let original = document.createElement("div");
+					original.className = "blindness-half";
+					original.style.background = baseHex;
+					let dot = document.createElement("span");
+					dot.className = "blindness-dot";
+					original.append(dot);
+					let simmed = document.createElement("div");
+					simmed.className = "blindness-half";
+					simmed.style.background = simHex;
+					barEl.append(original, simmed);
+					cluster.append(head, population, barEl);
 					fragment.append(cluster);
 				});
 				container.replaceChildren(fragment);
@@ -1607,6 +1821,23 @@
 					if (e.key === "Enter" || e.key === " ") {
 						e.preventDefault();
 						$(g + "Shorthand").click();
+					}
+				};
+			});
+			[
+				["textToggle", "textPanel"],
+				["gridToggle", "gridPanel"],
+				["harmonyToggle", "harmonyPanel"],
+				["blindnessToggle", "blindnessPanel"],
+			].forEach(([toggleId, panelId]) => {
+				$(toggleId).onclick = () => {
+					let collapsed = $(panelId).classList.toggle("collapsed");
+					$(toggleId).setAttribute("aria-expanded", !collapsed);
+				};
+				$(toggleId).onkeydown = (e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						$(toggleId).click();
 					}
 				};
 			});
