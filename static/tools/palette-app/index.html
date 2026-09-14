@@ -187,12 +187,139 @@
 				font-size: 12px;
 				color: var(--muted);
 			}
-			.palette-panel {
+			.palette-panel,
+			.harmony-panel {
 				margin-top: 22px;
+			}
+			.harmony-groups {
+				display: grid;
+				grid-template-columns: repeat(
+					auto-fill,
+					minmax(220px, 1fr)
+				);
+				gap: 14px;
+				padding: 4px 20px 20px;
+			}
+			@media (min-width: 851px) {
+				.harmony-groups {
+					grid-template-columns: repeat(3, 1fr);
+				}
+			}
+			.harmony-cluster {
+				background: #171d21;
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				padding: 12px;
+			}
+			.harmony-head {
+				display: flex;
+				align-items: center;
+				gap: 7px;
+				margin-bottom: 10px;
+				font-size: 13px;
+				font-weight: 600;
+			}
+			.harmony-info {
+				position: relative;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+				color: var(--muted);
+				font-size: 13px;
+				line-height: 1;
+				cursor: default;
+			}
+			.harmony-info:hover,
+			.harmony-info:focus-visible {
+				color: var(--accent);
+			}
+			.harmony-tooltip {
+				position: absolute;
+				bottom: 135%;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 230px;
+				background: #0e1215;
+				border: 1px solid var(--line);
+				border-radius: 6px;
+				padding: 9px 11px;
+				font-size: 11px;
+				font-weight: 400;
+				line-height: 1.55;
+				color: var(--muted);
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 0.15s;
+				z-index: 5;
+				pointer-events: none;
+			}
+			.harmony-info:hover .harmony-tooltip,
+			.harmony-info:focus-visible .harmony-tooltip {
+				opacity: 1;
+				visibility: visible;
+			}
+			.harmony-swatches {
+				display: grid;
+				gap: 6px;
+			}
+			.harmony-swatch {
+				position: relative;
+				height: 58px;
+				border: 1px solid transparent;
+				border-radius: 6px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				padding: 6px 4px;
+				cursor: pointer;
+			}
+			.harmony-swatch span.code {
+				font:
+					11px ui-monospace,
+					monospace;
+			}
+			.harmony-copied {
+				position: absolute;
+				top: -8px;
+				left: 50%;
+				transform: translate(-50%, -100%) scale(0.9);
+				background: #0e1215;
+				color: #e4e9df;
+				border: 1px solid var(--line);
+				border-radius: 5px;
+				padding: 3px 8px;
+				font:
+					11px system-ui,
+					sans-serif;
+				opacity: 0;
+				pointer-events: none;
+				transition:
+					opacity 0.15s,
+					transform 0.15s;
+				white-space: nowrap;
+			}
+			.harmony-copied::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				transform: translateX(-50%);
+				border: 5px solid transparent;
+				border-top-color: var(--line);
+			}
+			.harmony-swatch.show-copied .harmony-copied {
+				opacity: 1;
+				transform: translate(-50%, -110%) scale(1);
 			}
 			.grid {
 				display: grid;
-				grid-template-columns: repeat(8, minmax(0, 1fr));
+				grid-template-columns: repeat(
+					auto-fill,
+					minmax(max(80px, 12.5%), 1fr)
+				);
 				padding: 0 20px 20px;
 				gap: 0;
 			}
@@ -547,6 +674,12 @@
 						>
 					</div>
 					<div class="grid" id="grid"></div>
+				</div>
+				<div class="panel harmony-panel">
+					<div class="bar">
+						<h2>Color Harmonies</h2>
+					</div>
+					<div class="harmony-groups" id="harmonyGroups"></div>
 				</div>
 				<div id="status" role="status" aria-live="polite"></div>
 			</section>
@@ -1183,6 +1316,7 @@
 			}
 			function inspect() {
 				let t = tokens[active];
+				renderHarmonies();
 				$("controls").disabled = !t;
 				$("selected").textContent = t
 					? "Color " +
@@ -1254,6 +1388,105 @@
 						if (document.activeElement !== el) el.value = value;
 					}
 				});
+			}
+			const harmonySchemes = [
+				{
+					name: "Analogous",
+					desc: "Analogous color schemes are made by picking three colors that are next to each other on the color wheel. They are perceived as calm and serene.",
+					offsets: [-30, 0, 30],
+				},
+				{
+					name: "Complementary",
+					desc: "Complementary color schemes are made by picking two opposite colors on the color wheel. They appear vibrant near to each other.",
+					offsets: [0, 180],
+				},
+				{
+					name: "Split complementary",
+					desc: "Split complementary schemes are like complementary but they use two adjacent colors of the complement. They are more flexible than complementary ones.",
+					offsets: [0, 150, 210],
+				},
+				{
+					name: "Triadic",
+					desc: "Triadic color schemes are created by picking three colors equally spaced on the color wheel. They appear quite contrasted and multicolored.",
+					offsets: [0, 120, 240],
+				},
+				{
+					name: "Tetradic",
+					desc: "Tetradic color schemes are made from two couples of complementary colors in a rectangular shape on the color wheel. They are very versatile, and work best with one dominant color.",
+					offsets: [0, 60, 180, 240],
+				},
+				{
+					name: "Square",
+					desc: "Square color schemes are like tetradic arranged in a square instead of rectangle. Colors appear even more contrasting.",
+					offsets: [0, 90, 180, 270],
+				},
+			];
+			function renderHarmonies() {
+				let container = $("harmonyGroups");
+				let t = tokens[active];
+				let baseH = t ? hsv[0] : 210,
+					baseS = t && hsv[1] ? hsv[1] : 55,
+					baseV = t && hsv[2] ? hsv[2] : 70;
+				let fragment = document.createDocumentFragment();
+				harmonySchemes.forEach((scheme) => {
+					let cluster = document.createElement("div");
+					cluster.className = "harmony-cluster";
+					let head = document.createElement("div");
+					head.className = "harmony-head";
+					let title = document.createElement("span");
+					title.textContent = scheme.name;
+					let info = document.createElement("span");
+					info.className = "harmony-info";
+					info.textContent = "ⓘ";
+					info.tabIndex = 0;
+					let tip = document.createElement("span");
+					tip.className = "harmony-tooltip";
+					tip.textContent = scheme.desc;
+					info.append(tip);
+					head.append(title, info);
+					let row = document.createElement("div");
+					row.className = "harmony-swatches";
+					row.style.gridTemplateColumns =
+						"repeat(" + scheme.offsets.length + ", 1fr)";
+					scheme.offsets.forEach((offset) => {
+						let h = ((((baseH + offset) % 360) + 360) % 360).toFixed(
+							1,
+						);
+						let hex = toHex(fromHSV(Number(h), baseS, baseV));
+						let sw = document.createElement("button");
+						sw.type = "button";
+						sw.className = "harmony-swatch";
+						sw.style.background = hex;
+						sw.style.color = ink(hex);
+						sw.setAttribute(
+							"aria-label",
+							"Copy " + hex + " to clipboard",
+						);
+						let code = document.createElement("span");
+						code.className = "code";
+						code.textContent = hex;
+						let copied = document.createElement("span");
+						copied.className = "harmony-copied";
+						copied.textContent = "Copied!";
+						sw.append(code, copied);
+						sw.onclick = async () => {
+							try {
+								await navigator.clipboard.writeText(hex);
+								sw.classList.add("show-copied");
+								setTimeout(
+									() => sw.classList.remove("show-copied"),
+									1200,
+								);
+								$("status").textContent =
+									hex + " copied to clipboard.";
+							} catch {}
+						};
+						row.append(sw);
+					});
+					cluster.append(head, row);
+					fragment.append(cluster);
+				});
+				container.replaceChildren(fragment);
 			}
 			function replaceColor(hex, keepHSV = false, keepOKLCH = false) {
 				let t = tokens[active];
