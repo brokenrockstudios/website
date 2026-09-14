@@ -236,9 +236,7 @@
 				color: var(--accent);
 			}
 			.harmony-tooltip {
-				position: absolute;
-				bottom: 135%;
-				left: 50%;
+				position: fixed;
 				transform: translateX(-50%);
 				width: 230px;
 				background: #0e1215;
@@ -252,7 +250,7 @@
 				opacity: 0;
 				visibility: hidden;
 				transition: opacity 0.15s;
-				z-index: 5;
+				z-index: 1000;
 				pointer-events: none;
 			}
 			.harmony-info:hover .harmony-tooltip,
@@ -262,13 +260,13 @@
 			}
 			.harmony-swatches {
 				display: grid;
-				gap: 6px;
+				gap: 0;
 			}
 			.harmony-swatch {
 				position: relative;
 				height: 58px;
 				border: 1px solid transparent;
-				border-radius: 6px;
+				border-radius: 0;
 				display: flex;
 				align-items: flex-end;
 				justify-content: center;
@@ -315,27 +313,33 @@
 			}
 			.blindness-groups {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-				gap: 14px;
+				grid-template-columns: 1fr;
+				gap: 10px;
 				padding: 4px 20px 20px;
 			}
-			@media (min-width: 600px) {
+			@media (min-width: 520px) {
 				.blindness-groups {
 					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			@media (min-width: 900px) {
+				.blindness-groups {
+					grid-template-columns: repeat(4, 1fr);
 				}
 			}
 			.blindness-cluster {
 				background: #171d21;
 				border: 1px solid var(--line);
 				border-radius: 8px;
-				padding: 14px;
+				padding: 10px;
 			}
 			.blindness-head {
 				display: flex;
+				flex-wrap: wrap;
 				align-items: baseline;
 				justify-content: space-between;
-				gap: 10px;
-				font-size: 13px;
+				gap: 4px 6px;
+				font-size: 12px;
 				font-weight: 600;
 			}
 			.blindness-similarity {
@@ -347,13 +351,13 @@
 				text-transform: uppercase;
 			}
 			.blindness-population {
-				margin: 4px 0 12px;
-				font-size: 12px;
+				margin: 3px 0 10px;
+				font-size: 11px;
 				color: var(--muted);
 			}
 			.blindness-bar {
 				display: flex;
-				height: 60px;
+				height: 44px;
 				border-radius: 8px;
 				overflow: hidden;
 				border: 1px solid var(--line);
@@ -365,8 +369,8 @@
 				justify-content: center;
 			}
 			.blindness-dot {
-				width: 13px;
-				height: 13px;
+				width: 10px;
+				height: 10px;
 				border-radius: 50%;
 				background: #fff;
 				box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
@@ -492,11 +496,48 @@
 				border-radius: 8px;
 				margin: 16px 0;
 				display: flex;
+				gap: 2px;
+				overflow: hidden;
+			}
+			.preview-half {
+				flex: 1;
+				min-width: 0;
+				display: flex;
 				align-items: flex-end;
 				padding: 16px;
 				font:
 					22px ui-monospace,
 					monospace;
+				border: 0;
+				position: relative;
+				font-family: ui-monospace, monospace;
+			}
+			.preview-old {
+				display: none;
+				cursor: pointer;
+			}
+			.preview.split .preview-old {
+				display: flex;
+			}
+			.preview-tag {
+				position: absolute;
+				top: 8px;
+				left: 16px;
+				font:
+					10px system-ui,
+					sans-serif;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				opacity: 0.7;
+				display: none;
+			}
+			.preview.split .preview-tag {
+				display: inline;
+			}
+			.preview-old:hover,
+			.preview-old:focus-visible {
+				outline: 2px solid currentColor;
+				outline-offset: -2px;
 			}
 			.field {
 				display: flex;
@@ -857,14 +898,17 @@
 								tabindex="0"
 								aria-expanded="true"
 								aria-controls="blindnessGroups"
-								>Blindness simulator
+								>Color blindness simulator
 								<span class="chev">▾</span></span
 							>
 						</h2>
 					</div>
 					<div class="blindness-groups" id="blindnessGroups"></div>
 				</div>
-				<div class="panel contrast-panel collapsible" id="contrastPanel">
+				<div
+					class="panel contrast-panel collapsible"
+					id="contrastPanel"
+				>
 					<div class="bar">
 						<h2>
 							<span
@@ -922,7 +966,21 @@
 					<p id="selected" style="font-size: 12px">
 						Select a color in your text or grid.
 					</p>
-					<div class="preview" id="preview"></div>
+					<div class="preview" id="preview">
+						<button
+							type="button"
+							class="preview-half preview-old"
+							id="previewOld"
+							title="Click to revert to this color"
+						>
+							<span class="preview-tag">Before · click to revert</span
+							><span id="previewOldHex"></span>
+						</button>
+						<div class="preview-half preview-new" id="previewNew">
+							<span class="preview-tag">After</span
+							><span id="previewNewHex"></span>
+						</div>
+					</div>
 					<fieldset
 						id="controls"
 						style="border: 0; padding: 0; margin: 0; min-width: 0"
@@ -1080,7 +1138,8 @@
 				rgbUnit = 255,
 				history = [],
 				future = [],
-				gesture = false;
+				gesture = false,
+				originalHex = null;
 			const source = $("source");
 			function normalize(x) {
 				x = x.replace(/^#/, "");
@@ -1157,11 +1216,7 @@
 						end,
 						raw: m[0],
 						hex: toHex(
-							[r, g, b].map(
-								(n) =>
-									Math.min(1, Math.max(0, parseFloat(n))) *
-									255,
-							),
+							[r, g, b].map((n) => linearToSrgb255(parseFloat(n))),
 						),
 						type: "flinear",
 						fSuffix: !!rf,
@@ -1287,7 +1342,9 @@
 				}
 				if (t.type === "flinear") {
 					let suf = t.fSuffix ? "f" : "",
-						[r, g, b] = a.map((n) => (n / 255).toFixed(2));
+						[r, g, b] = a.map((n) =>
+							srgb255ToLinear(n).toFixed(2),
+						);
 					return `FLinearColor(${r}${suf}, ${g}${suf}, ${b}${suf}${t.alphaPart})`;
 				}
 				if (t.type === "hsvfrac") {
@@ -1351,6 +1408,18 @@
 										? [x, 0, c]
 										: [c, 0, x];
 				return a.map((n) => Math.round((n + m) * 255));
+			}
+			function linearToSrgb255(v) {
+				v = Math.min(1, Math.max(0, v));
+				return (
+					(v <= 0.0031308
+						? 12.92 * v
+						: 1.055 * v ** (1 / 2.4) - 0.055) * 255
+				);
+			}
+			function srgb255ToLinear(v) {
+				v /= 255;
+				return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
 			}
 			function toHex(a) {
 				return (
@@ -1543,6 +1612,7 @@
 					hsv = toHSV(...rgb(tokens[i].hex));
 					oklch = toOKLCH(...rgb(tokens[i].hex));
 				}
+				originalHex = tokens[i] ? tokens[i].hex : null;
 				render();
 				inspect();
 			}
@@ -1559,9 +1629,16 @@
 						tokens.length +
 						" · selected occurrence"
 					: "Select a color in your text or grid.";
-				$("preview").style.background = t ? t.hex : "#293238";
-				$("preview").style.color = t ? ink(t.hex) : "#9fadb5";
-				$("preview").textContent = t ? t.hex : "No color selected";
+				let hasSplit = !!(t && originalHex && originalHex !== t.hex);
+				$("preview").classList.toggle("split", hasSplit);
+				$("previewNew").style.background = t ? t.hex : "#293238";
+				$("previewNew").style.color = t ? ink(t.hex) : "#9fadb5";
+				$("previewNewHex").textContent = t ? t.hex : "No color selected";
+				if (hasSplit) {
+					$("previewOld").style.background = originalHex;
+					$("previewOld").style.color = ink(originalHex);
+					$("previewOldHex").textContent = originalHex;
+				}
 				$("rgbShorthand").textContent = t
 					? rgbUnit === 1
 						? "rgb(" +
@@ -1677,6 +1754,13 @@
 					tip.className = "harmony-tooltip";
 					tip.textContent = scheme.desc;
 					info.append(tip);
+					let positionTip = () => {
+						let r = info.getBoundingClientRect();
+						tip.style.left = r.left + r.width / 2 + "px";
+						tip.style.bottom = window.innerHeight - r.top + 8 + "px";
+					};
+					info.addEventListener("mouseenter", positionTip);
+					info.addEventListener("focus", positionTip);
 					head.append(title, info);
 					let row = document.createElement("div");
 					row.className = "harmony-swatches";
@@ -1725,17 +1809,7 @@
 			}
 			const blindnessTypes = [
 				{
-					name: "Protanopia",
-					population: "1.3% of men, 0.02% of women",
-					matrix: [
-						[0.567, 0.433, 0],
-						[0.558, 0.442, 0],
-						[0, 0.242, 0.758],
-					],
-				},
-				{
 					name: "Deuteranopia",
-					population: "1.2% of men, 0.01% of women",
 					matrix: [
 						[0.625, 0.375, 0],
 						[0.7, 0.3, 0],
@@ -1743,8 +1817,15 @@
 					],
 				},
 				{
+					name: "Protanopia",
+					matrix: [
+						[0.567, 0.433, 0],
+						[0.558, 0.442, 0],
+						[0, 0.242, 0.758],
+					],
+				},
+				{
 					name: "Tritanopia",
-					population: "0.001% of men, 0.03% of women",
 					matrix: [
 						[0.95, 0.05, 0],
 						[0, 0.433, 0.567],
@@ -1753,7 +1834,6 @@
 				},
 				{
 					name: "Achromatopsia",
-					population: "0.003% of the population",
 					matrix: [
 						[0.299, 0.587, 0.114],
 						[0.299, 0.587, 0.114],
@@ -1858,7 +1938,8 @@
 					].forEach(([label, min]) => {
 						let pass = ratio >= min;
 						let b = document.createElement("span");
-						b.className = "contrast-badge " + (pass ? "pass" : "fail");
+						b.className =
+							"contrast-badge " + (pass ? "pass" : "fail");
 						b.textContent = (pass ? "✓ " : "✕ ") + label;
 						fragment.append(b);
 					});
@@ -2066,6 +2147,9 @@
 			};
 			$("native").oninput = () =>
 				replaceColor($("native").value.toUpperCase());
+			$("previewOld").onclick = () => {
+				if (originalHex) replaceColor(originalHex);
+			};
 			$("hue").oninput = () => {
 				hsv[0] = Number($("hue").value);
 				replaceColor(toHex(fromHSV(...hsv)), true);
