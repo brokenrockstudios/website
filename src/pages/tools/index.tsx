@@ -16,7 +16,7 @@ const TOOLS: Tool[] = [
     title: 'Palette Workbench',
     description:
       'Paste prose, Markdown, CSS, or hex codes and inspect/edit the colors found inside, right in your browser.',
-    to: '/tools/palette/index.html',
+    to: '/tools/palette',
   },
   {
     title: 'UV Texture Generator',
