@@ -1,49 +1,1558 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Palette Workbench</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%2380c8be' d='M0 0h16v32H0z'/%3E%3Cpath fill='%23e6ad73' d='M16 0h16v32H16z'/%3E%3C/svg%3E"><style>
-:root{color-scheme:dark;--bg:#15191c;--panel:#1e2428;--line:#354047;--muted:#9fadb5;--accent:#80c8be}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#e4e9df;font:14px system-ui,sans-serif}header{padding:25px 32px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}h1{font-size:21px;letter-spacing:-.6px;margin:0}h1 span{color:var(--accent)}p{color:var(--muted);line-height:1.6;margin:8px 0 0}.badge{font-size:12px;color:var(--accent);border:1px solid var(--line);padding:7px 11px;border-radius:20px}main{max-width:1600px;margin:auto;padding:28px 32px;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px}section,aside{min-width:0}.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 20px;flex-wrap:wrap}h2{font-size:14px;margin:0;font-weight:600}button,select,input{font:inherit}button,select{background:#293238;border:1px solid #43515a;color:#e4e9df;border-radius:6px;padding:8px 11px;cursor:pointer}button:hover{background:#35434b}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.actions{display:flex;gap:8px;flex-wrap:wrap}.editor{position:relative;height:335px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#171d21;overflow:hidden}.editor pre,.editor textarea{margin:0;padding:20px;border:0;font:14px/2.05 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:0;tab-size:4;white-space:pre;overflow-wrap:normal}.editor pre{position:absolute;inset:0;overflow:hidden;pointer-events:none;color:#c5d0d6}.editor textarea{position:absolute;inset:0;resize:none;width:100%;height:100%;background:transparent;color:transparent;caret-color:white;-webkit-text-fill-color:transparent;outline:none;overflow:auto}.editor textarea::selection{background:#87bee577}.editor mark{border-radius:3px;padding:2px 0;background:var(--color);color:var(--ink)}.editor mark.active{outline:2px solid #fff;outline-offset:2px}.hint{padding:12px 20px;font-size:12px;color:var(--muted)}.palette-panel{margin-top:22px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));padding:0 20px 20px;gap:8px}.swatch{height:100px;border:2px solid transparent;border-radius:7px;display:flex;flex-direction:column;justify-content:space-between;padding:12px;cursor:pointer;user-select:text}.swatch[aria-pressed=true]{outline:2px solid #fff;outline-offset:2px}.swatch small{opacity:.8;font-size:11px}.swatch strong{font:15px ui-monospace,monospace;font-weight:500}.empty{padding:24px;color:var(--muted);grid-column:1/-1}aside{align-self:start;position:sticky;top:20px}.inspector{padding:20px}.preview{height:110px;border-radius:8px;margin:16px 0;display:flex;align-items:flex-end;padding:16px;font:22px ui-monospace,monospace}.field{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}input[type=text],input[type=number]{background:#151b1f;border:1px solid #43515a;border-radius:5px;color:#e4e9df;padding:8px;min-width:0}#hex{width:150px;font-family:ui-monospace,monospace}#native{width:45px;height:35px;border:0;padding:0;background:transparent;cursor:pointer}.sv{height:170px;position:relative;touch-action:none;border-radius:7px;cursor:crosshair;background:linear-gradient(to top,#000,transparent),linear-gradient(to right,#fff,transparent),red}.dot{position:absolute;width:14px;height:14px;border:2px solid white;border-radius:50%;box-shadow:0 0 2px 1px #000;transform:translate(-50%,-50%);pointer-events:none}.group{border-top:1px solid var(--line);margin-top:18px;padding-top:15px}.group .shorthand{display:none;font:13px ui-monospace,monospace;color:var(--muted);margin-top:10px;cursor:pointer}.group .shorthand:hover{color:var(--accent)}.group.collapsed .shorthand{display:block}.group.collapsed .fields{display:none}.unit-toggle{cursor:pointer;text-decoration:underline dotted;text-underline-offset:2px}.unit-toggle:hover{color:var(--accent)}.toggle-label{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px}.toggle-label:hover{color:var(--accent)}.toggle-label .chev{display:inline-block;transition:transform .15s;font-size:11px}.group.collapsed .toggle-label .chev{transform:rotate(-90deg)}.toggle-label{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px}.toggle-label:hover{color:var(--accent)}.toggle-label .chev{display:inline-block;transition:transform .15s;font-size:11px}.group.collapsed .toggle-label .chev{transform:rotate(-90deg)}.channels{display:grid;grid-template-columns:20px minmax(0,1fr) 62px;gap:10px;align-items:center;margin:10px 0}.channels label{color:var(--muted);font-size:12px}.channels input[type=number]{width:62px;padding:6px}input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}#hue{appearance:none;background:linear-gradient(to right,red,#ff0,#0f0,#0ff,#00f,#f0f,red);height:12px;border-radius:8px;margin:16px 0 4px}#hue::-webkit-slider-thumb{appearance:none;width:16px;height:20px;border:2px solid white;background:transparent;border-radius:4px}.footer{padding:0 32px 24px;max-width:1600px;margin:auto;color:var(--muted);font-size:12px}a{color:var(--accent)}#status{min-height:20px;margin-top:12px;font-size:12px;color:var(--accent)}@media(max-width:850px){main{grid-template-columns:1fr;padding:18px}aside{position:static}.inspector{display:block}.editor{height:300px}header{padding:20px}.badge{display:none}}@media(forced-colors:active){.editor textarea{color:CanvasText;-webkit-text-fill-color:CanvasText}.editor pre{visibility:hidden}}
-</style></head><body>
-<header><div><h1><span>◧</span> Palette Workbench</h1><p>Your text, with its colors brought to life.</p></div><div class="badge">Standalone · Offline · No dependencies</div></header>
-<main><section><div class="panel"><div class="bar"><h2>Palette text</h2><div class="actions"><button id="undo" title="Undo (Ctrl/Cmd+Z)">Undo</button><button id="redo" title="Redo (Ctrl/Cmd+Shift+Z)">Redo</button><button id="copy">Copy text</button><button id="download">Save text</button></div></div><div class="editor"><pre id="highlight" aria-hidden="true"></pre><textarea id="source" aria-label="Editable palette text" spellcheck="false" wrap="off"></textarea></div><div class="hint">Paste prose, Markdown tables, CSS, or a list of hex codes. Click a code to inspect it; drag to select text as usual.</div></div>
-<div class="panel palette-panel"><div class="bar"><h2>Color grid <span id="count" style="color:var(--muted)"></span></h2><label style="font-size:12px;color:var(--muted)">Load example <select id="example"><option value="">Choose…</option><option value="ocean">Ocean / apricot</option><option value="endesga">ENDESGA 32</option></select></label></div><div class="grid" id="grid"></div></div><div id="status" role="status" aria-live="polite"></div></section>
-<aside class="panel"><div class="inspector"><h2>Color inspector</h2><p id="selected" style="font-size:12px">Select a color in your text or grid.</p><div class="preview" id="preview"></div><fieldset id="controls" style="border:0;padding:0;margin:0;min-width:0"><div class="field"><label for="hex">HEX</label><input id="hex" type="text" spellcheck="false" aria-label="Hex color"><input id="native" type="color" aria-label="Open system color picker"></div><div class="sv" id="sv" aria-label="Saturation and value picker; equivalent keyboard controls below"><div class="dot" id="dot"></div></div><input id="hue" type="range" min="0" max="360" step="0.1" aria-label="Hue"><div class="group collapsible" id="rgbGroup"><h2><span id="rgbToggle" class="toggle-label" role="button" tabindex="0" aria-expanded="true" aria-controls="rgb"><span class="chev">▾</span> RGB</span> <small id="rgbUnitToggle" class="unit-toggle" role="button" tabindex="0" title="Click to toggle 0–255 / 0–1.0" style="color:var(--muted);font-weight:400"> / 0–255</small></h2><div class="shorthand" id="rgbShorthand" role="button" tabindex="0" title="Click to copy"></div><div class="fields" id="rgb"></div></div><div class="group collapsible" id="hsvGroup"><h2><span id="hsvToggle" class="toggle-label" role="button" tabindex="0" aria-expanded="true" aria-controls="hsv"><span class="chev">▾</span> HSV</span> <small style="color:var(--muted);font-weight:400"> / degrees, %, %</small></h2><div class="shorthand" id="hsvShorthand" role="button" tabindex="0" title="Click to copy"></div><div class="fields" id="hsv"></div></div><div class="group collapsible" id="oklchGroup"><h2><span id="oklchToggle" class="toggle-label" role="button" tabindex="0" aria-expanded="true" aria-controls="oklch"><span class="chev">▾</span> OKLCH</span> <small style="color:var(--muted);font-weight:400"> / L 0–1, C 0–0.4, H degrees</small></h2><div class="shorthand" id="oklchShorthand" role="button" tabindex="0" title="Click to copy"></div><div class="fields" id="oklch"></div></div></fieldset><p style="font-size:12px">Edits update the selected occurrence only. Repeated colors stay independent. RGB values use sRGB; HSV is derived from those values.</p></div></aside></main><div class="footer">Accepts #RGB, #RRGGBB and bare six-digit hex codes. Your text stays on this device. <span id="storage"></span><br>Visual references: <a href="https://uvchecker.atlux.one/" target="_blank" rel="noopener">Atlux</a> and <a href="https://lospec.com/palette-list/endesga-32" target="_blank" rel="noopener">Lospec / ENDESGA 32</a>.</div>
-<script>
-'use strict';
-const $=id=>document.getElementById(id);
-const ocean='| Role | Starting color | Purpose |\n| --- | --- | --- |\n| Deep background | `#17272D` | Dark blue with a subtle green lean |\n| Slot/panel | `#243B46` | Desaturated ocean slate |\n| Hover/raised surface | `#34515D` | A lighter step within the same family |\n| Border | `#526D75` | Soft definition |\n| Main text | `#E4E9DF` | Slightly warm off-white |\n| Selection | `#E6AD73` | Muted apricot, paired with a clear outline |\n| Secondary accent | `#80C8BE` | Sea-glass green for restrained highlights |';
-const endesga='ENDESGA 32 — by ENDESGA\nhttps://lospec.com/palette-list/endesga-32\n\n'+('be4a2f d77643 ead4aa e4a672 b86f50 733e39 3e2731 a22633 e43b44 f77622 feae34 fee761 63c74d 3e8948 265c42 193c3e 124e89 0099db 2ce8f5 ffffff c0cbdc 8b9bb4 5a6988 3a4466 262b44 181425 ff0044 68386c b55088 f6757a e8b796 c28569'.split(' ').map((x,i)=>'#'+x+((i+1)%5===0?'\n':'  ')).join(''));
-let tokens=[],active=-1,hsv=[0,0,0],oklch=[0,0,0],rgbUnit=255,history=[],future=[],gesture=false;
-const source=$('source');
-function normalize(x){x=x.replace(/^#/,'');return '#'+(x.length===3?x.split('').map(c=>c+c).join(''):x).toUpperCase()}
-function parse(text){return Array.from(text.matchAll(/(?<![\w#])(?:#[\da-fA-F]{6}|#[\da-fA-F]{3}|[\da-fA-F]{6})(?![\w])/g),m=>({start:m.index,end:m.index+m[0].length,raw:m[0],hex:normalize(m[0])}))}
-function rgb(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16))}
-function toHSV(r,g,b){r/=255;g/=255;b/=255;let max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min,h=0;if(d)h=60*(max===r?((g-b)/d+6)%6:max===g?(b-r)/d+2:(r-g)/d+4);return [h,max?d/max*100:0,max*100]}
-function fromHSV(h,s,v){s/=100;v/=100;let c=v*s,x=c*(1-Math.abs((h/60)%2-1)),m=v-c;let a=h<60?[c,x,0]:h<120?[x,c,0]:h<180?[0,c,x]:h<240?[0,x,c]:h<300?[x,0,c]:[c,0,x];return a.map(n=>Math.round((n+m)*255))}
-function toHex(a){return '#'+a.map(n=>Math.round(n).toString(16).padStart(2,'0')).join('').toUpperCase()}
-function ink(hex){let a=rgb(hex).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4});return .2126*a[0]+.7152*a[1]+.0722*a[2]>.179?'#000000':'#FFFFFF'}
-function toOKLCH(r,g,b){let f=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};let[lr,lg,lb]=[f(r),f(g),f(b)];let l=.4122214708*lr+.5363325363*lg+.0514459929*lb,m=.2119034982*lr+.6806995451*lg+.1073969566*lb,s=.0883024619*lr+.2817188376*lg+.6299787005*lb;let l_=Math.cbrt(l),m_=Math.cbrt(m),s_=Math.cbrt(s);let L=.2104542553*l_+.7936177850*m_-.0040720468*s_,A=1.9779984951*l_-2.4285922050*m_+.4505937099*s_,B=.0259040371*l_+.7827717662*m_-.8086757660*s_;let C=Math.sqrt(A*A+B*B),H=Math.atan2(B,A)*180/Math.PI;if(H<0)H+=360;return[L,C,H]}
-function fromOKLCH(L,C,H){let hr=H*Math.PI/180,A=Math.cos(hr)*C,B=Math.sin(hr)*C;let l_=L+.3963377774*A+.2158037573*B,m_=L-.1055613458*A-.0638541728*B,s_=L-.0894841775*A-1.2914855480*B;let l=l_**3,m=m_**3,s=s_**3;let lr=4.0767416621*l-3.3077115913*m+.2309699292*s,lg=-1.2684380046*l+2.6097574011*m-.3413193965*s,lb=-.0041960863*l-.7034186147*m+1.7076147010*s;let g=v=>{v=v<=.0031308?12.92*v:1.055*v**(1/2.4)-.055;return Math.max(0,Math.min(255,Math.round(v*255)))};return[g(lr),g(lg),g(lb)]}
-function snapshot(){return {text:source.value,start:source.selectionStart,end:source.selectionEnd,active}}
-function remember(){history.push(snapshot());if(history.length>150)history.shift();future=[]}
-function persist(){try{localStorage.setItem('palette-workbench-v1',source.value);$('storage').textContent='Autosaved in this browser.'}catch{$('storage').textContent='Use Save text to keep a copy.'}}
-function render(){let previous=tokens[active]?.start;tokens=parse(source.value);if(previous!==undefined)active=tokens.findIndex(t=>t.start===previous);if(active>=tokens.length)active=-1;let fragment=document.createDocumentFragment(),last=0;tokens.forEach((t,i)=>{fragment.append(document.createTextNode(source.value.slice(last,t.start)));let m=document.createElement('mark');m.textContent=t.raw;m.style.setProperty('--color',t.hex);m.style.setProperty('--ink',ink(t.hex));m.className=i===active?'active':'';fragment.append(m);last=t.end});fragment.append(document.createTextNode(source.value.slice(last)+'\n'));$('highlight').replaceChildren(fragment);syncScroll();let g=document.createDocumentFragment();tokens.forEach((t,i)=>{let b=document.createElement('div');b.className='swatch';b.tabIndex=0;b.setAttribute('role','button');b.setAttribute('aria-label','Inspect color '+(i+1)+': '+t.hex);b.setAttribute('aria-pressed',i===active);b.style.background=t.hex;b.style.color=ink(t.hex);let n=document.createElement('small');n.textContent=String(i+1).padStart(2,'0');let code=document.createElement('strong');code.textContent=t.hex;b.append(n,code);b.onclick=()=>select(i);b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(i)}};g.append(b)});if(!tokens.length){let e=document.createElement('div');e.className='empty';e.textContent='No colors yet. Paste a palette above to get started.';g.append(e)}let signature=tokens.map(t=>t.hex).join(',');if($('grid').dataset.signature!==signature){$('grid').replaceChildren(g);$('grid').dataset.signature=signature}else{$('grid').querySelectorAll('.swatch').forEach((b,i)=>b.setAttribute('aria-pressed',i===active))}$('count').textContent='· '+tokens.length;$('undo').disabled=!history.length;$('redo').disabled=!future.length;persist()}
-function syncScroll(){$('highlight').scrollTop=source.scrollTop;$('highlight').scrollLeft=source.scrollLeft}
-function select(i){active=i;if(tokens[i]){hsv=toHSV(...rgb(tokens[i].hex));oklch=toOKLCH(...rgb(tokens[i].hex))}render();inspect()}
-function inspect(){let t=tokens[active];$('controls').disabled=!t;$('selected').textContent=t?'Color '+(active+1)+' of '+tokens.length+' · selected occurrence':'Select a color in your text or grid.';$('preview').style.background=t?t.hex:'#293238';$('preview').style.color=t?ink(t.hex):'#9fadb5';$('preview').textContent=t?t.hex:'No color selected';$('rgbShorthand').textContent=t?(rgbUnit===1?'rgb('+rgb(t.hex).map(v=>Math.round(v/255*1000)/1000).join(', ')+')':'rgb('+rgb(t.hex).join(', ')+')'):'';$('hsvShorthand').textContent=t?'hsv('+Math.round(hsv[0]*10)/10+', '+Math.round(hsv[1]*10)/10+'%, '+Math.round(hsv[2]*10)/10+'%)':'';$('oklchShorthand').textContent=t?'oklch('+(Math.round(oklch[0]*1000)/1000)+' '+(Math.round(oklch[1]*1000)/1000)+' '+(Math.round(oklch[2]*10)/10)+')':'';if(!t)return;let a=rgb(t.hex);if(document.activeElement!==$('hex'))$('hex').value=t.hex;$('native').value=t.hex;$('sv').style.background='linear-gradient(to top,#000,transparent),linear-gradient(to right,#fff,transparent),hsl('+hsv[0]+' 100% 50%)';$('dot').style.left=hsv[1]+'%';$('dot').style.top=(100-hsv[2])+'%';$('hue').value=hsv[0];['r','g','b','h','s','v'].forEach((k,i)=>{let value=i<3?(rgbUnit===1?Math.round(a[i]/255*1000)/1000:a[i]):Math.round(hsv[i-3]*10)/10;for(let suffix of ['Range','Number']){let el=$(k+suffix);if(document.activeElement!==el)el.value=value}});['l','c','h'].forEach((k,i)=>{let value=k==='h'?Math.round(oklch[i]*10)/10:Math.round(oklch[i]*1000)/1000;for(let suffix of ['Range','Number']){let el=$('ok'+k+suffix);if(document.activeElement!==el)el.value=value}})}
-function replaceColor(hex,keepHSV=false,keepOKLCH=false){let t=tokens[active];if(!t)return;if(t.hex!==hex){if(!gesture)remember();let raw=t.raw.startsWith('#')?hex:hex.slice(1);let ss=source.selectionStart,se=source.selectionEnd;source.setRangeText(raw,t.start,t.end,'preserve');source.setSelectionRange(Math.min(ss,source.value.length),Math.min(se,source.value.length));}if(!keepHSV)hsv=toHSV(...rgb(hex));if(!keepOKLCH)oklch=toOKLCH(...rgb(hex));render();inspect()}
-for(let [group,prefix,keys,maxes,steps,labels] of [['rgb','',['r','g','b'],[255,255,255],[1,1,1],{r:'Red',g:'Green',b:'Blue'}],['hsv','',['h','s','v'],[360,100,100],[.1,.1,.1],{h:'Hue',s:'Saturation',v:'Value'}],['oklch','ok',['l','c','h'],[1,.4,360],[.001,.001,.1],{l:'Lightness',c:'Chroma',h:'Hue'}]])keys.forEach((k,i)=>{let row=document.createElement('div');row.className='channels';let label=document.createElement('label');label.htmlFor=prefix+k+'Number';label.textContent=k.toUpperCase();row.append(label);for(let type of ['range','number']){let input=document.createElement('input');input.type=type;input.id=prefix+k+(type==='range'?'Range':'Number');input.min=0;input.max=maxes[i];input.step=steps[i];input.setAttribute('aria-label',labels[k]+(type==='range'?' slider':''));input.oninput=()=>{if(input.value===''||!input.validity.valid)return;let value=Number(input.value);if(group==='rgb'){let a=rgb(tokens[active].hex);a[i]=rgbUnit===1?value*255:value;replaceColor(toHex(a))}else if(group==='hsv'){hsv[i]=value;replaceColor(toHex(fromHSV(...hsv)),true)}else{oklch[i]=value;replaceColor(toHex(fromOKLCH(...oklch)),true,true)}};input.onchange=()=>{inspect()};row.append(input)}$(group).append(row)});
-['rgb','hsv','oklch'].forEach(g=>{$(g+'Toggle').onclick=()=>{let collapsed=$(g+'Group').classList.toggle('collapsed');$(g+'Toggle').setAttribute('aria-expanded',!collapsed)};$(g+'Toggle').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$(g+'Toggle').click()}};$(g+'Shorthand').onclick=async()=>{try{await navigator.clipboard.writeText($(g+'Shorthand').textContent);$('status').textContent=g.toUpperCase()+' value copied.'}catch{}};$(g+'Shorthand').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$(g+'Shorthand').click()}}});
-$('rgbUnitToggle').onclick=e=>{e.stopPropagation();rgbUnit=rgbUnit===255?1:255;$('rgbUnitToggle').textContent=rgbUnit===255?' / 0–255':' / 0–1.0';['r','g','b'].forEach(k=>{let max=rgbUnit===255?255:1,step=rgbUnit===255?1:.001;$(k+'Range').max=max;$(k+'Range').step=step;$(k+'Number').max=max;$(k+'Number').step=step});inspect()};
-$('rgbUnitToggle').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();$('rgbUnitToggle').click()}};
-source.addEventListener('beforeinput',e=>{if(e.inputType==='historyUndo'||e.inputType==='historyRedo'){e.preventDefault();undo(e.inputType==='historyRedo')}else remember()});source.addEventListener('input',()=>{render();let p=source.selectionStart;let i=tokens.findIndex(t=>p>=t.start&&p<=t.end);select(i)});function selectAtCaret(){let p=source.selectionDirection==='backward'?source.selectionStart:source.selectionEnd;let i=tokens.findIndex(t=>p>=t.start&&p<=t.end);if(i>=0&&i!==active)select(i)}source.addEventListener('click',selectAtCaret);source.addEventListener('keyup',selectAtCaret);source.addEventListener('select',selectAtCaret);source.addEventListener('scroll',syncScroll);
-$('hex').oninput=()=>{let v=$('hex').value.trim();let valid=/^#?(?:[\da-f]{3}|[\da-f]{6})$/i.test(v);$('hex').setAttribute('aria-invalid',!valid);if(valid)replaceColor(normalize(v))};$('hex').onblur=()=>{$('hex').value=tokens[active]?.hex||'';$('hex').removeAttribute('aria-invalid')};$('native').oninput=()=>replaceColor($('native').value.toUpperCase());$('hue').oninput=()=>{hsv[0]=Number($('hue').value);replaceColor(toHex(fromHSV(...hsv)),true)};
-function beginGesture(){if(!gesture){remember();gesture=true}}function endGesture(){gesture=false}
-$('controls').addEventListener('pointerdown',e=>{if(e.target.type==='range')beginGesture()});window.addEventListener('pointerup',endGesture);window.addEventListener('pointercancel',endGesture);
-function setSV(e){let box=$('sv').getBoundingClientRect();hsv[1]=Math.max(0,Math.min(100,(e.clientX-box.left)/box.width*100));hsv[2]=Math.max(0,Math.min(100,100-(e.clientY-box.top)/box.height*100));replaceColor(toHex(fromHSV(...hsv)),true)}
-$('sv').onpointerdown=e=>{if(active<0)return;beginGesture();$('sv').setPointerCapture(e.pointerId);setSV(e)};$('sv').onpointermove=e=>{if($('sv').hasPointerCapture(e.pointerId))setSV(e)};
-function undo(redo=false){let from=redo?future:history,to=redo?history:future;if(!from.length)return;to.push(snapshot());let state=from.pop();source.value=state.text;tokens=[];active=state.active;render();if(tokens[active]){hsv=toHSV(...rgb(tokens[active].hex));oklch=toOKLCH(...rgb(tokens[active].hex))}inspect();source.focus();source.setSelectionRange(state.start,state.end)}
-$('undo').onclick=()=>undo();$('redo').onclick=()=>undo(true);document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&!e.altKey&&(e.key.toLowerCase()==='z'||e.key.toLowerCase()==='y')){e.preventDefault();undo(e.shiftKey||e.key.toLowerCase()==='y')}});
-$('example').onchange=()=>{if(!$('example').value)return;remember();source.value=$('example').value==='ocean'?ocean:endesga;tokens=[];active=0;render();select(0);$('example').value='';$('status').textContent='Example loaded. Undo restores your previous text.'};
-$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(source.value);$('status').textContent='Palette text copied.'}catch{source.focus();source.select();$('status').textContent='Text selected. Press Ctrl+C (or Cmd+C) to copy.'}};
-$('download').onclick=()=>{let url=URL.createObjectURL(new Blob([source.value],{type:'text/plain;charset=utf-8'}));let a=document.createElement('a');a.href=url;a.download='palette.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
-try{source.value=localStorage.getItem('palette-workbench-v1')??ocean}catch{source.value=ocean}render();select(tokens.length?0:-1);
-</script></body></html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Palette Workbench</title>
+		<link
+			rel="icon"
+			href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%2380c8be' d='M0 0h16v32H0z'/%3E%3Cpath fill='%23e6ad73' d='M16 0h16v32H16z'/%3E%3C/svg%3E"
+		/>
+		<style>
+			:root {
+				color-scheme: dark;
+				--bg: #15191c;
+				--panel: #1e2428;
+				--line: #354047;
+				--muted: #9fadb5;
+				--accent: #80c8be;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
+				background: var(--bg);
+				color: #e4e9df;
+				font:
+					14px system-ui,
+					sans-serif;
+			}
+			header {
+				padding: 25px 32px;
+				border-bottom: 1px solid var(--line);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 16px;
+			}
+			h1 {
+				font-size: 21px;
+				letter-spacing: -0.6px;
+				margin: 0;
+			}
+			h1 span {
+				color: var(--accent);
+			}
+			p {
+				color: var(--muted);
+				line-height: 1.6;
+				margin: 8px 0 0;
+			}
+			.badge {
+				font-size: 12px;
+				color: var(--accent);
+				border: 1px solid var(--line);
+				padding: 7px 11px;
+				border-radius: 20px;
+			}
+			main {
+				max-width: 1600px;
+				margin: auto;
+				padding: 28px 32px;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) 330px;
+				gap: 24px;
+			}
+			section,
+			aside {
+				min-width: 0;
+			}
+			.panel {
+				background: var(--panel);
+				border: 1px solid var(--line);
+				border-radius: 12px;
+				overflow: hidden;
+			}
+			.bar {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 12px;
+				padding: 17px 20px;
+				flex-wrap: wrap;
+			}
+			h2 {
+				font-size: 14px;
+				margin: 0;
+				font-weight: 600;
+			}
+			button,
+			select,
+			input {
+				font: inherit;
+			}
+			button,
+			select {
+				background: #293238;
+				border: 1px solid #43515a;
+				color: #e4e9df;
+				border-radius: 6px;
+				padding: 8px 11px;
+				cursor: pointer;
+			}
+			button:hover {
+				background: #35434b;
+			}
+			button:focus-visible,
+			input:focus-visible,
+			select:focus-visible {
+				outline: 2px solid var(--accent);
+				outline-offset: 3px;
+			}
+			.actions {
+				display: flex;
+				gap: 8px;
+				flex-wrap: wrap;
+			}
+			.editor-group {
+				display: flex;
+				flex-direction: column;
+				height: 335px;
+				min-height: 160px;
+				max-height: 80vh;
+				resize: vertical;
+				overflow: hidden;
+			}
+			.editor {
+				position: relative;
+				flex: 1 1 auto;
+				min-height: 0;
+				border-top: 1px solid var(--line);
+				border-bottom: 1px solid var(--line);
+				background: #171d21;
+				overflow: hidden;
+			}
+			.editor pre,
+			.editor textarea {
+				margin: 0;
+				padding: 20px;
+				border: 0;
+				font:
+					14px/2.05 ui-monospace,
+					SFMono-Regular,
+					Consolas,
+					monospace;
+				letter-spacing: 0;
+				tab-size: 4;
+				white-space: pre;
+				overflow-wrap: normal;
+			}
+			.editor pre {
+				position: absolute;
+				inset: 0;
+				overflow: hidden;
+				pointer-events: none;
+				color: #c5d0d6;
+			}
+			.editor textarea {
+				position: absolute;
+				inset: 0;
+				resize: none;
+				width: 100%;
+				height: 100%;
+				background: transparent;
+				color: transparent;
+				caret-color: white;
+				-webkit-text-fill-color: transparent;
+				outline: none;
+				overflow: auto;
+			}
+			.editor textarea::selection {
+				background: #87bee577;
+			}
+			.editor mark {
+				border-radius: 3px;
+				padding: 2px 0;
+				background: var(--color);
+				color: var(--ink);
+			}
+			.editor mark.active {
+				outline: 2px solid #fff;
+				outline-offset: 2px;
+			}
+			.hint {
+				flex: 0 0 auto;
+				padding: 12px 20px;
+				font-size: 12px;
+				color: var(--muted);
+			}
+			.palette-panel {
+				margin-top: 22px;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(8, minmax(0, 1fr));
+				padding: 0 20px 20px;
+				gap: 0;
+			}
+			.swatch {
+				position: relative;
+				height: 100px;
+				border: 1px solid transparent;
+				border-radius: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 12px;
+				cursor: pointer;
+				user-select: text;
+			}
+			.swatch[aria-pressed="true"] {
+				z-index: 1;
+				outline: 2px solid #fff;
+				outline-offset: -2px;
+			}
+			.swatch small {
+				opacity: 0.8;
+				font-size: 11px;
+			}
+			.swatch strong {
+				font:
+					15px ui-monospace,
+					monospace;
+				font-weight: 500;
+			}
+			.empty {
+				padding: 24px;
+				color: var(--muted);
+				grid-column: 1/-1;
+			}
+			aside {
+				align-self: start;
+				position: sticky;
+				top: 20px;
+			}
+			.inspector {
+				padding: 20px;
+			}
+			.preview {
+				height: 110px;
+				border-radius: 8px;
+				margin: 16px 0;
+				display: flex;
+				align-items: flex-end;
+				padding: 16px;
+				font:
+					22px ui-monospace,
+					monospace;
+			}
+			.field {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 12px;
+				margin: 12px 0;
+			}
+			.field label {
+				font-size: 12px;
+				color: var(--muted);
+			}
+			input[type="text"],
+			input[type="number"] {
+				background: #151b1f;
+				border: 1px solid #43515a;
+				border-radius: 5px;
+				color: #e4e9df;
+				padding: 8px;
+				min-width: 0;
+			}
+			#hex {
+				width: 150px;
+				font-family: ui-monospace, monospace;
+			}
+			#native {
+				width: 45px;
+				height: 35px;
+				border: 0;
+				padding: 0;
+				background: transparent;
+				cursor: pointer;
+			}
+			.sv {
+				height: 170px;
+				position: relative;
+				touch-action: none;
+				border-radius: 7px;
+				cursor: crosshair;
+				background:
+					linear-gradient(to top, #000, transparent),
+					linear-gradient(to right, #fff, transparent), red;
+			}
+			.dot {
+				position: absolute;
+				width: 14px;
+				height: 14px;
+				border: 2px solid white;
+				border-radius: 50%;
+				box-shadow: 0 0 2px 1px #000;
+				transform: translate(-50%, -50%);
+				pointer-events: none;
+			}
+			.group {
+				border-top: 1px solid var(--line);
+				margin-top: 18px;
+				padding-top: 15px;
+			}
+			.group h2 {
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				row-gap: 4px;
+			}
+			.group .shorthand {
+				display: inline-flex;
+				align-items: center;
+				font:
+					13px ui-monospace,
+					monospace;
+				color: var(--muted);
+				cursor: pointer;
+				margin-left: auto;
+				padding-left: 10px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 100%;
+			}
+			.group .shorthand::before {
+				content: "";
+				display: inline-block;
+				width: 0;
+				height: 13px;
+				flex: none;
+				background-color: currentColor;
+				-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E")
+					center / contain no-repeat;
+				mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E")
+					center / contain no-repeat;
+				opacity: 0;
+				margin-right: 0;
+				transition:
+					width 0.15s ease,
+					margin-right 0.15s ease,
+					opacity 0.15s ease;
+			}
+			.group .shorthand:hover,
+			.group .shorthand:focus-visible {
+				color: var(--accent);
+			}
+			.group .shorthand:hover::before,
+			.group .shorthand:focus-visible::before {
+				width: 13px;
+				margin-right: 6px;
+				opacity: 0.85;
+			}
+			.group.collapsed .fields {
+				display: none;
+			}
+			.unit-toggle {
+				cursor: pointer;
+				text-decoration: underline dotted;
+				text-underline-offset: 2px;
+			}
+			.unit-toggle:hover {
+				color: var(--accent);
+			}
+			.toggle-label {
+				cursor: pointer;
+				user-select: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+			}
+			.toggle-label:hover {
+				color: var(--accent);
+			}
+			.toggle-label .chev {
+				display: inline-block;
+				transition: transform 0.15s;
+				font-size: 11px;
+			}
+			.group.collapsed .toggle-label .chev {
+				transform: rotate(-90deg);
+			}
+			.toggle-label {
+				cursor: pointer;
+				user-select: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+			}
+			.toggle-label:hover {
+				color: var(--accent);
+			}
+			.toggle-label .chev {
+				display: inline-block;
+				transition: transform 0.15s;
+				font-size: 11px;
+			}
+			.group.collapsed .toggle-label .chev {
+				transform: rotate(-90deg);
+			}
+			.channels {
+				display: grid;
+				grid-template-columns: 20px minmax(0, 1fr) 62px;
+				gap: 10px;
+				align-items: center;
+				margin: 10px 0;
+			}
+			.channels label {
+				color: var(--muted);
+				font-size: 12px;
+			}
+			.channels input[type="number"] {
+				width: 62px;
+				padding: 6px;
+			}
+			input[type="range"] {
+				width: 100%;
+				accent-color: var(--accent);
+				cursor: pointer;
+			}
+			#hue {
+				appearance: none;
+				background: linear-gradient(
+					to right,
+					red,
+					#ff0,
+					#0f0,
+					#0ff,
+					#00f,
+					#f0f,
+					red
+				);
+				height: 12px;
+				border-radius: 8px;
+				margin: 16px 0 4px;
+			}
+			#hue::-webkit-slider-thumb {
+				appearance: none;
+				width: 16px;
+				height: 20px;
+				border: 2px solid white;
+				background: transparent;
+				border-radius: 4px;
+			}
+			.footer {
+				padding: 0 32px 24px;
+				max-width: 1600px;
+				margin: auto;
+				color: var(--muted);
+				font-size: 12px;
+			}
+			a {
+				color: var(--accent);
+			}
+			#status {
+				min-height: 20px;
+				margin-top: 12px;
+				font-size: 12px;
+				color: var(--accent);
+			}
+			@media (max-width: 850px) {
+				main {
+					grid-template-columns: 1fr;
+					padding: 18px;
+				}
+				aside {
+					position: static;
+				}
+				.inspector {
+					display: block;
+				}
+				.editor-group {
+					height: 300px;
+				}
+				header {
+					padding: 20px;
+				}
+				.badge {
+					display: none;
+				}
+			}
+			@media (forced-colors: active) {
+				.editor textarea {
+					color: CanvasText;
+					-webkit-text-fill-color: CanvasText;
+				}
+				.editor pre {
+					visibility: hidden;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><span>◧</span> Palette Workbench</h1>
+				<p>Your text, with its colors brought to life.</p>
+			</div>
+			<div class="badge">Standalone · Offline · No dependencies</div>
+		</header>
+		<main>
+			<section>
+				<div class="panel">
+					<div class="bar">
+						<h2>Palette text</h2>
+						<div class="actions">
+							<button id="undo" title="Undo (Ctrl/Cmd+Z)">
+								Undo</button
+							><button id="redo" title="Redo (Ctrl/Cmd+Shift+Z)">
+								Redo</button
+							><button id="copy">Copy text</button
+							><button id="download">Save text</button>
+						</div>
+					</div>
+					<div class="editor-group">
+						<div class="editor">
+							<pre id="highlight" aria-hidden="true"></pre>
+							<textarea
+								id="source"
+								aria-label="Editable palette text"
+								spellcheck="false"
+								wrap="off"
+							></textarea>
+						</div>
+						<div class="hint">
+							Paste prose, Markdown tables, CSS, or a list of
+							hex codes. Click a code to inspect it; drag to
+							select text as usual.
+						</div>
+					</div>
+				</div>
+				<div class="panel palette-panel">
+					<div class="bar">
+						<h2>
+							Color grid
+							<span id="count" style="color: var(--muted)"></span>
+						</h2>
+						<label style="font-size: 12px; color: var(--muted)"
+							>Load example
+							<select id="example">
+								<option value="">Choose…</option>
+								<option value="ocean">Ocean / apricot</option>
+								<option value="endesga">ENDESGA 32</option>
+							</select></label
+						>
+					</div>
+					<div class="grid" id="grid"></div>
+				</div>
+				<div id="status" role="status" aria-live="polite"></div>
+			</section>
+			<aside class="panel">
+				<div class="inspector">
+					<h2>Color inspector</h2>
+					<p id="selected" style="font-size: 12px">
+						Select a color in your text or grid.
+					</p>
+					<div class="preview" id="preview"></div>
+					<fieldset
+						id="controls"
+						style="border: 0; padding: 0; margin: 0; min-width: 0"
+					>
+						<div class="field">
+							<label for="hex">HEX</label
+							><input
+								id="hex"
+								type="text"
+								spellcheck="false"
+								aria-label="Hex color"
+							/><input
+								id="native"
+								type="color"
+								aria-label="Open system color picker"
+							/>
+						</div>
+						<div
+							class="sv"
+							id="sv"
+							aria-label="Saturation and value picker; equivalent keyboard controls below"
+						>
+							<div class="dot" id="dot"></div>
+						</div>
+						<input
+							id="hue"
+							type="range"
+							min="0"
+							max="360"
+							step="0.1"
+							aria-label="Hue"
+						/>
+						<div class="group collapsible" id="rgbGroup">
+							<h2>
+								<span
+									id="rgbToggle"
+									class="toggle-label"
+									role="button"
+									tabindex="0"
+									aria-expanded="true"
+									aria-controls="rgb"
+									><span class="chev">▾</span> RGB</span
+								>
+								<small
+									id="rgbUnitToggle"
+									class="unit-toggle"
+									role="button"
+									tabindex="0"
+									title="Click to toggle 0–255 / 0–1.0"
+									style="
+										color: var(--muted);
+										font-weight: 400;
+										font-size: 0.85em;
+										margin-left: 0.4em;
+									"
+								>
+									0–255</small
+								><span
+									class="shorthand"
+									id="rgbShorthand"
+									role="button"
+									tabindex="0"
+									title="Click to copy"
+								></span>
+							</h2>
+							<div class="fields" id="rgb"></div>
+						</div>
+						<div class="group collapsible" id="hsvGroup">
+							<h2>
+								<span
+									id="hsvToggle"
+									class="toggle-label"
+									role="button"
+									tabindex="0"
+									aria-expanded="true"
+									aria-controls="hsv"
+									><span class="chev">▾</span> HSV</span
+								>
+								<span
+									class="shorthand"
+									id="hsvShorthand"
+									role="button"
+									tabindex="0"
+									title="Click to copy"
+								></span>
+							</h2>
+							<div class="fields" id="hsv"></div>
+						</div>
+						<div class="group collapsible" id="oklchGroup">
+							<h2>
+								<span
+									id="oklchToggle"
+									class="toggle-label"
+									role="button"
+									tabindex="0"
+									aria-expanded="true"
+									aria-controls="oklch"
+									><span class="chev">▾</span> OKLCH</span
+								>
+								<span
+									class="shorthand"
+									id="oklchShorthand"
+									role="button"
+									tabindex="0"
+									title="Click to copy"
+								></span>
+							</h2>
+							<div class="fields" id="oklch"></div>
+						</div>
+					</fieldset>
+					<div class="group">
+						<p style="font-size: 12px; margin: 0">
+							Edits update the selected occurrence only.
+							Repeated colors stay independent. RGB values use
+							sRGB; HSV is derived from those values.
+						</p>
+					</div>
+				</div>
+			</aside>
+		</main>
+		<div class="footer">
+			Accepts #RGB, #RRGGBB and bare six-digit hex codes, plus
+			rgb()/rgba(), hsv(), FLinearColor(), fromHSV(), Color()/Color32(),
+			and FLinearColor::MakeFromHSV8() calls. Your text stays on this
+			device. <span id="storage"></span><br />Visual references:
+			<a
+				href="https://uvchecker.atlux.one/"
+				target="_blank"
+				rel="noopener"
+				>Atlux</a
+			>
+			and
+			<a
+				href="https://lospec.com/palette-list/endesga-32"
+				target="_blank"
+				rel="noopener"
+				>Lospec / ENDESGA 32</a
+			>.
+		</div>
+		<script>
+			"use strict";
+			const $ = (id) => document.getElementById(id);
+			const ocean =
+				"| Role | Starting color | Purpose |\n| --- | --- | --- |\n| Deep background | `#17272D` | Dark blue with a subtle green lean |\n| Slot/panel | `#243B46` | Desaturated ocean slate |\n| Hover/raised surface | `#34515D` | A lighter step within the same family |\n| Border | `#526D75` | Soft definition |\n| Main text | `#E4E9DF` | Slightly warm off-white |\n| Selection | `#E6AD73` | Muted apricot, paired with a clear outline |\n| Secondary accent | `#80C8BE` | Sea-glass green for restrained highlights |";
+			const endesga =
+				"ENDESGA 32 — by ENDESGA\nhttps://lospec.com/palette-list/endesga-32\n\n" +
+				"be4a2f d77643 ead4aa e4a672 b86f50 733e39 3e2731 a22633 e43b44 f77622 feae34 fee761 63c74d 3e8948 265c42 193c3e 124e89 0099db 2ce8f5 ffffff c0cbdc 8b9bb4 5a6988 3a4466 262b44 181425 ff0044 68386c b55088 f6757a e8b796 c28569"
+					.split(" ")
+					.map((x, i) => "#" + x + ((i + 1) % 5 === 0 ? "\n" : "  "))
+					.join("");
+			let tokens = [],
+				active = -1,
+				hsv = [0, 0, 0],
+				oklch = [0, 0, 0],
+				rgbUnit = 255,
+				history = [],
+				future = [],
+				gesture = false;
+			const source = $("source");
+			function normalize(x) {
+				x = x.replace(/^#/, "");
+				return (
+					"#" +
+					(x.length === 3
+						? x
+								.split("")
+								.map((c) => c + c)
+								.join("")
+						: x
+					).toUpperCase()
+				);
+			}
+			function parse(text) {
+				let tokens = [],
+					claimed = [];
+				let overlaps = (s, e) =>
+					claimed.some(([cs, ce]) => s < ce && e > cs);
+
+				for (let m of text.matchAll(
+					/\b(rgba?)\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*(,\s*[\d.]+\s*)?\)/gi,
+				)) {
+					let [, fn, r, g, b, alpha] = m,
+						start = m.index,
+						end = start + m[0].length;
+					claimed.push([start, end]);
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: toHex(
+							[r, g, b].map((n) =>
+								Math.min(255, parseFloat(n)),
+							),
+						),
+						type: "rgb",
+						fn,
+						alpha: alpha || "",
+					});
+				}
+
+				for (let m of text.matchAll(
+					/\bhsv\(\s*([\d.]+)\s*,\s*([\d.]+)(%?)\s*,\s*([\d.]+)(%?)\s*\)/gi,
+				)) {
+					let [, h, s, sPct, v, vPct] = m,
+						start = m.index,
+						end = start + m[0].length;
+					claimed.push([start, end]);
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: toHex(
+							fromHSV(
+								Math.min(360, parseFloat(h)),
+								Math.min(100, parseFloat(s)),
+								Math.min(100, parseFloat(v)),
+							),
+						),
+						type: "hsv",
+						sPct: !!sPct,
+						vPct: !!vPct,
+					});
+				}
+
+				for (let m of text.matchAll(
+					/\bFLinearColor\(\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*(,\s*[\d.]+f?\s*)?\)/gi,
+				)) {
+					let [, r, rf, g, gf, b, bf, alphaPart] = m,
+						start = m.index,
+						end = start + m[0].length;
+					claimed.push([start, end]);
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: toHex(
+							[r, g, b].map(
+								(n) =>
+									Math.min(1, Math.max(0, parseFloat(n))) *
+									255,
+							),
+						),
+						type: "flinear",
+						fSuffix: !!rf,
+						alphaPart: alphaPart || "",
+					});
+				}
+
+				for (let m of text.matchAll(
+					/\b(fromHSV)\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)/gi,
+				)) {
+					let [, head, h, s, v] = m,
+						start = m.index,
+						end = start + m[0].length;
+					claimed.push([start, end]);
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: toHex(
+							fromHSV(
+								Math.min(1, parseFloat(h)) * 360,
+								Math.min(1, parseFloat(s)) * 100,
+								Math.min(1, parseFloat(v)) * 100,
+							),
+						),
+						type: "hsvfrac",
+						head,
+					});
+				}
+
+				for (let m of text.matchAll(
+					/\b((?:new\s+)?Color)\(\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*(,\s*[\d.]+f?\s*)?\)/gi,
+				)) {
+					let [, head, r, rf, g, gf, b, bf, alphaPart] = m,
+						start = m.index,
+						end = start + m[0].length;
+					claimed.push([start, end]);
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: toHex(
+							[r, g, b].map(
+								(n) =>
+									Math.min(1, Math.max(0, parseFloat(n))) *
+									255,
+							),
+						),
+						type: "colorf",
+						head,
+						fSuffix: !!rf,
+						alphaPart: alphaPart || "",
+					});
+				}
+
+				for (let m of text.matchAll(
+					/\b(Color32)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(,\s*\d{1,3}\s*)?\)/gi,
+				)) {
+					let [, head, r, g, b, alphaPart] = m,
+						start = m.index,
+						end = start + m[0].length;
+					claimed.push([start, end]);
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: toHex(
+							[r, g, b].map((n) => Math.min(255, parseFloat(n))),
+						),
+						type: "color32",
+						head,
+						alphaPart: alphaPart || "",
+					});
+				}
+
+				for (let m of text.matchAll(
+					/\b(FLinearColor::MakeFromHSV8)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/gi,
+				)) {
+					let [, head, h, s, v] = m,
+						start = m.index,
+						end = start + m[0].length;
+					claimed.push([start, end]);
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: toHex(
+							fromHSV(
+								(Math.min(255, parseFloat(h)) / 255) * 360,
+								(Math.min(255, parseFloat(s)) / 255) * 100,
+								(Math.min(255, parseFloat(v)) / 255) * 100,
+							),
+						),
+						type: "hsv8",
+						head,
+					});
+				}
+
+				for (let m of text.matchAll(
+					/(?<![\w#])(?:#[\da-fA-F]{6}|#[\da-fA-F]{3}|[\da-fA-F]{6})(?![\w])/g,
+				)) {
+					let start = m.index,
+						end = start + m[0].length;
+					if (overlaps(start, end)) continue;
+					tokens.push({
+						start,
+						end,
+						raw: m[0],
+						hex: normalize(m[0]),
+						type: "hex",
+					});
+				}
+
+				return tokens.sort((a, b) => a.start - b.start);
+			}
+			function formatToken(t, hex) {
+				let a = rgb(hex);
+				if (t.type === "rgb") return `${t.fn}(${a.join(", ")}${t.alpha})`;
+				if (t.type === "hsv") {
+					let [h, s, v] = toHSV(...a).map((n) => Math.round(n));
+					return `hsv(${h}, ${s}${t.sPct ? "%" : ""}, ${v}${t.vPct ? "%" : ""})`;
+				}
+				if (t.type === "flinear") {
+					let suf = t.fSuffix ? "f" : "",
+						[r, g, b] = a.map((n) => (n / 255).toFixed(2));
+					return `FLinearColor(${r}${suf}, ${g}${suf}, ${b}${suf}${t.alphaPart})`;
+				}
+				if (t.type === "hsvfrac") {
+					let [h, s, v] = toHSV(...a),
+						round3 = (n) => Math.round(n * 1000) / 1000;
+					return `${t.head}(${round3(h / 360)}, ${round3(s / 100)}, ${round3(v / 100)})`;
+				}
+				if (t.type === "colorf") {
+					let suf = t.fSuffix ? "f" : "",
+						[r, g, b] = a.map((n) => (n / 255).toFixed(2));
+					return `${t.head}(${r}${suf}, ${g}${suf}, ${b}${suf}${t.alphaPart})`;
+				}
+				if (t.type === "color32")
+					return `${t.head}(${a.join(", ")}${t.alphaPart})`;
+				if (t.type === "hsv8") {
+					let [h, s, v] = toHSV(...a);
+					h = Math.round((h / 360) * 255);
+					s = Math.round((s / 100) * 255);
+					v = Math.round((v / 100) * 255);
+					return `${t.head}(${h}, ${s}, ${v})`;
+				}
+				return t.raw.startsWith("#") ? hex : hex.slice(1);
+			}
+			function rgb(hex) {
+				return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+			}
+			function toHSV(r, g, b) {
+				r /= 255;
+				g /= 255;
+				b /= 255;
+				let max = Math.max(r, g, b),
+					min = Math.min(r, g, b),
+					d = max - min,
+					h = 0;
+				if (d)
+					h =
+						60 *
+						(max === r
+							? ((g - b) / d + 6) % 6
+							: max === g
+								? (b - r) / d + 2
+								: (r - g) / d + 4);
+				return [h, max ? (d / max) * 100 : 0, max * 100];
+			}
+			function fromHSV(h, s, v) {
+				s /= 100;
+				v /= 100;
+				let c = v * s,
+					x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
+					m = v - c;
+				let a =
+					h < 60
+						? [c, x, 0]
+						: h < 120
+							? [x, c, 0]
+							: h < 180
+								? [0, c, x]
+								: h < 240
+									? [0, x, c]
+									: h < 300
+										? [x, 0, c]
+										: [c, 0, x];
+				return a.map((n) => Math.round((n + m) * 255));
+			}
+			function toHex(a) {
+				return (
+					"#" +
+					a
+						.map((n) => Math.round(n).toString(16).padStart(2, "0"))
+						.join("")
+						.toUpperCase()
+				);
+			}
+			function ink(hex) {
+				let a = rgb(hex).map((v) => {
+					v /= 255;
+					return v <= 0.04045
+						? v / 12.92
+						: ((v + 0.055) / 1.055) ** 2.4;
+				});
+				return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2] > 0.179
+					? "#000000"
+					: "#FFFFFF";
+			}
+			function toOKLCH(r, g, b) {
+				let f = (v) => {
+					v /= 255;
+					return v <= 0.04045
+						? v / 12.92
+						: ((v + 0.055) / 1.055) ** 2.4;
+				};
+				let [lr, lg, lb] = [f(r), f(g), f(b)];
+				let l =
+						0.4122214708 * lr +
+						0.5363325363 * lg +
+						0.0514459929 * lb,
+					m =
+						0.2119034982 * lr +
+						0.6806995451 * lg +
+						0.1073969566 * lb,
+					s =
+						0.0883024619 * lr +
+						0.2817188376 * lg +
+						0.6299787005 * lb;
+				let l_ = Math.cbrt(l),
+					m_ = Math.cbrt(m),
+					s_ = Math.cbrt(s);
+				let L =
+						0.2104542553 * l_ +
+						0.793617785 * m_ -
+						0.0040720468 * s_,
+					A =
+						1.9779984951 * l_ -
+						2.428592205 * m_ +
+						0.4505937099 * s_,
+					B =
+						0.0259040371 * l_ +
+						0.7827717662 * m_ -
+						0.808675766 * s_;
+				let C = Math.sqrt(A * A + B * B),
+					H = (Math.atan2(B, A) * 180) / Math.PI;
+				if (H < 0) H += 360;
+				return [L, C, H];
+			}
+			function fromOKLCH(L, C, H) {
+				let hr = (H * Math.PI) / 180,
+					A = Math.cos(hr) * C,
+					B = Math.sin(hr) * C;
+				let l_ = L + 0.3963377774 * A + 0.2158037573 * B,
+					m_ = L - 0.1055613458 * A - 0.0638541728 * B,
+					s_ = L - 0.0894841775 * A - 1.291485548 * B;
+				let l = l_ ** 3,
+					m = m_ ** 3,
+					s = s_ ** 3;
+				let lr = 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+					lg =
+						-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+					lb = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s;
+				let g = (v) => {
+					v =
+						v <= 0.0031308
+							? 12.92 * v
+							: 1.055 * v ** (1 / 2.4) - 0.055;
+					return Math.max(0, Math.min(255, Math.round(v * 255)));
+				};
+				return [g(lr), g(lg), g(lb)];
+			}
+			function snapshot() {
+				return {
+					text: source.value,
+					start: source.selectionStart,
+					end: source.selectionEnd,
+					active,
+				};
+			}
+			function remember() {
+				history.push(snapshot());
+				if (history.length > 150) history.shift();
+				future = [];
+			}
+			function persist() {
+				try {
+					localStorage.setItem("palette-workbench-v1", source.value);
+					$("storage").textContent = "Autosaved in this browser.";
+				} catch {
+					$("storage").textContent = "Use Save text to keep a copy.";
+				}
+			}
+			function render() {
+				let previous = tokens[active]?.start;
+				tokens = parse(source.value);
+				if (previous !== undefined)
+					active = tokens.findIndex((t) => t.start === previous);
+				if (active >= tokens.length) active = -1;
+				let fragment = document.createDocumentFragment(),
+					last = 0;
+				tokens.forEach((t, i) => {
+					fragment.append(
+						document.createTextNode(
+							source.value.slice(last, t.start),
+						),
+					);
+					let m = document.createElement("mark");
+					m.textContent = t.raw;
+					m.style.setProperty("--color", t.hex);
+					m.style.setProperty("--ink", ink(t.hex));
+					m.className = i === active ? "active" : "";
+					fragment.append(m);
+					last = t.end;
+				});
+				fragment.append(
+					document.createTextNode(source.value.slice(last) + "\n"),
+				);
+				$("highlight").replaceChildren(fragment);
+				syncScroll();
+				let g = document.createDocumentFragment();
+				tokens.forEach((t, i) => {
+					let b = document.createElement("div");
+					b.className = "swatch";
+					b.tabIndex = 0;
+					b.setAttribute("role", "button");
+					b.setAttribute(
+						"aria-label",
+						"Inspect color " + (i + 1) + ": " + t.hex,
+					);
+					b.setAttribute("aria-pressed", i === active);
+					b.style.background = t.hex;
+					b.style.color = ink(t.hex);
+					let n = document.createElement("small");
+					n.textContent = String(i + 1).padStart(2, "0");
+					let code = document.createElement("strong");
+					code.textContent = t.hex;
+					b.append(n, code);
+					b.onclick = () => select(i);
+					b.onkeydown = (e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							e.preventDefault();
+							select(i);
+						}
+					};
+					g.append(b);
+				});
+				if (!tokens.length) {
+					let e = document.createElement("div");
+					e.className = "empty";
+					e.textContent =
+						"No colors yet. Paste a palette above to get started.";
+					g.append(e);
+				}
+				let signature = tokens.map((t) => t.hex).join(",");
+				if ($("grid").dataset.signature !== signature) {
+					$("grid").replaceChildren(g);
+					$("grid").dataset.signature = signature;
+				} else {
+					$("grid")
+						.querySelectorAll(".swatch")
+						.forEach((b, i) =>
+							b.setAttribute("aria-pressed", i === active),
+						);
+				}
+				$("count").textContent = "· " + tokens.length;
+				$("undo").disabled = !history.length;
+				$("redo").disabled = !future.length;
+				persist();
+			}
+			function syncScroll() {
+				$("highlight").scrollTop = source.scrollTop;
+				$("highlight").scrollLeft = source.scrollLeft;
+			}
+			function select(i) {
+				active = i;
+				if (tokens[i]) {
+					hsv = toHSV(...rgb(tokens[i].hex));
+					oklch = toOKLCH(...rgb(tokens[i].hex));
+				}
+				render();
+				inspect();
+			}
+			function inspect() {
+				let t = tokens[active];
+				$("controls").disabled = !t;
+				$("selected").textContent = t
+					? "Color " +
+						(active + 1) +
+						" of " +
+						tokens.length +
+						" · selected occurrence"
+					: "Select a color in your text or grid.";
+				$("preview").style.background = t ? t.hex : "#293238";
+				$("preview").style.color = t ? ink(t.hex) : "#9fadb5";
+				$("preview").textContent = t ? t.hex : "No color selected";
+				$("rgbShorthand").textContent = t
+					? rgbUnit === 1
+						? "rgb(" +
+							rgb(t.hex)
+								.map((v) => Math.round((v / 255) * 1000) / 1000)
+								.join(", ") +
+							")"
+						: "rgb(" + rgb(t.hex).join(", ") + ")"
+					: "";
+				$("hsvShorthand").textContent = t
+					? "hsv(" +
+						Math.round(hsv[0] * 10) / 10 +
+						", " +
+						Math.round(hsv[1] * 10) / 10 +
+						"%, " +
+						Math.round(hsv[2] * 10) / 10 +
+						"%)"
+					: "";
+				$("oklchShorthand").textContent = t
+					? "oklch(" +
+						Math.round(oklch[0] * 1000) / 1000 +
+						" " +
+						Math.round(oklch[1] * 1000) / 1000 +
+						" " +
+						Math.round(oklch[2] * 10) / 10 +
+						")"
+					: "";
+				if (!t) return;
+				let a = rgb(t.hex);
+				if (document.activeElement !== $("hex")) $("hex").value = t.hex;
+				$("native").value = t.hex;
+				$("sv").style.background =
+					"linear-gradient(to top,#000,transparent),linear-gradient(to right,#fff,transparent),hsl(" +
+					hsv[0] +
+					" 100% 50%)";
+				$("dot").style.left = hsv[1] + "%";
+				$("dot").style.top = 100 - hsv[2] + "%";
+				$("hue").value = hsv[0];
+				["r", "g", "b", "h", "s", "v"].forEach((k, i) => {
+					let value =
+						i < 3
+							? rgbUnit === 1
+								? Math.round((a[i] / 255) * 1000) / 1000
+								: a[i]
+							: Math.round(hsv[i - 3] * 10) / 10;
+					for (let suffix of ["Range", "Number"]) {
+						let el = $(k + suffix);
+						if (document.activeElement !== el) el.value = value;
+					}
+				});
+				["l", "c", "h"].forEach((k, i) => {
+					let value =
+						k === "h"
+							? Math.round(oklch[i] * 10) / 10
+							: Math.round(oklch[i] * 1000) / 1000;
+					for (let suffix of ["Range", "Number"]) {
+						let el = $("ok" + k + suffix);
+						if (document.activeElement !== el) el.value = value;
+					}
+				});
+			}
+			function replaceColor(hex, keepHSV = false, keepOKLCH = false) {
+				let t = tokens[active];
+				if (!t) return;
+				if (t.hex !== hex) {
+					if (!gesture) remember();
+					let raw = formatToken(t, hex);
+					let ss = source.selectionStart,
+						se = source.selectionEnd;
+					source.setRangeText(raw, t.start, t.end, "preserve");
+					source.setSelectionRange(
+						Math.min(ss, source.value.length),
+						Math.min(se, source.value.length),
+					);
+				}
+				if (!keepHSV) hsv = toHSV(...rgb(hex));
+				if (!keepOKLCH) oklch = toOKLCH(...rgb(hex));
+				render();
+				inspect();
+			}
+			for (let [group, prefix, keys, maxes, steps, labels] of [
+				[
+					"rgb",
+					"",
+					["r", "g", "b"],
+					[255, 255, 255],
+					[1, 1, 1],
+					{ r: "Red", g: "Green", b: "Blue" },
+				],
+				[
+					"hsv",
+					"",
+					["h", "s", "v"],
+					[360, 100, 100],
+					[0.1, 0.1, 0.1],
+					{ h: "Hue", s: "Saturation", v: "Value" },
+				],
+				[
+					"oklch",
+					"ok",
+					["l", "c", "h"],
+					[1, 0.4, 360],
+					[0.001, 0.001, 0.1],
+					{ l: "Lightness", c: "Chroma", h: "Hue" },
+				],
+			])
+				keys.forEach((k, i) => {
+					let row = document.createElement("div");
+					row.className = "channels";
+					let label = document.createElement("label");
+					label.htmlFor = prefix + k + "Number";
+					label.textContent = k.toUpperCase();
+					row.append(label);
+					for (let type of ["range", "number"]) {
+						let input = document.createElement("input");
+						input.type = type;
+						input.id =
+							prefix +
+							k +
+							(type === "range" ? "Range" : "Number");
+						input.min = 0;
+						input.max = maxes[i];
+						input.step = steps[i];
+						input.setAttribute(
+							"aria-label",
+							labels[k] + (type === "range" ? " slider" : ""),
+						);
+						input.oninput = () => {
+							if (input.value === "" || !input.validity.valid)
+								return;
+							let value = Number(input.value);
+							if (group === "rgb") {
+								let a = rgb(tokens[active].hex);
+								a[i] = rgbUnit === 1 ? value * 255 : value;
+								replaceColor(toHex(a));
+							} else if (group === "hsv") {
+								hsv[i] = value;
+								replaceColor(toHex(fromHSV(...hsv)), true);
+							} else {
+								oklch[i] = value;
+								replaceColor(
+									toHex(fromOKLCH(...oklch)),
+									true,
+									true,
+								);
+							}
+						};
+						input.onchange = () => {
+							inspect();
+						};
+						row.append(input);
+					}
+					$(group).append(row);
+				});
+			["rgb", "hsv", "oklch"].forEach((g) => {
+				$(g + "Toggle").onclick = () => {
+					let collapsed = $(g + "Group").classList.toggle(
+						"collapsed",
+					);
+					$(g + "Toggle").setAttribute("aria-expanded", !collapsed);
+				};
+				$(g + "Toggle").onkeydown = (e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						$(g + "Toggle").click();
+					}
+				};
+				$(g + "Shorthand").onclick = async () => {
+					try {
+						await navigator.clipboard.writeText(
+							$(g + "Shorthand").textContent,
+						);
+						$("status").textContent =
+							g.toUpperCase() + " value copied.";
+					} catch {}
+				};
+				$(g + "Shorthand").onkeydown = (e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						$(g + "Shorthand").click();
+					}
+				};
+			});
+			$("rgbUnitToggle").onclick = (e) => {
+				e.stopPropagation();
+				rgbUnit = rgbUnit === 255 ? 1 : 255;
+				$("rgbUnitToggle").textContent =
+					rgbUnit === 255 ? "0–255" : "0–1.0";
+				["r", "g", "b"].forEach((k) => {
+					let max = rgbUnit === 255 ? 255 : 1,
+						step = rgbUnit === 255 ? 1 : 0.001;
+					$(k + "Range").max = max;
+					$(k + "Range").step = step;
+					$(k + "Number").max = max;
+					$(k + "Number").step = step;
+				});
+				inspect();
+			};
+			$("rgbUnitToggle").onkeydown = (e) => {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					e.stopPropagation();
+					$("rgbUnitToggle").click();
+				}
+			};
+			source.addEventListener("beforeinput", (e) => {
+				if (
+					e.inputType === "historyUndo" ||
+					e.inputType === "historyRedo"
+				) {
+					e.preventDefault();
+					undo(e.inputType === "historyRedo");
+				} else remember();
+			});
+			source.addEventListener("input", () => {
+				render();
+				let p = source.selectionStart;
+				let i = tokens.findIndex((t) => p >= t.start && p <= t.end);
+				select(i);
+			});
+			function selectAtCaret() {
+				let p =
+					source.selectionDirection === "backward"
+						? source.selectionStart
+						: source.selectionEnd;
+				let i = tokens.findIndex((t) => p >= t.start && p <= t.end);
+				if (i >= 0 && i !== active) select(i);
+			}
+			source.addEventListener("click", selectAtCaret);
+			source.addEventListener("keyup", selectAtCaret);
+			source.addEventListener("select", selectAtCaret);
+			source.addEventListener("scroll", syncScroll);
+			$("hex").oninput = () => {
+				let v = $("hex").value.trim();
+				let valid = /^#?(?:[\da-f]{3}|[\da-f]{6})$/i.test(v);
+				$("hex").setAttribute("aria-invalid", !valid);
+				if (valid) replaceColor(normalize(v));
+			};
+			$("hex").onblur = () => {
+				$("hex").value = tokens[active]?.hex || "";
+				$("hex").removeAttribute("aria-invalid");
+			};
+			$("native").oninput = () =>
+				replaceColor($("native").value.toUpperCase());
+			$("hue").oninput = () => {
+				hsv[0] = Number($("hue").value);
+				replaceColor(toHex(fromHSV(...hsv)), true);
+			};
+			function beginGesture() {
+				if (!gesture) {
+					remember();
+					gesture = true;
+				}
+			}
+			function endGesture() {
+				gesture = false;
+			}
+			$("controls").addEventListener("pointerdown", (e) => {
+				if (e.target.type === "range") beginGesture();
+			});
+			window.addEventListener("pointerup", endGesture);
+			window.addEventListener("pointercancel", endGesture);
+			function setSV(e) {
+				let box = $("sv").getBoundingClientRect();
+				hsv[1] = Math.max(
+					0,
+					Math.min(100, ((e.clientX - box.left) / box.width) * 100),
+				);
+				hsv[2] = Math.max(
+					0,
+					Math.min(
+						100,
+						100 - ((e.clientY - box.top) / box.height) * 100,
+					),
+				);
+				replaceColor(toHex(fromHSV(...hsv)), true);
+			}
+			$("sv").onpointerdown = (e) => {
+				if (active < 0) return;
+				beginGesture();
+				$("sv").setPointerCapture(e.pointerId);
+				setSV(e);
+			};
+			$("sv").onpointermove = (e) => {
+				if ($("sv").hasPointerCapture(e.pointerId)) setSV(e);
+			};
+			function undo(redo = false) {
+				let from = redo ? future : history,
+					to = redo ? history : future;
+				if (!from.length) return;
+				to.push(snapshot());
+				let state = from.pop();
+				source.value = state.text;
+				tokens = [];
+				active = state.active;
+				render();
+				if (tokens[active]) {
+					hsv = toHSV(...rgb(tokens[active].hex));
+					oklch = toOKLCH(...rgb(tokens[active].hex));
+				}
+				inspect();
+				source.focus();
+				source.setSelectionRange(state.start, state.end);
+			}
+			$("undo").onclick = () => undo();
+			$("redo").onclick = () => undo(true);
+			document.addEventListener("keydown", (e) => {
+				if (
+					(e.ctrlKey || e.metaKey) &&
+					!e.altKey &&
+					(e.key.toLowerCase() === "z" || e.key.toLowerCase() === "y")
+				) {
+					e.preventDefault();
+					undo(e.shiftKey || e.key.toLowerCase() === "y");
+				}
+			});
+			$("example").onchange = () => {
+				if (!$("example").value) return;
+				remember();
+				source.value = $("example").value === "ocean" ? ocean : endesga;
+				tokens = [];
+				active = 0;
+				render();
+				select(0);
+				$("example").value = "";
+				$("status").textContent =
+					"Example loaded. Undo restores your previous text.";
+			};
+			$("copy").onclick = async () => {
+				try {
+					await navigator.clipboard.writeText(source.value);
+					$("status").textContent = "Palette text copied.";
+				} catch {
+					source.focus();
+					source.select();
+					$("status").textContent =
+						"Text selected. Press Ctrl+C (or Cmd+C) to copy.";
+				}
+			};
+			$("download").onclick = () => {
+				let url = URL.createObjectURL(
+					new Blob([source.value], {
+						type: "text/plain;charset=utf-8",
+					}),
+				);
+				let a = document.createElement("a");
+				a.href = url;
+				a.download = "palette.txt";
+				a.click();
+				setTimeout(() => URL.revokeObjectURL(url), 1000);
+			};
+			try {
+				source.value =
+					localStorage.getItem("palette-workbench-v1") ?? ocean;
+			} catch {
+				source.value = ocean;
+			}
+			render();
+			select(tokens.length ? 0 : -1);
+		</script>
+	</body>
+</html>
