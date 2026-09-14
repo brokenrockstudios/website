@@ -189,7 +189,8 @@
 			}
 			.palette-panel,
 			.harmony-panel,
-			.blindness-panel {
+			.blindness-panel,
+			.contrast-panel {
 				margin-top: 22px;
 			}
 			.harmony-groups {
@@ -369,6 +370,73 @@
 				border-radius: 50%;
 				background: #fff;
 				box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+			}
+			.contrast-groups {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 14px;
+				padding: 4px 20px 20px;
+			}
+			@media (min-width: 600px) {
+				.contrast-groups {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			.contrast-cluster {
+				background: #171d21;
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				padding: 14px;
+			}
+			.contrast-head {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				gap: 10px;
+				font-size: 13px;
+				font-weight: 600;
+				margin-bottom: 10px;
+			}
+			.contrast-ratio {
+				font-size: 13px;
+				font-weight: 700;
+				color: var(--accent);
+				font-family: ui-monospace, monospace;
+			}
+			.contrast-demo {
+				height: 90px;
+				border-radius: 8px;
+				border: 1px solid var(--line);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font:
+					26px ui-monospace,
+					monospace;
+				font-weight: 600;
+			}
+			.contrast-badges {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 6px;
+				margin-top: 10px;
+			}
+			.contrast-badge {
+				font-size: 11px;
+				font-weight: 600;
+				padding: 4px 8px;
+				border-radius: 20px;
+				border: 1px solid var(--line);
+			}
+			.contrast-badge.pass {
+				color: #7be08a;
+				border-color: #2f5a37;
+				background: #16261a;
+			}
+			.contrast-badge.fail {
+				color: #ef8a8a;
+				border-color: #5a2f2f;
+				background: #261616;
 			}
 			.grid {
 				display: grid;
@@ -795,6 +863,56 @@
 						</h2>
 					</div>
 					<div class="blindness-groups" id="blindnessGroups"></div>
+				</div>
+				<div class="panel contrast-panel collapsible" id="contrastPanel">
+					<div class="bar">
+						<h2>
+							<span
+								id="contrastToggle"
+								class="toggle-label"
+								role="button"
+								tabindex="0"
+								aria-expanded="true"
+								aria-controls="contrastGroups"
+								>Contrast checker
+								<span class="chev">▾</span></span
+							>
+						</h2>
+					</div>
+					<div class="contrast-groups" id="contrastGroups">
+						<div class="contrast-cluster">
+							<div class="contrast-head">
+								<span>White background</span>
+								<span
+									class="contrast-ratio"
+									id="contrastWhiteRatio"
+								></span>
+							</div>
+							<div class="contrast-demo" id="contrastWhiteDemo">
+								<span id="contrastWhiteText">Aa</span>
+							</div>
+							<div
+								class="contrast-badges"
+								id="contrastWhiteBadges"
+							></div>
+						</div>
+						<div class="contrast-cluster">
+							<div class="contrast-head">
+								<span>Black background</span>
+								<span
+									class="contrast-ratio"
+									id="contrastBlackRatio"
+								></span>
+							</div>
+							<div class="contrast-demo" id="contrastBlackDemo">
+								<span id="contrastBlackText">Aa</span>
+							</div>
+							<div
+								class="contrast-badges"
+								id="contrastBlackBadges"
+							></div>
+						</div>
+					</div>
 				</div>
 				<div id="status" role="status" aria-live="polite"></div>
 			</section>
@@ -1432,6 +1550,7 @@
 				let t = tokens[active];
 				renderHarmonies();
 				renderBlindness();
+				renderContrast();
 				$("controls").disabled = !t;
 				$("selected").textContent = t
 					? "Color " +
@@ -1702,6 +1821,50 @@
 				});
 				container.replaceChildren(fragment);
 			}
+			function relLuminance(hex) {
+				let a = rgb(hex).map((v) => {
+					v /= 255;
+					return v <= 0.04045
+						? v / 12.92
+						: ((v + 0.055) / 1.055) ** 2.4;
+				});
+				return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+			}
+			function contrastRatio(hexA, hexB) {
+				let lA = relLuminance(hexA),
+					lB = relLuminance(hexB);
+				return (Math.max(lA, lB) + 0.05) / (Math.min(lA, lB) + 0.05);
+			}
+			function renderContrast() {
+				let t = tokens[active];
+				let hex = t ? t.hex : toHex(fromHSV(210, 55, 70));
+				[
+					["White", "#FFFFFF"],
+					["Black", "#000000"],
+				].forEach(([key, bg]) => {
+					let ratio = contrastRatio(hex, bg);
+					let demo = $("contrast" + key + "Demo");
+					demo.style.background = bg;
+					$("contrast" + key + "Text").style.color = hex;
+					$("contrast" + key + "Ratio").textContent =
+						ratio.toFixed(2) + ":1";
+					let badges = $("contrast" + key + "Badges");
+					let fragment = document.createDocumentFragment();
+					[
+						["AA · Normal", 4.5],
+						["AA · Large", 3],
+						["AAA · Normal", 7],
+						["AAA · Large", 4.5],
+					].forEach(([label, min]) => {
+						let pass = ratio >= min;
+						let b = document.createElement("span");
+						b.className = "contrast-badge " + (pass ? "pass" : "fail");
+						b.textContent = (pass ? "✓ " : "✕ ") + label;
+						fragment.append(b);
+					});
+					badges.replaceChildren(fragment);
+				});
+			}
 			function replaceColor(hex, keepHSV = false, keepOKLCH = false) {
 				let t = tokens[active];
 				if (!t) return;
@@ -1829,6 +1992,7 @@
 				["gridToggle", "gridPanel"],
 				["harmonyToggle", "harmonyPanel"],
 				["blindnessToggle", "blindnessPanel"],
+				["contrastToggle", "contrastPanel"],
 			].forEach(([toggleId, panelId]) => {
 				$(toggleId).onclick = () => {
 					let collapsed = $(panelId).classList.toggle("collapsed");
