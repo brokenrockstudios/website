@@ -204,10 +204,14 @@
 					grid-template-columns: repeat(3, 1fr);
 				}
 			}
-			.harmony-cluster {
+			.harmony-cluster,
+			.blindness-cluster,
+			.contrast-cluster {
 				background: #171d21;
 				border: 1px solid var(--line);
 				border-radius: 8px;
+			}
+			.harmony-cluster {
 				padding: 12px;
 			}
 			.harmony-head {
@@ -328,9 +332,6 @@
 				}
 			}
 			.blindness-cluster {
-				background: #171d21;
-				border: 1px solid var(--line);
-				border-radius: 8px;
 				padding: 10px;
 			}
 			.blindness-head {
@@ -387,9 +388,6 @@
 				}
 			}
 			.contrast-cluster {
-				background: #171d21;
-				border: 1px solid var(--line);
-				border-radius: 8px;
 				padding: 14px;
 			}
 			.contrast-head {
@@ -661,24 +659,6 @@
 			}
 			.unit-toggle:hover {
 				color: var(--accent);
-			}
-			.toggle-label {
-				cursor: pointer;
-				user-select: none;
-				display: inline-flex;
-				align-items: center;
-				gap: 6px;
-			}
-			.toggle-label:hover {
-				color: var(--accent);
-			}
-			.toggle-label .chev {
-				display: inline-block;
-				transition: transform 0.15s;
-				font-size: 11px;
-			}
-			.group.collapsed .toggle-label .chev {
-				transform: rotate(-90deg);
 			}
 			.toggle-label {
 				cursor: pointer;
@@ -973,7 +953,8 @@
 							id="previewOld"
 							title="Click to revert to this color"
 						>
-							<span class="preview-tag">Before · click to revert</span
+							<span class="preview-tag"
+								>Before · click to revert</span
 							><span id="previewOldHex"></span>
 						</button>
 						<div class="preview-half preview-new" id="previewNew">
@@ -1122,6 +1103,7 @@
 		</div>
 		<script>
 			"use strict";
+			// State and example palettes
 			const $ = (id) => document.getElementById(id);
 			const ocean =
 				"| Role | Starting color | Purpose |\n| --- | --- | --- |\n| Deep background | `#17272D` | Dark blue with a subtle green lean |\n| Slot/panel | `#243B46` | Desaturated ocean slate |\n| Hover/raised surface | `#34515D` | A lighter step within the same family |\n| Border | `#526D75` | Soft definition |\n| Main text | `#E4E9DF` | Slightly warm off-white |\n| Selection | `#E6AD73` | Muted apricot, paired with a clear outline |\n| Secondary accent | `#80C8BE` | Sea-glass green for restrained highlights |";
@@ -1141,6 +1123,116 @@
 				gesture = false,
 				originalHex = null;
 			const source = $("source");
+
+			const harmonySchemes = [
+				{
+					name: "Analogous",
+					desc: "Analogous color schemes are made by picking three colors that are next to each other on the color wheel. They are perceived as calm and serene.",
+					offsets: [-30, 0, 30],
+				},
+				{
+					name: "Complementary",
+					desc: "Complementary color schemes are made by picking two opposite colors on the color wheel. They appear vibrant near to each other.",
+					offsets: [0, 180],
+				},
+				{
+					name: "Split complementary",
+					desc: "Split complementary schemes are like complementary but they use two adjacent colors of the complement. They are more flexible than complementary ones.",
+					offsets: [0, 150, 210],
+				},
+				{
+					name: "Triadic",
+					desc: "Triadic color schemes are created by picking three colors equally spaced on the color wheel. They appear quite contrasted and multicolored.",
+					offsets: [0, 120, 240],
+				},
+				{
+					name: "Tetradic",
+					desc: "Tetradic color schemes are made from two couples of complementary colors in a rectangular shape on the color wheel. They are very versatile, and work best with one dominant color.",
+					offsets: [0, 60, 180, 240],
+				},
+				{
+					name: "Square",
+					desc: "Square color schemes are like tetradic arranged in a square instead of rectangle. Colors appear even more contrasting.",
+					offsets: [0, 90, 180, 270],
+				},
+			];
+
+			const blindnessTypes = [
+				{
+					name: "Deuteranopia",
+					matrix: [
+						[0.625, 0.375, 0],
+						[0.7, 0.3, 0],
+						[0, 0.3, 0.7],
+					],
+				},
+				{
+					name: "Protanopia",
+					matrix: [
+						[0.567, 0.433, 0],
+						[0.558, 0.442, 0],
+						[0, 0.242, 0.758],
+					],
+				},
+				{
+					name: "Tritanopia",
+					matrix: [
+						[0.95, 0.05, 0],
+						[0, 0.433, 0.567],
+						[0, 0.475, 0.525],
+					],
+				},
+				{
+					name: "Achromatopsia",
+					matrix: [
+						[0.299, 0.587, 0.114],
+						[0.299, 0.587, 0.114],
+						[0.299, 0.587, 0.114],
+					],
+				},
+			];
+
+			// Shared UI helpers
+			function createElement(tag, className = "", text) {
+				const element = document.createElement(tag);
+				if (className) element.className = className;
+				if (text !== undefined) element.textContent = text;
+				return element;
+			}
+			function bindActivation(element, action, stopPropagation = false) {
+				element.onclick = action;
+				element.onkeydown = (event) => {
+					if (event.key !== "Enter" && event.key !== " ") return;
+					event.preventDefault();
+					if (stopPropagation) event.stopPropagation();
+					element.click();
+				};
+			}
+			async function copyText(text, message) {
+				try {
+					await navigator.clipboard.writeText(text);
+					$("status").textContent = message;
+					return true;
+				} catch {
+					return false;
+				}
+			}
+			function setChannelValues(keys, values) {
+				keys.forEach((key, i) => {
+					for (const suffix of ["Range", "Number"]) {
+						const input = $(key + suffix);
+						if (document.activeElement !== input)
+							input.value = values[i];
+					}
+				});
+			}
+			function syncColorModels(hex, keepHSV = false, keepOKLCH = false) {
+				const channels = rgb(hex);
+				if (!keepHSV) hsv = toHSV(...channels);
+				if (!keepOKLCH) oklch = toOKLCH(...channels);
+			}
+
+			// Color parsing and formatting
 			function normalize(x) {
 				x = x.replace(/^#/, "");
 				return (
@@ -1155,22 +1247,21 @@
 				);
 			}
 			function parse(text) {
-				let tokens = [],
-					claimed = [];
-				let overlaps = (s, e) =>
-					claimed.some(([cs, ce]) => s < ce && e > cs);
+				const tokens = [];
+				function addToken(match, details) {
+					tokens.push({
+						start: match.index,
+						end: match.index + match[0].length,
+						raw: match[0],
+						...details,
+					});
+				}
 
 				for (let m of text.matchAll(
 					/\b(rgba?)\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*(,\s*[\d.]+\s*)?\)/gi,
 				)) {
-					let [, fn, r, g, b, alpha] = m,
-						start = m.index,
-						end = start + m[0].length;
-					claimed.push([start, end]);
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					let [, fn, r, g, b, alpha] = m;
+					addToken(m, {
 						hex: toHex(
 							[r, g, b].map((n) => Math.min(255, parseFloat(n))),
 						),
@@ -1183,14 +1274,8 @@
 				for (let m of text.matchAll(
 					/\bhsv\(\s*([\d.]+)\s*,\s*([\d.]+)(%?)\s*,\s*([\d.]+)(%?)\s*\)/gi,
 				)) {
-					let [, h, s, sPct, v, vPct] = m,
-						start = m.index,
-						end = start + m[0].length;
-					claimed.push([start, end]);
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					let [, h, s, sPct, v, vPct] = m;
+					addToken(m, {
 						hex: toHex(
 							fromHSV(
 								Math.min(360, parseFloat(h)),
@@ -1207,16 +1292,12 @@
 				for (let m of text.matchAll(
 					/\bFLinearColor\(\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*(,\s*[\d.]+f?\s*)?\)/gi,
 				)) {
-					let [, r, rf, g, gf, b, bf, alphaPart] = m,
-						start = m.index,
-						end = start + m[0].length;
-					claimed.push([start, end]);
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					let [, r, rf, g, gf, b, bf, alphaPart] = m;
+					addToken(m, {
 						hex: toHex(
-							[r, g, b].map((n) => linearToSrgb255(parseFloat(n))),
+							[r, g, b].map((n) =>
+								linearToSrgb255(parseFloat(n)),
+							),
 						),
 						type: "flinear",
 						fSuffix: !!rf,
@@ -1227,14 +1308,8 @@
 				for (let m of text.matchAll(
 					/\b(fromHSV)\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)/gi,
 				)) {
-					let [, head, h, s, v] = m,
-						start = m.index,
-						end = start + m[0].length;
-					claimed.push([start, end]);
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					let [, head, h, s, v] = m;
+					addToken(m, {
 						hex: toHex(
 							fromHSV(
 								Math.min(1, parseFloat(h)) * 360,
@@ -1250,14 +1325,8 @@
 				for (let m of text.matchAll(
 					/\b((?:new\s+)?Color)\(\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*,\s*([\d.]+)(f?)\s*(,\s*[\d.]+f?\s*)?\)/gi,
 				)) {
-					let [, head, r, rf, g, gf, b, bf, alphaPart] = m,
-						start = m.index,
-						end = start + m[0].length;
-					claimed.push([start, end]);
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					let [, head, r, rf, g, gf, b, bf, alphaPart] = m;
+					addToken(m, {
 						hex: toHex(
 							[r, g, b].map(
 								(n) =>
@@ -1275,14 +1344,8 @@
 				for (let m of text.matchAll(
 					/\b(Color32)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(,\s*\d{1,3}\s*)?\)/gi,
 				)) {
-					let [, head, r, g, b, alphaPart] = m,
-						start = m.index,
-						end = start + m[0].length;
-					claimed.push([start, end]);
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					let [, head, r, g, b, alphaPart] = m;
+					addToken(m, {
 						hex: toHex(
 							[r, g, b].map((n) => Math.min(255, parseFloat(n))),
 						),
@@ -1295,14 +1358,8 @@
 				for (let m of text.matchAll(
 					/\b(FLinearColor::MakeFromHSV8)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/gi,
 				)) {
-					let [, head, h, s, v] = m,
-						start = m.index,
-						end = start + m[0].length;
-					claimed.push([start, end]);
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					let [, head, h, s, v] = m;
+					addToken(m, {
 						hex: toHex(
 							fromHSV(
 								(Math.min(255, parseFloat(h)) / 255) * 360,
@@ -1320,11 +1377,9 @@
 				)) {
 					let start = m.index,
 						end = start + m[0].length;
-					if (overlaps(start, end)) continue;
-					tokens.push({
-						start,
-						end,
-						raw: m[0],
+					if (tokens.some((t) => start < t.end && end > t.start))
+						continue;
+					addToken(m, {
 						hex: normalize(m[0]),
 						type: "hex",
 					});
@@ -1340,23 +1395,23 @@
 					let [h, s, v] = toHSV(...a).map((n) => Math.round(n));
 					return `hsv(${h}, ${s}${t.sPct ? "%" : ""}, ${v}${t.vPct ? "%" : ""})`;
 				}
-				if (t.type === "flinear") {
-					let suf = t.fSuffix ? "f" : "",
-						[r, g, b] = a.map((n) =>
-							srgb255ToLinear(n).toFixed(2),
-						);
-					return `FLinearColor(${r}${suf}, ${g}${suf}, ${b}${suf}${t.alphaPart})`;
+				if (t.type === "flinear" || t.type === "colorf") {
+					const linear = t.type === "flinear";
+					const head = linear ? "FLinearColor" : t.head;
+					const suffix = t.fSuffix ? "f" : "";
+					const values = a.map(
+						(n) =>
+							(linear ? srgb255ToLinear(n) : n / 255).toFixed(2) +
+							suffix,
+					);
+					return `${head}(${values.join(", ")}${t.alphaPart})`;
 				}
 				if (t.type === "hsvfrac") {
 					let [h, s, v] = toHSV(...a),
 						round3 = (n) => Math.round(n * 1000) / 1000;
 					return `${t.head}(${round3(h / 360)}, ${round3(s / 100)}, ${round3(v / 100)})`;
 				}
-				if (t.type === "colorf") {
-					let suf = t.fSuffix ? "f" : "",
-						[r, g, b] = a.map((n) => (n / 255).toFixed(2));
-					return `${t.head}(${r}${suf}, ${g}${suf}, ${b}${suf}${t.alphaPart})`;
-				}
+
 				if (t.type === "color32")
 					return `${t.head}(${a.join(", ")}${t.alphaPart})`;
 				if (t.type === "hsv8") {
@@ -1368,6 +1423,7 @@
 				}
 				return t.raw.startsWith("#") ? hex : hex.slice(1);
 			}
+			// Color conversion and contrast
 			function rgb(hex) {
 				return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
 			}
@@ -1430,25 +1486,20 @@
 						.toUpperCase()
 				);
 			}
+			function relLuminance(hex) {
+				const [r, g, b] = rgb(hex).map(srgb255ToLinear);
+				return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+			}
+			function contrastRatio(hexA, hexB) {
+				let lA = relLuminance(hexA),
+					lB = relLuminance(hexB);
+				return (Math.max(lA, lB) + 0.05) / (Math.min(lA, lB) + 0.05);
+			}
 			function ink(hex) {
-				let a = rgb(hex).map((v) => {
-					v /= 255;
-					return v <= 0.04045
-						? v / 12.92
-						: ((v + 0.055) / 1.055) ** 2.4;
-				});
-				return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2] > 0.179
-					? "#000000"
-					: "#FFFFFF";
+				return relLuminance(hex) > 0.179 ? "#000000" : "#FFFFFF";
 			}
 			function toOKLCH(r, g, b) {
-				let f = (v) => {
-					v /= 255;
-					return v <= 0.04045
-						? v / 12.92
-						: ((v + 0.055) / 1.055) ** 2.4;
-				};
-				let [lr, lg, lb] = [f(r), f(g), f(b)];
+				let [lr, lg, lb] = [r, g, b].map(srgb255ToLinear);
 				let l =
 						0.4122214708 * lr +
 						0.5363325363 * lg +
@@ -1504,6 +1555,7 @@
 				};
 				return [g(lr), g(lg), g(lb)];
 			}
+			// History and persistence
 			function snapshot() {
 				return {
 					text: source.value,
@@ -1517,6 +1569,23 @@
 				if (history.length > 150) history.shift();
 				future = [];
 			}
+			function undo(redo = false) {
+				let from = redo ? future : history,
+					to = redo ? history : future;
+				if (!from.length) return;
+				to.push(snapshot());
+				let state = from.pop();
+				source.value = state.text;
+				tokens = [];
+				active = state.active;
+				render();
+				if (tokens[active]) {
+					syncColorModels(tokens[active].hex);
+				}
+				inspect();
+				source.focus();
+				source.setSelectionRange(state.start, state.end);
+			}
 			function persist() {
 				try {
 					localStorage.setItem("palette-workbench-v1", source.value);
@@ -1525,12 +1594,21 @@
 					$("storage").textContent = "Use Save text to keep a copy.";
 				}
 			}
+			// Editor and inspector rendering
 			function render() {
 				let previous = tokens[active]?.start;
 				tokens = parse(source.value);
 				if (previous !== undefined)
 					active = tokens.findIndex((t) => t.start === previous);
 				if (active >= tokens.length) active = -1;
+				renderHighlight();
+				renderGrid();
+				$("count").textContent = "· " + tokens.length;
+				$("undo").disabled = !history.length;
+				$("redo").disabled = !future.length;
+				persist();
+			}
+			function renderHighlight() {
 				let fragment = document.createDocumentFragment(),
 					last = 0;
 				tokens.forEach((t, i) => {
@@ -1539,8 +1617,7 @@
 							source.value.slice(last, t.start),
 						),
 					);
-					let m = document.createElement("mark");
-					m.textContent = t.raw;
+					let m = createElement("mark", "", t.raw);
 					m.style.setProperty("--color", t.hex);
 					m.style.setProperty("--ink", ink(t.hex));
 					m.className = i === active ? "active" : "";
@@ -1552,42 +1629,38 @@
 				);
 				$("highlight").replaceChildren(fragment);
 				syncScroll();
-				let g = document.createDocumentFragment();
-				tokens.forEach((t, i) => {
-					let b = document.createElement("div");
-					b.className = "swatch";
-					b.tabIndex = 0;
-					b.setAttribute("role", "button");
-					b.setAttribute(
-						"aria-label",
-						"Inspect color " + (i + 1) + ": " + t.hex,
-					);
-					b.setAttribute("aria-pressed", i === active);
-					b.style.background = t.hex;
-					b.style.color = ink(t.hex);
-					let n = document.createElement("small");
-					n.textContent = String(i + 1).padStart(2, "0");
-					let code = document.createElement("strong");
-					code.textContent = t.hex;
-					b.append(n, code);
-					b.onclick = () => select(i);
-					b.onkeydown = (e) => {
-						if (e.key === "Enter" || e.key === " ") {
-							e.preventDefault();
-							select(i);
-						}
-					};
-					g.append(b);
-				});
-				if (!tokens.length) {
-					let e = document.createElement("div");
-					e.className = "empty";
-					e.textContent =
-						"No colors yet. Paste a palette above to get started.";
-					g.append(e);
-				}
+			}
+			function renderGrid() {
 				let signature = tokens.map((t) => t.hex).join(",");
 				if ($("grid").dataset.signature !== signature) {
+					let g = document.createDocumentFragment();
+					tokens.forEach((t, i) => {
+						let b = createElement("div", "swatch");
+						b.tabIndex = 0;
+						b.setAttribute("role", "button");
+						b.setAttribute(
+							"aria-label",
+							"Inspect color " + (i + 1) + ": " + t.hex,
+						);
+						b.setAttribute("aria-pressed", i === active);
+						b.style.background = t.hex;
+						b.style.color = ink(t.hex);
+						let n = createElement(
+							"small",
+							"",
+							String(i + 1).padStart(2, "0"),
+						);
+						let code = createElement("strong", "", t.hex);
+						b.append(n, code);
+						bindActivation(b, () => select(i));
+						g.append(b);
+					});
+					if (!tokens.length) {
+						let e = createElement("div", "empty");
+						e.textContent =
+							"No colors yet. Paste a palette above to get started.";
+						g.append(e);
+					}
 					$("grid").replaceChildren(g);
 					$("grid").dataset.signature = signature;
 				} else {
@@ -1597,10 +1670,6 @@
 							b.setAttribute("aria-pressed", i === active),
 						);
 				}
-				$("count").textContent = "· " + tokens.length;
-				$("undo").disabled = !history.length;
-				$("redo").disabled = !future.length;
-				persist();
 			}
 			function syncScroll() {
 				$("highlight").scrollTop = source.scrollTop;
@@ -1609,8 +1678,7 @@
 			function select(i) {
 				active = i;
 				if (tokens[i]) {
-					hsv = toHSV(...rgb(tokens[i].hex));
-					oklch = toOKLCH(...rgb(tokens[i].hex));
+					syncColorModels(tokens[i].hex);
 				}
 				originalHex = tokens[i] ? tokens[i].hex : null;
 				render();
@@ -1633,7 +1701,9 @@
 				$("preview").classList.toggle("split", hasSplit);
 				$("previewNew").style.background = t ? t.hex : "#293238";
 				$("previewNew").style.color = t ? ink(t.hex) : "#9fadb5";
-				$("previewNewHex").textContent = t ? t.hex : "No color selected";
+				$("previewNewHex").textContent = t
+					? t.hex
+					: "No color selected";
 				if (hasSplit) {
 					$("previewOld").style.background = originalHex;
 					$("previewOld").style.color = ink(originalHex);
@@ -1677,61 +1747,28 @@
 				$("dot").style.left = hsv[1] + "%";
 				$("dot").style.top = 100 - hsv[2] + "%";
 				$("hue").value = hsv[0];
-				["r", "g", "b", "h", "s", "v"].forEach((k, i) => {
-					let value =
-						i < 3
-							? rgbUnit === 1
-								? Math.round((a[i] / 255) * 1000) / 1000
-								: a[i]
-							: Math.round(hsv[i - 3] * 10) / 10;
-					for (let suffix of ["Range", "Number"]) {
-						let el = $(k + suffix);
-						if (document.activeElement !== el) el.value = value;
-					}
-				});
-				["l", "c", "h"].forEach((k, i) => {
-					let value =
-						k === "h"
-							? Math.round(oklch[i] * 10) / 10
-							: Math.round(oklch[i] * 1000) / 1000;
-					for (let suffix of ["Range", "Number"]) {
-						let el = $("ok" + k + suffix);
-						if (document.activeElement !== el) el.value = value;
-					}
-				});
+				setChannelValues(
+					["r", "g", "b"],
+					a.map((value) =>
+						rgbUnit === 1
+							? Math.round((value / 255) * 1000) / 1000
+							: value,
+					),
+				);
+				setChannelValues(
+					["h", "s", "v"],
+					hsv.map((value) => Math.round(value * 10) / 10),
+				);
+				setChannelValues(
+					["okl", "okc", "okh"],
+					oklch.map((value, i) => {
+						const scale = i === 2 ? 10 : 1000;
+						return Math.round(value * scale) / scale;
+					}),
+				);
 			}
-			const harmonySchemes = [
-				{
-					name: "Analogous",
-					desc: "Analogous color schemes are made by picking three colors that are next to each other on the color wheel. They are perceived as calm and serene.",
-					offsets: [-30, 0, 30],
-				},
-				{
-					name: "Complementary",
-					desc: "Complementary color schemes are made by picking two opposite colors on the color wheel. They appear vibrant near to each other.",
-					offsets: [0, 180],
-				},
-				{
-					name: "Split complementary",
-					desc: "Split complementary schemes are like complementary but they use two adjacent colors of the complement. They are more flexible than complementary ones.",
-					offsets: [0, 150, 210],
-				},
-				{
-					name: "Triadic",
-					desc: "Triadic color schemes are created by picking three colors equally spaced on the color wheel. They appear quite contrasted and multicolored.",
-					offsets: [0, 120, 240],
-				},
-				{
-					name: "Tetradic",
-					desc: "Tetradic color schemes are made from two couples of complementary colors in a rectangular shape on the color wheel. They are very versatile, and work best with one dominant color.",
-					offsets: [0, 60, 180, 240],
-				},
-				{
-					name: "Square",
-					desc: "Square color schemes are like tetradic arranged in a square instead of rectangle. Colors appear even more contrasting.",
-					offsets: [0, 90, 180, 270],
-				},
-			];
+
+			// Harmony, simulation, and contrast panels
 			function renderHarmonies() {
 				let container = $("harmonyGroups");
 				let t = tokens[active];
@@ -1740,30 +1777,27 @@
 					baseV = t && hsv[2] ? hsv[2] : 70;
 				let fragment = document.createDocumentFragment();
 				harmonySchemes.forEach((scheme) => {
-					let cluster = document.createElement("div");
-					cluster.className = "harmony-cluster";
-					let head = document.createElement("div");
-					head.className = "harmony-head";
-					let title = document.createElement("span");
-					title.textContent = scheme.name;
-					let info = document.createElement("span");
-					info.className = "harmony-info";
-					info.textContent = "ⓘ";
+					let cluster = createElement("div", "harmony-cluster");
+					let head = createElement("div", "harmony-head");
+					let title = createElement("span", "", scheme.name);
+					let info = createElement("span", "harmony-info", "ⓘ");
 					info.tabIndex = 0;
-					let tip = document.createElement("span");
-					tip.className = "harmony-tooltip";
-					tip.textContent = scheme.desc;
+					let tip = createElement(
+						"span",
+						"harmony-tooltip",
+						scheme.desc,
+					);
 					info.append(tip);
 					let positionTip = () => {
 						let r = info.getBoundingClientRect();
 						tip.style.left = r.left + r.width / 2 + "px";
-						tip.style.bottom = window.innerHeight - r.top + 8 + "px";
+						tip.style.bottom =
+							window.innerHeight - r.top + 8 + "px";
 					};
 					info.addEventListener("mouseenter", positionTip);
 					info.addEventListener("focus", positionTip);
 					head.append(title, info);
-					let row = document.createElement("div");
-					row.className = "harmony-swatches";
+					let row = createElement("div", "harmony-swatches");
 					row.style.gridTemplateColumns =
 						"repeat(" + scheme.offsets.length + ", 1fr)";
 					scheme.offsets.forEach((offset) => {
@@ -1781,24 +1815,26 @@
 							"aria-label",
 							"Copy " + hex + " to clipboard",
 						);
-						let code = document.createElement("span");
-						code.className = "code";
-						code.textContent = hex;
-						let copied = document.createElement("span");
-						copied.className = "harmony-copied";
-						copied.textContent = "Copied!";
+						let code = createElement("span", "code", hex);
+						let copied = createElement(
+							"span",
+							"harmony-copied",
+							"Copied!",
+						);
 						sw.append(code, copied);
 						sw.onclick = async () => {
-							try {
-								await navigator.clipboard.writeText(hex);
+							if (
+								await copyText(
+									hex,
+									hex + " copied to clipboard.",
+								)
+							) {
 								sw.classList.add("show-copied");
 								setTimeout(
 									() => sw.classList.remove("show-copied"),
 									1200,
 								);
-								$("status").textContent =
-									hex + " copied to clipboard.";
-							} catch {}
+							}
 						};
 						row.append(sw);
 					});
@@ -1807,40 +1843,7 @@
 				});
 				container.replaceChildren(fragment);
 			}
-			const blindnessTypes = [
-				{
-					name: "Deuteranopia",
-					matrix: [
-						[0.625, 0.375, 0],
-						[0.7, 0.3, 0],
-						[0, 0.3, 0.7],
-					],
-				},
-				{
-					name: "Protanopia",
-					matrix: [
-						[0.567, 0.433, 0],
-						[0.558, 0.442, 0],
-						[0, 0.242, 0.758],
-					],
-				},
-				{
-					name: "Tritanopia",
-					matrix: [
-						[0.95, 0.05, 0],
-						[0, 0.433, 0.567],
-						[0, 0.475, 0.525],
-					],
-				},
-				{
-					name: "Achromatopsia",
-					matrix: [
-						[0.299, 0.587, 0.114],
-						[0.299, 0.587, 0.114],
-						[0.299, 0.587, 0.114],
-					],
-				},
-			];
+
 			function simulate(a, matrix) {
 				return matrix.map((row) =>
 					Math.max(
@@ -1871,29 +1874,26 @@
 					let similarity = Math.round(
 						100 - (dist / 441.6729559300637) * 100,
 					);
-					let cluster = document.createElement("div");
-					cluster.className = "blindness-cluster";
-					let head = document.createElement("div");
-					head.className = "blindness-head";
-					let title = document.createElement("span");
-					title.textContent = bt.name;
-					let sim = document.createElement("span");
-					sim.className = "blindness-similarity";
-					sim.textContent = similarity + "% similar";
+					let cluster = createElement("div", "blindness-cluster");
+					let head = createElement("div", "blindness-head");
+					let title = createElement("span", "", bt.name);
+					let sim = createElement(
+						"span",
+						"blindness-similarity",
+						similarity + "% similar",
+					);
 					head.append(title, sim);
-					let population = document.createElement("p");
-					population.className = "blindness-population";
-					population.textContent = bt.population;
-					let barEl = document.createElement("div");
-					barEl.className = "blindness-bar";
-					let original = document.createElement("div");
-					original.className = "blindness-half";
+					let population = createElement(
+						"p",
+						"blindness-population",
+						bt.population,
+					);
+					let barEl = createElement("div", "blindness-bar");
+					let original = createElement("div", "blindness-half");
 					original.style.background = baseHex;
-					let dot = document.createElement("span");
-					dot.className = "blindness-dot";
+					let dot = createElement("span", "blindness-dot");
 					original.append(dot);
-					let simmed = document.createElement("div");
-					simmed.className = "blindness-half";
+					let simmed = createElement("div", "blindness-half");
 					simmed.style.background = simHex;
 					barEl.append(original, simmed);
 					cluster.append(head, population, barEl);
@@ -1901,20 +1901,7 @@
 				});
 				container.replaceChildren(fragment);
 			}
-			function relLuminance(hex) {
-				let a = rgb(hex).map((v) => {
-					v /= 255;
-					return v <= 0.04045
-						? v / 12.92
-						: ((v + 0.055) / 1.055) ** 2.4;
-				});
-				return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
-			}
-			function contrastRatio(hexA, hexB) {
-				let lA = relLuminance(hexA),
-					lB = relLuminance(hexB);
-				return (Math.max(lA, lB) + 0.05) / (Math.min(lA, lB) + 0.05);
-			}
+
 			function renderContrast() {
 				let t = tokens[active];
 				let hex = t ? t.hex : toHex(fromHSV(210, 55, 70));
@@ -1946,6 +1933,7 @@
 					badges.replaceChildren(fragment);
 				});
 			}
+			// Color editing
 			function replaceColor(hex, keepHSV = false, keepOKLCH = false) {
 				let t = tokens[active];
 				if (!t) return;
@@ -1960,169 +1948,87 @@
 						Math.min(se, source.value.length),
 					);
 				}
-				if (!keepHSV) hsv = toHSV(...rgb(hex));
-				if (!keepOKLCH) oklch = toOKLCH(...rgb(hex));
+				syncColorModels(hex, keepHSV, keepOKLCH);
 				render();
 				inspect();
 			}
-			for (let [group, prefix, keys, maxes, steps, labels] of [
-				[
-					"rgb",
-					"",
-					["r", "g", "b"],
-					[255, 255, 255],
-					[1, 1, 1],
-					{ r: "Red", g: "Green", b: "Blue" },
-				],
-				[
-					"hsv",
-					"",
-					["h", "s", "v"],
-					[360, 100, 100],
-					[0.1, 0.1, 0.1],
-					{ h: "Hue", s: "Saturation", v: "Value" },
-				],
-				[
-					"oklch",
-					"ok",
-					["l", "c", "h"],
-					[1, 0.4, 360],
-					[0.001, 0.001, 0.1],
-					{ l: "Lightness", c: "Chroma", h: "Hue" },
-				],
-			])
-				keys.forEach((k, i) => {
-					let row = document.createElement("div");
-					row.className = "channels";
-					let label = document.createElement("label");
-					label.htmlFor = prefix + k + "Number";
-					label.textContent = k.toUpperCase();
-					row.append(label);
-					for (let type of ["range", "number"]) {
-						let input = document.createElement("input");
-						input.type = type;
-						input.id =
-							prefix +
-							k +
-							(type === "range" ? "Range" : "Number");
-						input.min = 0;
-						input.max = maxes[i];
-						input.step = steps[i];
-						input.setAttribute(
-							"aria-label",
-							labels[k] + (type === "range" ? " slider" : ""),
-						);
-						input.oninput = () => {
-							if (input.value === "" || !input.validity.valid)
-								return;
-							let value = Number(input.value);
-							if (group === "rgb") {
-								let a = rgb(tokens[active].hex);
-								a[i] = rgbUnit === 1 ? value * 255 : value;
-								replaceColor(toHex(a));
-							} else if (group === "hsv") {
-								hsv[i] = value;
-								replaceColor(toHex(fromHSV(...hsv)), true);
-							} else {
-								oklch[i] = value;
-								replaceColor(
-									toHex(fromOKLCH(...oklch)),
-									true,
-									true,
-								);
-							}
-						};
-						input.onchange = () => {
-							inspect();
-						};
-						row.append(input);
-					}
-					$(group).append(row);
-				});
-			["rgb", "hsv", "oklch"].forEach((g) => {
-				$(g + "Toggle").onclick = () => {
-					let collapsed = $(g + "Group").classList.toggle(
-						"collapsed",
-					);
-					$(g + "Toggle").setAttribute("aria-expanded", !collapsed);
-				};
-				$(g + "Toggle").onkeydown = (e) => {
-					if (e.key === "Enter" || e.key === " ") {
-						e.preventDefault();
-						$(g + "Toggle").click();
-					}
-				};
-				$(g + "Shorthand").onclick = async () => {
-					try {
-						await navigator.clipboard.writeText(
-							$(g + "Shorthand").textContent,
-						);
-						$("status").textContent =
-							g.toUpperCase() + " value copied.";
-					} catch {}
-				};
-				$(g + "Shorthand").onkeydown = (e) => {
-					if (e.key === "Enter" || e.key === " ") {
-						e.preventDefault();
-						$(g + "Shorthand").click();
-					}
-				};
-			});
-			[
-				["textToggle", "textPanel"],
-				["gridToggle", "gridPanel"],
-				["harmonyToggle", "harmonyPanel"],
-				["blindnessToggle", "blindnessPanel"],
-				["contrastToggle", "contrastPanel"],
-			].forEach(([toggleId, panelId]) => {
-				$(toggleId).onclick = () => {
-					let collapsed = $(panelId).classList.toggle("collapsed");
-					$(toggleId).setAttribute("aria-expanded", !collapsed);
-				};
-				$(toggleId).onkeydown = (e) => {
-					if (e.key === "Enter" || e.key === " ") {
-						e.preventDefault();
-						$(toggleId).click();
-					}
-				};
-			});
-			$("rgbUnitToggle").onclick = (e) => {
-				e.stopPropagation();
-				rgbUnit = rgbUnit === 255 ? 1 : 255;
-				$("rgbUnitToggle").textContent =
-					rgbUnit === 255 ? "0–255" : "0–1.0";
-				["r", "g", "b"].forEach((k) => {
-					let max = rgbUnit === 255 ? 255 : 1,
-						step = rgbUnit === 255 ? 1 : 0.001;
-					$(k + "Range").max = max;
-					$(k + "Range").step = step;
-					$(k + "Number").max = max;
-					$(k + "Number").step = step;
-				});
-				inspect();
-			};
-			$("rgbUnitToggle").onkeydown = (e) => {
-				if (e.key === "Enter" || e.key === " ") {
-					e.preventDefault();
-					e.stopPropagation();
-					$("rgbUnitToggle").click();
-				}
-			};
-			source.addEventListener("beforeinput", (e) => {
-				if (
-					e.inputType === "historyUndo" ||
-					e.inputType === "historyRedo"
-				) {
-					e.preventDefault();
-					undo(e.inputType === "historyRedo");
-				} else remember();
-			});
-			source.addEventListener("input", () => {
-				render();
-				let p = source.selectionStart;
-				let i = tokens.findIndex((t) => p >= t.start && p <= t.end);
-				select(i);
-			});
+			// Controls and event setup
+			function buildChannelControls() {
+				for (let [group, prefix, keys, maxes, steps, labels] of [
+					[
+						"rgb",
+						"",
+						["r", "g", "b"],
+						[255, 255, 255],
+						[1, 1, 1],
+						{ r: "Red", g: "Green", b: "Blue" },
+					],
+					[
+						"hsv",
+						"",
+						["h", "s", "v"],
+						[360, 100, 100],
+						[0.1, 0.1, 0.1],
+						{ h: "Hue", s: "Saturation", v: "Value" },
+					],
+					[
+						"oklch",
+						"ok",
+						["l", "c", "h"],
+						[1, 0.4, 360],
+						[0.001, 0.001, 0.1],
+						{ l: "Lightness", c: "Chroma", h: "Hue" },
+					],
+				])
+					keys.forEach((k, i) => {
+						let row = createElement("div", "channels");
+						let label = document.createElement("label");
+						label.htmlFor = prefix + k + "Number";
+						label.textContent = k.toUpperCase();
+						row.append(label);
+						for (let type of ["range", "number"]) {
+							let input = document.createElement("input");
+							input.type = type;
+							input.id =
+								prefix +
+								k +
+								(type === "range" ? "Range" : "Number");
+							input.min = 0;
+							input.max = maxes[i];
+							input.step = steps[i];
+							input.setAttribute(
+								"aria-label",
+								labels[k] + (type === "range" ? " slider" : ""),
+							);
+							input.oninput = () => {
+								if (input.value === "" || !input.validity.valid)
+									return;
+								let value = Number(input.value);
+								if (group === "rgb") {
+									let a = rgb(tokens[active].hex);
+									a[i] = rgbUnit === 1 ? value * 255 : value;
+									replaceColor(toHex(a));
+								} else if (group === "hsv") {
+									hsv[i] = value;
+									replaceColor(toHex(fromHSV(...hsv)), true);
+								} else {
+									oklch[i] = value;
+									replaceColor(
+										toHex(fromOKLCH(...oklch)),
+										true,
+										true,
+									);
+								}
+							};
+							input.onchange = () => {
+								inspect();
+							};
+							row.append(input);
+						}
+						$(group).append(row);
+					});
+			}
+
 			function selectAtCaret() {
 				let p =
 					source.selectionDirection === "backward"
@@ -2131,43 +2037,18 @@
 				let i = tokens.findIndex((t) => p >= t.start && p <= t.end);
 				if (i >= 0 && i !== active) select(i);
 			}
-			source.addEventListener("click", selectAtCaret);
-			source.addEventListener("keyup", selectAtCaret);
-			source.addEventListener("select", selectAtCaret);
-			source.addEventListener("scroll", syncScroll);
-			$("hex").oninput = () => {
-				let v = $("hex").value.trim();
-				let valid = /^#?(?:[\da-f]{3}|[\da-f]{6})$/i.test(v);
-				$("hex").setAttribute("aria-invalid", !valid);
-				if (valid) replaceColor(normalize(v));
-			};
-			$("hex").onblur = () => {
-				$("hex").value = tokens[active]?.hex || "";
-				$("hex").removeAttribute("aria-invalid");
-			};
-			$("native").oninput = () =>
-				replaceColor($("native").value.toUpperCase());
-			$("previewOld").onclick = () => {
-				if (originalHex) replaceColor(originalHex);
-			};
-			$("hue").oninput = () => {
-				hsv[0] = Number($("hue").value);
-				replaceColor(toHex(fromHSV(...hsv)), true);
-			};
+
 			function beginGesture() {
 				if (!gesture) {
 					remember();
 					gesture = true;
 				}
 			}
+
 			function endGesture() {
 				gesture = false;
 			}
-			$("controls").addEventListener("pointerdown", (e) => {
-				if (e.target.type === "range") beginGesture();
-			});
-			window.addEventListener("pointerup", endGesture);
-			window.addEventListener("pointercancel", endGesture);
+
 			function setSV(e) {
 				let box = $("sv").getBoundingClientRect();
 				hsv[1] = Math.max(
@@ -2183,80 +2064,153 @@
 				);
 				replaceColor(toHex(fromHSV(...hsv)), true);
 			}
-			$("sv").onpointerdown = (e) => {
-				if (active < 0) return;
-				beginGesture();
-				$("sv").setPointerCapture(e.pointerId);
-				setSV(e);
-			};
-			$("sv").onpointermove = (e) => {
-				if ($("sv").hasPointerCapture(e.pointerId)) setSV(e);
-			};
-			function undo(redo = false) {
-				let from = redo ? future : history,
-					to = redo ? history : future;
-				if (!from.length) return;
-				to.push(snapshot());
-				let state = from.pop();
-				source.value = state.text;
-				tokens = [];
-				active = state.active;
-				render();
-				if (tokens[active]) {
-					hsv = toHSV(...rgb(tokens[active].hex));
-					oklch = toOKLCH(...rgb(tokens[active].hex));
-				}
-				inspect();
-				source.focus();
-				source.setSelectionRange(state.start, state.end);
-			}
-			$("undo").onclick = () => undo();
-			$("redo").onclick = () => undo(true);
-			document.addEventListener("keydown", (e) => {
-				if (
-					(e.ctrlKey || e.metaKey) &&
-					!e.altKey &&
-					(e.key.toLowerCase() === "z" || e.key.toLowerCase() === "y")
-				) {
-					e.preventDefault();
-					undo(e.shiftKey || e.key.toLowerCase() === "y");
-				}
-			});
-			$("example").onchange = () => {
-				if (!$("example").value) return;
-				remember();
-				source.value = $("example").value === "ocean" ? ocean : endesga;
-				tokens = [];
-				active = 0;
-				render();
-				select(0);
-				$("example").value = "";
-				$("status").textContent =
-					"Example loaded. Undo restores your previous text.";
-			};
-			$("copy").onclick = async () => {
-				try {
-					await navigator.clipboard.writeText(source.value);
-					$("status").textContent = "Palette text copied.";
-				} catch {
-					source.focus();
-					source.select();
-					$("status").textContent =
-						"Text selected. Press Ctrl+C (or Cmd+C) to copy.";
-				}
-			};
-			$("download").onclick = () => {
-				let url = URL.createObjectURL(
-					new Blob([source.value], {
-						type: "text/plain;charset=utf-8",
-					}),
+
+			function bindEvents() {
+				document.querySelectorAll(".toggle-label").forEach((toggle) => {
+					bindActivation(toggle, () => {
+						const collapsed = toggle
+							.closest(".collapsible")
+							.classList.toggle("collapsed");
+						toggle.setAttribute("aria-expanded", !collapsed);
+					});
+				});
+				["rgb", "hsv", "oklch"].forEach((group) => {
+					const shorthand = $(group + "Shorthand");
+					bindActivation(shorthand, () =>
+						copyText(
+							shorthand.textContent,
+							group.toUpperCase() + " value copied.",
+						),
+					);
+				});
+				bindActivation(
+					$("rgbUnitToggle"),
+					(e) => {
+						e.stopPropagation();
+						rgbUnit = rgbUnit === 255 ? 1 : 255;
+						$("rgbUnitToggle").textContent =
+							rgbUnit === 255 ? "0–255" : "0–1.0";
+						["r", "g", "b"].forEach((k) => {
+							let max = rgbUnit === 255 ? 255 : 1,
+								step = rgbUnit === 255 ? 1 : 0.001;
+							for (const suffix of ["Range", "Number"]) {
+								$(k + suffix).max = max;
+								$(k + suffix).step = step;
+							}
+						});
+						inspect();
+					},
+					true,
 				);
-				let a = document.createElement("a");
-				a.href = url;
-				a.download = "palette.txt";
-				a.click();
-				setTimeout(() => URL.revokeObjectURL(url), 1000);
-			};
+				source.addEventListener("beforeinput", (e) => {
+					if (
+						e.inputType === "historyUndo" ||
+						e.inputType === "historyRedo"
+					) {
+						e.preventDefault();
+						undo(e.inputType === "historyRedo");
+					} else remember();
+				});
+				source.addEventListener("input", () => {
+					render();
+					let p = source.selectionStart;
+					let i = tokens.findIndex((t) => p >= t.start && p <= t.end);
+					select(i);
+				});
+
+				source.addEventListener("click", selectAtCaret);
+				source.addEventListener("keyup", selectAtCaret);
+				source.addEventListener("select", selectAtCaret);
+				source.addEventListener("scroll", syncScroll);
+				$("hex").oninput = () => {
+					let v = $("hex").value.trim();
+					let valid = /^#?(?:[\da-f]{3}|[\da-f]{6})$/i.test(v);
+					$("hex").setAttribute("aria-invalid", !valid);
+					if (valid) replaceColor(normalize(v));
+				};
+				$("hex").onblur = () => {
+					$("hex").value = tokens[active]?.hex || "";
+					$("hex").removeAttribute("aria-invalid");
+				};
+				$("native").oninput = () =>
+					replaceColor($("native").value.toUpperCase());
+				$("previewOld").onclick = () => {
+					if (originalHex) replaceColor(originalHex);
+				};
+				$("hue").oninput = () => {
+					hsv[0] = Number($("hue").value);
+					replaceColor(toHex(fromHSV(...hsv)), true);
+				};
+
+				$("controls").addEventListener("pointerdown", (e) => {
+					if (e.target.type === "range") beginGesture();
+				});
+				window.addEventListener("pointerup", endGesture);
+				window.addEventListener("pointercancel", endGesture);
+
+				$("sv").onpointerdown = (e) => {
+					if (active < 0) return;
+					beginGesture();
+					$("sv").setPointerCapture(e.pointerId);
+					setSV(e);
+				};
+				$("sv").onpointermove = (e) => {
+					if ($("sv").hasPointerCapture(e.pointerId)) setSV(e);
+				};
+
+				$("undo").onclick = () => undo();
+				$("redo").onclick = () => undo(true);
+				document.addEventListener("keydown", (e) => {
+					if (
+						(e.ctrlKey || e.metaKey) &&
+						!e.altKey &&
+						(e.key.toLowerCase() === "z" ||
+							e.key.toLowerCase() === "y")
+					) {
+						e.preventDefault();
+						undo(e.shiftKey || e.key.toLowerCase() === "y");
+					}
+				});
+				$("example").onchange = () => {
+					if (!$("example").value) return;
+					remember();
+					source.value =
+						$("example").value === "ocean" ? ocean : endesga;
+					tokens = [];
+					active = 0;
+					render();
+					select(0);
+					$("example").value = "";
+					$("status").textContent =
+						"Example loaded. Undo restores your previous text.";
+				};
+				$("copy").onclick = async () => {
+					if (
+						!(await copyText(source.value, "Palette text copied."))
+					) {
+						source.focus();
+						source.select();
+						$("status").textContent =
+							"Text selected. Press Ctrl+C (or Cmd+C) to copy.";
+					}
+				};
+				$("download").onclick = () => {
+					let url = URL.createObjectURL(
+						new Blob([source.value], {
+							type: "text/plain;charset=utf-8",
+						}),
+					);
+					let a = document.createElement("a");
+					a.href = url;
+					a.download = "palette.txt";
+					a.click();
+					setTimeout(() => URL.revokeObjectURL(url), 1000);
+				};
+			}
+
+			// Startup
+			buildChannelControls();
+			bindEvents();
 			try {
 				source.value =
 					localStorage.getItem("palette-workbench-v1") ?? ocean;
